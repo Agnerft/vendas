@@ -38,12 +38,26 @@ function normalizePackageId(packageId: unknown) {
   return Number.isNaN(numericPackageId) ? packageId : numericPackageId;
 }
 
+async function fetchWithTimeout(url: string, options: RequestInit = {}, timeoutMs = 15000) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    return await fetch(url, {
+      ...options,
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 async function loginAppsPanel() {
   const form = new FormData();
   form.append('username', 'revendaluiz');
   form.append('password', 'revendaluiz');
 
-  const response = await fetch('https://apps-api.painel.best/login', {
+  const response = await fetchWithTimeout('https://apps-api.painel.best/login', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -70,12 +84,12 @@ async function createMaxPlayerUser(lineId: unknown) {
     Referer: 'https://apps.painel.best/',
   };
 
-  await fetch(`https://apps-api.painel.best/max-player/users/${lineId}`, {
+  await fetchWithTimeout(`https://apps-api.painel.best/max-player/users/${lineId}`, {
     method: 'DELETE',
     headers,
-  }).catch(() => undefined);
+  }, 8000).catch(() => undefined);
 
-  const response = await fetch('https://apps-api.painel.best/max-player/users', {
+  const response = await fetchWithTimeout('https://apps-api.painel.best/max-player/users', {
     method: 'POST',
     headers: {
       ...headers,
