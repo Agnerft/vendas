@@ -270,9 +270,9 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
               <small>Genero: {featuredCatalogItem.category}</small>
             </div>
             <div className="catalog-controls">
-              <button type="button" onClick={goToPreviousCatalogItem} aria-label="Anterior">&lt;</button>
+              <button type="button" onClick={goToPreviousCatalogItem} aria-label="Anterior">&larr;</button>
               <span>{catalogIndex + 1}/{catalogItems.length}</span>
-              <button type="button" onClick={goToNextCatalogItem} aria-label="Proximo">&gt;</button>
+              <button type="button" onClick={goToNextCatalogItem} aria-label="Proximo">&rarr;</button>
             </div>
           </article>
         ) : (
