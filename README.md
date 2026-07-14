@@ -60,7 +60,7 @@ Opcao recomendada para operar pelo navegador:
 
 1. Acesse `/admin`
 2. Digite a senha `123`
-3. Configure endpoint, token Bearer, package e observacao
+3. Configure endpoint, API key, package e observacao
 4. Clique em `Salvar configuracao`
 
 Essa configuracao fica salva no LocalStorage do navegador.

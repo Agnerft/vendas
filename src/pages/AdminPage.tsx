@@ -146,13 +146,13 @@ export function AdminPage() {
             placeholder="Opcional nesta API"
           />
 
-          <label htmlFor="best-token">Bearer token</label>
+          <label htmlFor="best-token">API key</label>
           <input
             id="best-token"
             type="password"
             value={config.apiToken}
             onChange={(event) => updateField('apiToken', event.target.value)}
-            placeholder="Cole o token da API aqui"
+            placeholder="Cole a chave Api-Key aqui"
           />
 
           <label htmlFor="best-package">Package</label>

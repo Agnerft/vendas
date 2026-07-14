@@ -28,7 +28,7 @@ function buildPanelHeaders(apiToken: string) {
   return {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${apiToken}`,
+    'Api-Key': apiToken,
   };
 }
 

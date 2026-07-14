@@ -60,7 +60,7 @@ function assertBestPanelConfig(config: PublicBestPanelConfig) {
   const { endpoint, hasApiToken, packageId } = config;
 
   if (!endpoint || !hasApiToken || !packageId) {
-    throw new Error('Configure endpoint, API token e package do painel antes de criar o teste.');
+    throw new Error('Configure endpoint, API key e package do painel antes de criar o teste.');
   }
 }
 
