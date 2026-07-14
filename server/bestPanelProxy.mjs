@@ -77,29 +77,50 @@ function requestAppsApi(method, url, headers = {}, body = '') {
   });
 }
 
-function buildMultipartBody(fields) {
-  const boundary = `----nixplay-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-  const body = Object.entries(fields)
-    .map(([name, value]) => `--${boundary}\r\nContent-Disposition: form-data; name="${name}"\r\n\r\n${value}\r\n`)
-    .join('') + `--${boundary}--\r\n`;
+function parseCurlJson(stdout) {
+  const marker = '\n__HTTP_STATUS__';
+  const markerIndex = stdout.lastIndexOf(marker);
+  const text = markerIndex >= 0 ? stdout.slice(0, markerIndex) : stdout;
+  const status = markerIndex >= 0 ? Number(stdout.slice(markerIndex + marker.length).trim()) : 0;
 
   return {
-    body,
-    contentType: `multipart/form-data; boundary=${boundary}`,
+    status,
+    ok: status >= 200 && status < 400,
+    body: text ? JSON.parse(text) : {},
   };
 }
 
 async function loginAppsPanel(config) {
   const login = config.login || 'revendaluiz';
   const password = config.appsPassword || config.login || 'revendaluiz';
-  const multipart = buildMultipartBody({ username: login, password });
+  const response = await execFileAsync('curl', [
+    '-sS',
+    '--max-time',
+    '30',
+    '-X',
+    'POST',
+    'https://apps-api.painel.best/login',
+    '-H',
+    'accept: application/json',
+    '-H',
+    'origin: https://apps.painel.best',
+    '-H',
+    'referer: https://apps.painel.best/',
+    '-F',
+    `username=${login}`,
+    '-F',
+    `password=${password}`,
+    '-w',
+    '\n__HTTP_STATUS__%{http_code}',
+  ], { timeout: 35000, maxBuffer: 1024 * 1024 })
+    .then(({ stdout }) => parseCurlJson(stdout))
+    .catch((error) => {
+      if (error.killed || error.signal === 'SIGTERM') {
+        throw new Error('Tempo esgotado ao autenticar no painel de apps.');
+      }
 
-  const response = await requestAppsApi('POST', 'https://apps-api.painel.best/login', {
-      Accept: 'application/json',
-      Origin: 'https://apps.painel.best',
-      Referer: 'https://apps.painel.best/',
-      'Content-Type': multipart.contentType,
-    }, multipart.body);
+      throw error;
+    });
   const body = response.body;
 
   if (!response.ok || !body.access_token) {
