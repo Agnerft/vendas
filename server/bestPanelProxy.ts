@@ -43,7 +43,7 @@ export async function createBestPanelTrial(request: IncomingMessage) {
   const apiToken = request.headers['x-best-api-token'];
   const payload = {
     ...body.payload,
-    username: body.payload?.username || body.payload?.phone || '',
+    username: body.payload?.username ?? '',
     password: body.payload?.password ?? '',
     notes: body.payload?.notes ?? null,
     email: body.payload?.email ?? null,

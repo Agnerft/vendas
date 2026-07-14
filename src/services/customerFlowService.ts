@@ -56,6 +56,28 @@ function getStringFromResponse(raw: unknown, keys: string[]): string | undefined
   return undefined;
 }
 
+function getReadableError(raw: unknown, fallback: string) {
+  const directMessage = getStringFromResponse(raw, ['message', 'error', 'detail']);
+
+  if (directMessage) {
+    return directMessage;
+  }
+
+  if (typeof raw === 'string' && raw.trim()) {
+    return raw;
+  }
+
+  if (raw) {
+    try {
+      return JSON.stringify(raw);
+    } catch {
+      return fallback;
+    }
+  }
+
+  return fallback;
+}
+
 function assertBestPanelConfig(config: PublicBestPanelConfig) {
   const { endpoint, hasApiToken, packageId } = config;
 
@@ -71,7 +93,7 @@ function buildBestPanelPayload(data: SalesFlowData, config: PublicBestPanelConfi
     notes: config.notes || null,
     phone: data.phone,
     password: '',
-    username: data.phone,
+    username: '',
     plan_value: null,
     package_id: config.packageId,
   };
@@ -158,9 +180,7 @@ export async function createTrial(data: SalesFlowData): Promise<BestPanelTrialRe
   const raw = await readTrialResponse(response);
 
   if (!response.ok) {
-    const message =
-      getStringFromResponse(raw, ['message', 'error', 'detail']) ??
-      `Nao foi possivel criar o teste. Codigo ${response.status}.`;
+    const message = getReadableError(raw, `Nao foi possivel criar o teste. Codigo ${response.status}.`);
 
     throw new Error(message);
   }
@@ -168,7 +188,7 @@ export async function createTrial(data: SalesFlowData): Promise<BestPanelTrialRe
   return {
     ok: true,
     message: getStringFromResponse(raw, ['message', 'detail', 'status']) ?? 'Teste criado com sucesso.',
-    username: getStringFromResponse(raw, ['username', 'user', 'login']) ?? payload.username,
+    username: getStringFromResponse(raw, ['username', 'user', 'login']) ?? data.phone,
     password: getStringFromResponse(raw, ['password', 'pass', 'senha']),
     raw,
   };
