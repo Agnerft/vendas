@@ -37,14 +37,29 @@ function normalizePackageId(packageId: unknown) {
   return Number.isNaN(numericPackageId) ? packageId : numericPackageId;
 }
 
+function getRandomString(length: number) {
+  const alphabet = 'abcdefghjkmnpqrstuvwxyz23456789';
+  return Array.from({ length }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
+}
+
+function generateTrialCredentials() {
+  const suffix = getRandomString(8);
+
+  return {
+    username: `nix${suffix}`,
+    password: `Nx!${suffix}9pL`,
+  };
+}
+
 export async function createBestPanelTrial(request: IncomingMessage) {
   const body = await parseJsonBody(request);
   const endpoint = sanitizeEndpoint(body.endpoint);
   const apiToken = request.headers['x-best-api-token'];
+  const credentials = generateTrialCredentials();
   const payload = {
     ...body.payload,
-    username: body.payload?.username ?? '',
-    password: body.payload?.password ?? '',
+    username: body.payload?.username || credentials.username,
+    password: body.payload?.password || credentials.password,
     notes: body.payload?.notes ?? null,
     email: body.payload?.email ?? null,
     phone: body.payload?.phone || '',

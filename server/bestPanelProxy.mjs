@@ -32,15 +32,30 @@ function normalizePackageId(packageId) {
   return Number.isNaN(numericPackageId) ? packageId : numericPackageId;
 }
 
+function getRandomString(length) {
+  const alphabet = 'abcdefghjkmnpqrstuvwxyz23456789';
+  return Array.from({ length }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
+}
+
+function generateTrialCredentials() {
+  const suffix = getRandomString(8);
+
+  return {
+    username: `nix${suffix}`,
+    password: `Nx!${suffix}9pL`,
+  };
+}
+
 export async function createBestPanelTrial(request) {
   const body = await parseJsonBody(request);
   const storedConfig = await loadStoredBestPanelConfig();
   const endpoint = sanitizeEndpoint(body.endpoint || storedConfig.endpoint);
   const apiToken = request.headers['x-best-api-token'] || storedConfig.apiToken;
+  const credentials = generateTrialCredentials();
   const payload = {
     ...body.payload,
-    username: body.payload?.username ?? '',
-    password: body.payload?.password ?? '',
+    username: body.payload?.username || credentials.username,
+    password: body.payload?.password || credentials.password,
     notes: body.payload?.notes || storedConfig.notes || null,
     email: body.payload?.email ?? null,
     phone: body.payload?.phone || '',

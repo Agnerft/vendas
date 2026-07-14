@@ -86,14 +86,33 @@ function assertBestPanelConfig(config: PublicBestPanelConfig) {
   }
 }
 
+function getRandomString(length: number) {
+  const alphabet = 'abcdefghjkmnpqrstuvwxyz23456789';
+  const values = new Uint32Array(length);
+  window.crypto.getRandomValues(values);
+
+  return Array.from(values, (value) => alphabet[value % alphabet.length]).join('');
+}
+
+function generateTrialCredentials() {
+  const suffix = getRandomString(8);
+
+  return {
+    username: `nix${suffix}`,
+    password: `Nx!${suffix}9pL`,
+  };
+}
+
 function buildBestPanelPayload(data: SalesFlowData, config: PublicBestPanelConfig): BestPanelTrialRequest {
+  const credentials = generateTrialCredentials();
+
   return {
     type: null,
     email: null,
     notes: config.notes || null,
     phone: data.phone,
-    password: '',
-    username: '',
+    password: credentials.password,
+    username: credentials.username,
     plan_value: null,
     package_id: config.packageId,
   };
@@ -188,8 +207,8 @@ export async function createTrial(data: SalesFlowData): Promise<BestPanelTrialRe
   return {
     ok: true,
     message: getStringFromResponse(raw, ['message', 'detail', 'status']) ?? 'Teste criado com sucesso.',
-    username: getStringFromResponse(raw, ['username', 'user', 'login']) ?? data.phone,
-    password: getStringFromResponse(raw, ['password', 'pass', 'senha']),
+    username: getStringFromResponse(raw, ['username', 'user', 'login']) ?? payload.username,
+    password: getStringFromResponse(raw, ['password', 'pass', 'senha']) ?? payload.password,
     raw,
   };
 }
