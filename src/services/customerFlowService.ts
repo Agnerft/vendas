@@ -86,26 +86,20 @@ function assertBestPanelConfig(config: PublicBestPanelConfig) {
   }
 }
 
-function getRandomString(length: number) {
-  const alphabet = 'abcdefghjkmnpqrstuvwxyz23456789';
-  const values = new Uint32Array(length);
-  window.crypto.getRandomValues(values);
-
-  return Array.from(values, (value) => alphabet[value % alphabet.length]).join('');
+function onlyDigits(value: string) {
+  return value.replace(/\D/g, '');
 }
 
-function generateTrialCredentials() {
-  const usernameSuffix = getRandomString(8);
-  const passwordSuffix = getRandomString(10);
-
+function buildPhoneCredentials(phone: string) {
+  const username = onlyDigits(phone);
   return {
-    username: `nix${usernameSuffix}`,
-    password: `Tv!${passwordSuffix}9Q`,
+    username,
+    password: username.split('').reverse().join(''),
   };
 }
 
 function buildBestPanelPayload(data: SalesFlowData, config: PublicBestPanelConfig): BestPanelTrialRequest {
-  const credentials = generateTrialCredentials();
+  const credentials = buildPhoneCredentials(data.phone);
 
   return {
     type: null,

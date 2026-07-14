@@ -32,18 +32,15 @@ function normalizePackageId(packageId) {
   return Number.isNaN(numericPackageId) ? packageId : numericPackageId;
 }
 
-function getRandomString(length) {
-  const alphabet = 'abcdefghjkmnpqrstuvwxyz23456789';
-  return Array.from({ length }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
+function onlyDigits(value) {
+  return String(value ?? '').replace(/\D/g, '');
 }
 
-function generateTrialCredentials() {
-  const usernameSuffix = getRandomString(8);
-  const passwordSuffix = getRandomString(10);
-
+function buildPhoneCredentials(phone) {
+  const username = onlyDigits(phone);
   return {
-    username: `nix${usernameSuffix}`,
-    password: `Tv!${passwordSuffix}9Q`,
+    username,
+    password: username.split('').reverse().join(''),
   };
 }
 
@@ -52,7 +49,7 @@ export async function createBestPanelTrial(request) {
   const storedConfig = await loadStoredBestPanelConfig();
   const endpoint = sanitizeEndpoint(body.endpoint || storedConfig.endpoint);
   const apiToken = request.headers['x-best-api-token'] || storedConfig.apiToken;
-  const credentials = generateTrialCredentials();
+  const credentials = buildPhoneCredentials(body.payload?.phone);
   const payload = {
     ...body.payload,
     username: body.payload?.username || credentials.username,
