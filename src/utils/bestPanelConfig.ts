@@ -8,6 +8,10 @@ export interface BestPanelConfig {
   notes: string;
 }
 
+export interface PublicBestPanelConfig extends Omit<BestPanelConfig, 'apiToken'> {
+  hasApiToken: boolean;
+}
+
 const BEST_PANEL_CONFIG_KEY = 'iptv-best-panel-config';
 
 export function getDefaultBestPanelConfig(): BestPanelConfig {
@@ -40,4 +44,47 @@ export function loadBestPanelConfig(): BestPanelConfig {
 
 export function saveBestPanelConfig(config: BestPanelConfig): void {
   window.localStorage.setItem(BEST_PANEL_CONFIG_KEY, JSON.stringify(config));
+}
+
+export async function loadPublicBestPanelConfig(): Promise<PublicBestPanelConfig> {
+  const response = await fetch('/api/best-panel-config');
+
+  if (!response.ok) {
+    throw new Error('Nao foi possivel carregar a configuracao salva no servidor.');
+  }
+
+  return response.json() as Promise<PublicBestPanelConfig>;
+}
+
+export async function loadAdminBestPanelConfig(password: string): Promise<BestPanelConfig> {
+  const response = await fetch('/api/admin/best-panel-config', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password }),
+  });
+
+  const body = await response.json();
+
+  if (!response.ok) {
+    throw new Error(body.message ?? 'Nao foi possivel abrir a configuracao do admin.');
+  }
+
+  return body as BestPanelConfig;
+}
+
+export async function saveAdminBestPanelConfig(password: string, config: BestPanelConfig): Promise<BestPanelConfig> {
+  const response = await fetch('/api/admin/best-panel-config', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password, config }),
+  });
+
+  const body = await response.json();
+
+  if (!response.ok) {
+    throw new Error(body.message ?? 'Nao foi possivel salvar a configuracao no servidor.');
+  }
+
+  saveBestPanelConfig(body as BestPanelConfig);
+  return body as BestPanelConfig;
 }

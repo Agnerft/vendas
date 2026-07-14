@@ -4,7 +4,8 @@ import type {
   FlowPayload,
   SalesFlowData,
 } from '../types/salesFlow';
-import { loadBestPanelConfig } from '../utils/bestPanelConfig';
+import { loadBestPanelConfig, loadPublicBestPanelConfig } from '../utils/bestPanelConfig';
+import type { PublicBestPanelConfig } from '../utils/bestPanelConfig';
 
 const wait = (milliseconds = 180) =>
   new Promise((resolve) => {
@@ -55,17 +56,15 @@ function getStringFromResponse(raw: unknown, keys: string[]): string | undefined
   return undefined;
 }
 
-function assertBestPanelConfig() {
-  const { endpoint, apiToken, login, packageId } = loadBestPanelConfig();
+function assertBestPanelConfig(config: PublicBestPanelConfig) {
+  const { endpoint, hasApiToken, login, packageId } = config;
 
-  if (!endpoint || !apiToken || !login || !packageId) {
+  if (!endpoint || !hasApiToken || !login || !packageId) {
     throw new Error('Configure endpoint, login, API e package do painel antes de criar o teste.');
   }
 }
 
-function buildBestPanelPayload(data: SalesFlowData): BestPanelTrialRequest {
-  const config = loadBestPanelConfig();
-
+function buildBestPanelPayload(data: SalesFlowData, config: PublicBestPanelConfig): BestPanelTrialRequest {
   return {
     type: 'iptv',
     email: null,
@@ -86,6 +85,22 @@ function buildBestPanelHeaders(): HeadersInit {
     'X-Best-Api-Token': apiToken,
     'X-Best-Login': login,
   };
+}
+
+async function getServerBestPanelConfig() {
+  try {
+    return await loadPublicBestPanelConfig();
+  } catch {
+    const localConfig = loadBestPanelConfig();
+
+    return {
+      endpoint: localConfig.endpoint,
+      login: localConfig.login,
+      packageId: localConfig.packageId,
+      notes: localConfig.notes,
+      hasApiToken: Boolean(localConfig.apiToken),
+    };
+  }
 }
 
 async function readTrialResponse(response: Response): Promise<unknown> {
@@ -111,10 +126,10 @@ async function readTrialResponse(response: Response): Promise<unknown> {
 }
 
 export async function createTrial(data: SalesFlowData): Promise<BestPanelTrialResponse> {
-  assertBestPanelConfig();
+  const config = await getServerBestPanelConfig();
+  assertBestPanelConfig(config);
 
-  const config = loadBestPanelConfig();
-  const payload = buildBestPanelPayload(data);
+  const payload = buildBestPanelPayload(data, config);
   console.info('Criando teste no The Best', {
     ...payload,
     phone: payload.phone,

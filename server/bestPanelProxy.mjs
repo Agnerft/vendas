@@ -1,3 +1,5 @@
+import { loadStoredBestPanelConfig } from './adminConfig.mjs';
+
 export async function parseJsonBody(request) {
   const chunks = [];
 
@@ -28,11 +30,17 @@ function buildPanelHeaders(apiToken, login) {
 
 export async function createBestPanelTrial(request) {
   const body = await parseJsonBody(request);
-  const endpoint = sanitizeEndpoint(body.endpoint);
-  const apiToken = request.headers['x-best-api-token'];
-  const login = request.headers['x-best-login'];
+  const storedConfig = await loadStoredBestPanelConfig();
+  const endpoint = sanitizeEndpoint(body.endpoint || storedConfig.endpoint);
+  const apiToken = request.headers['x-best-api-token'] || storedConfig.apiToken;
+  const login = request.headers['x-best-login'] || storedConfig.login;
+  const payload = {
+    ...body.payload,
+    notes: body.payload?.notes || storedConfig.notes,
+    package_id: body.payload?.package_id || storedConfig.packageId,
+  };
 
-  if (!apiToken || !login || !body.payload?.package_id) {
+  if (!apiToken || !login || !payload.package_id) {
     return {
       status: 400,
       body: {
@@ -47,7 +55,7 @@ export async function createBestPanelTrial(request) {
     response = await fetch(endpoint, {
       method: 'POST',
       headers: buildPanelHeaders(apiToken, login),
-      body: JSON.stringify(body.payload),
+      body: JSON.stringify(payload),
     });
   } catch (error) {
     return {

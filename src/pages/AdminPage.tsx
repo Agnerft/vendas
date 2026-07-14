@@ -3,7 +3,9 @@ import type { FormEvent } from 'react';
 import { appConfig } from '../config/appConfig';
 import {
   getDefaultBestPanelConfig,
+  loadAdminBestPanelConfig,
   loadBestPanelConfig,
+  saveAdminBestPanelConfig,
   saveBestPanelConfig,
   type BestPanelConfig,
 } from '../utils/bestPanelConfig';
@@ -18,21 +20,25 @@ export function AdminPage() {
   const defaultConfig = useMemo(() => loadBestPanelConfig(), []);
   const [isUnlocked, setIsUnlocked] = useState(isAdminUnlocked);
   const [password, setPassword] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
   const [config, setConfig] = useState<BestPanelConfig>(defaultConfig);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  function handleLogin(event: FormEvent<HTMLFormElement>) {
+  async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (password !== appConfig.adminPassword) {
-      setError('Senha incorreta.');
-      return;
+    try {
+      const serverConfig = await loadAdminBestPanelConfig(password);
+      saveBestPanelConfig(serverConfig);
+      setConfig(serverConfig);
+      setAdminPassword(password);
+      window.sessionStorage.setItem(ADMIN_SESSION_KEY, 'true');
+      setIsUnlocked(true);
+      setError('');
+    } catch (loginError) {
+      setError(loginError instanceof Error ? loginError.message : 'Senha incorreta.');
     }
-
-    window.sessionStorage.setItem(ADMIN_SESSION_KEY, 'true');
-    setIsUnlocked(true);
-    setError('');
   }
 
   function updateField(field: keyof BestPanelConfig, value: string) {
@@ -43,18 +49,30 @@ export function AdminPage() {
     setMessage('');
   }
 
-  function handleSave(event: FormEvent<HTMLFormElement>) {
+  async function handleSave(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    saveBestPanelConfig(config);
-    setMessage('Configuracao salva com sucesso.');
-    setError('');
+
+    try {
+      const savedConfig = await saveAdminBestPanelConfig(adminPassword || password || appConfig.adminPassword, config);
+      setConfig(savedConfig);
+      setMessage('Configuracao salva no servidor com sucesso.');
+      setError('');
+    } catch (saveError) {
+      setError(saveError instanceof Error ? saveError.message : 'Nao foi possivel salvar a configuracao.');
+    }
   }
 
-  function handleResetDefaults() {
+  async function handleResetDefaults() {
     const nextConfig = getDefaultBestPanelConfig();
-    setConfig(nextConfig);
-    saveBestPanelConfig(nextConfig);
-    setMessage('Configuracao voltou para o padrao do projeto.');
+
+    try {
+      const savedConfig = await saveAdminBestPanelConfig(adminPassword || password || appConfig.adminPassword, nextConfig);
+      setConfig(savedConfig);
+      setMessage('Configuracao voltou para o padrao do projeto.');
+      setError('');
+    } catch (saveError) {
+      setError(saveError instanceof Error ? saveError.message : 'Nao foi possivel restaurar o padrao.');
+    }
   }
 
   if (!isUnlocked) {

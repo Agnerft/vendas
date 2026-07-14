@@ -3,7 +3,13 @@ import { stat } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createBestPanelTrial, sendJson } from './server/bestPanelProxy.mjs';
+import {
+  getPublicBestPanelConfig,
+  loadAdminBestPanelConfig,
+  loadStoredBestPanelConfig,
+  saveAdminBestPanelConfig,
+} from './server/adminConfig.mjs';
+import { createBestPanelTrial, parseJsonBody, sendJson } from './server/bestPanelProxy.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const distDir = join(root, 'dist');
@@ -48,9 +54,24 @@ createServer(async (request, response) => {
       return;
     }
 
+    if (request.url === '/api/best-panel-config' && request.method === 'GET') {
+      const config = await loadStoredBestPanelConfig();
+      sendJson(response, 200, getPublicBestPanelConfig(config));
+      return;
+    }
+
+    if (request.url === '/api/admin/best-panel-config' && request.method === 'POST') {
+      const body = await parseJsonBody(request);
+      const config = body.config
+        ? await saveAdminBestPanelConfig(body)
+        : await loadAdminBestPanelConfig(body);
+      sendJson(response, 200, config);
+      return;
+    }
+
     await serveStatic(request, response);
   } catch (error) {
-    sendJson(response, 500, {
+    sendJson(response, error.status ?? 500, {
       message: error instanceof Error ? error.message : 'Erro inesperado no servidor.',
     });
   }
