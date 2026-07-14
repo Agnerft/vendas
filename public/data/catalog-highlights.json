@@ -5,181 +5,301 @@
       "title": "(Des)controle",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1369243,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/scl6uVD0YZc46WZHgXbEcaH2zYw.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/pX2ciZOUSyN0XdJn9KzWwgq0BmM.jpg",
+      "overview": "Kátia Klein é uma escritora bem-sucedida que enfrenta uma crise criativa às vésperas da entrega do seu novo livro, ao mesmo tempo em que descobre a falência do seu casamento e admi"
     },
     {
       "title": "180",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1659087,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/9ISjrhA38HpSSGtfiCk8lpziC3K.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/iQSXJs6RbTumcwxMjCedDoK99rx.jpg",
+      "overview": "Depois que um incidente no trânsito deixa seu filho em estado crítico, um pai com sangue nos olhos embarca em um caminho sombrio de caos e vingança."
     },
     {
       "title": "A Greve da Seleção da França",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1678844,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/xy5oC3dWw2OuSUHXIBPm6XQLk8n.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/dTEbfFiaYupyhgFg9ZC4NpH5p8G.jpg",
+      "overview": "Este documentário revisita a polêmica Copa do Mundo de 2010 da seleção francesa de futebol e a greve de ônibus que gerou manchetes globais e indignação nacional."
     },
     {
       "title": "Com Unhas e Dentes",
       "year": 2025,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1429744,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/7bSozlIufdfSh5XFBxIGWfZJaqy.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/rdtylu8IGowaxKGRKN9fFbdwSuA.jpg",
+      "overview": "Para sobreviver a um terrível exército de zumbis, um ex-lutador precisa usar toda sua garra, habilidade e velocidade. O objetivo? Salvar a própria vida e a da namorada."
     },
     {
       "title": "18 Rosas",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1631917,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/1TApAJqCQekKeoRV1Nza2damyfz.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/21YKck5bSRcvRIXlVg6ZaV0k0sj.jpg",
+      "overview": "Neste romance de amadurecimento, o aluno novo entra em conflito com a garota mais popular da escola. Mas ele logo percebe que vai precisar dela para várias coisas."
     },
     {
       "title": "A Casa de Verão",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1556616,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/thYgwU7wrT1mb3SJklkmJnAzxTS.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/5fA3ko0ZHkysz1aNO78jRsey4k4.jpg",
+      "overview": "Selin, 21 anos, de repente volta para o verão de 96 e se torna a melhor amiga de sua mãe. Ao ajudá-la a escolher seu pai em um triângulo amoroso, ela descobre que os sonhos que sua"
     },
     {
       "title": "A História de Um Gorila com David Attenborough",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1623125,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/jdbhjmDymtYdcYfzsmBlQEsOExV.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/r80zWzxQn5pMAPgDHd4CiKIGOyU.jpg",
+      "overview": "Neste documentário intimista, David Attenborough revisita um dos momentos mais marcantes de sua vida: o primeiro encontro com um bebê gorila chamado Pablo, nas montanhas de Ruanda,"
     },
     {
       "title": "O Dia da Castração",
       "year": 2025,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 537921,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/iqAdJynMKna1c9fHQWD884s3HuR.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/vmWgToiWzgWxzGtdbeQFrtuS2BN.jpg",
+      "overview": "Ao descobrir que vai ser castrado, um cachorro tem 24 horas para meter o pé na jaca com os amigos."
     },
     {
       "title": "53 Domingos",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1276704,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/rL6GKuOAPUEGk0hqeY9sLRJTPWE.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/kFK6FpbbEvVKDH956qTKEHB4Sfp.jpg",
+      "overview": "Três irmãos aceitam conversar sobre o futuro do pai, mas o reencontro se transforma em uma troca de ofensas movida por antigas mágoas."
     },
     {
       "title": "A Noiva!",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1159831,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/vcdnSEcm0f0shJohkJnrOBcCq1m.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/l8rKKMU2M9dDULO9CEtDNdWAEUJ.jpg",
+      "overview": "Na década de 1930, Frankenstein viaja a Chicago em busca do Dr. Euphronius para ajudá-lo a criar uma companheira. Juntos, eles revivem uma jovem assassinada, dando origem à Noiva, "
     },
     {
       "title": "A Rainha do Xadrez",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1596291,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/fAckgewEBm7lPkYDaqmBvxlcWf2.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/y5haKgSz1hCDatwIOMuqZ1CFKPW.jpg",
+      "overview": "Fenômeno do xadrez, Judit Polgár enfrenta dúvidas, preconceitos e o invencível Garry Kasparov para ocupar seu lugar entre os melhores da história."
     },
     {
       "title": "A Extraordinária Vida de Ibelin",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1167027,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/3KRdzmGq96bSV2dVU8mEKk4CocD.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/8QAqAqZY6qoIWBuL7aoA6QuR6Jn.jpg",
+      "overview": "A vida secreta de um jovem jogador de World of Warcraft é reimaginada quando os amigos da internet entram com contato com a família dele após a morte."
     },
     {
       "title": "A Acusada",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1389149,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/yRf0OrswYzoLnjXLpTLsmRUVtd.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/8QRMlkCMFNKZM2ApnIaut5t4snf.jpg",
+      "overview": "Geetika e Meera estão prestes a mudar de cidade e começar uma família. Mas essa vida perfeita vira de cabeça para baixo quando uma delas recebe uma acusação grave."
     },
     {
       "title": "Agente Zeta",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1314786,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/zU20MrtOAYon07ULE9wFxUeaaqd.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/ptcyGmBonW6mDQmrPhXbt6Rjrlp.jpg",
+      "overview": "Quatro ex-agentes do serviço secreto espanhol são assassinados simultaneamente ao redor do mundo. A CNI descobre que todos participaram da \"Operação Ciénaga\" décadas antes na Colôm"
     },
     {
       "title": "A Última Aventura: Nos Bastidores de Stranger Things 5",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1610413,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/4C1EXyRhkG8WrNBVaA9rKo9pqxq.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/edGuDPKY6qHBg9hYvmnvLjcFoy4.jpg",
+      "overview": "Mergulhe nos bastidores da série dos irmãos Duffer que marcou uma geração, e confira todo o trabalho e anos de dedicação por trás da temporada final."
     },
     {
       "title": "A Libertação",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 930600,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/4TdwOqwIPdG0BMuCDZdmQz92zjT.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/qkEnklEGDFy4TRVhuHFn2DI2BP6.jpg",
+      "overview": "Em busca de um recomeço, a mãe solo Ebony Jackson muda para uma casa nova com sua família. Mas algo sinistro já vive lá..."
     },
     {
       "title": "A Caixa Azul",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1620996,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/Ao8YIks0or4845Z1lXbINz7tMh8.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/9NyHabsIT6aVdLKw7ZYsBn7Vw6R.jpg",
+      "overview": "Pablo, um jovem milionário recluso que vive na Patagônia, ainda é assombrado por um trágico acidente de carro que mudou sua vida. Sua rotina isolada começa a mudar quando ele conhe"
     },
     {
       "title": "Agentes Muito Especiais",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1296682,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/lOnODWkmfV3PQDsBYrAdoL2SBT0.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/mgG2553nDqcULgfEVLiS73n9B1l.jpg",
+      "overview": "Os agentes Jeff e Johnny começam a trabalhar juntos trocando farpas e aos poucos consolidam uma parceria profissional e pessoal. Encarando percalços, perigos e aventuras, os dois s"
     },
     {
       "title": "Detox de Plástico",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1636918,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/q97dOzjJNNz1Kw2lWZkdEjzJttp.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/q3VkiqQi7syrVANAK8PjgIry0Vx.jpg",
+      "overview": "Este documentário acompanha seis casais com problemas inexplicáveis de fertilidade que diminuem a exposição aos plásticos na esperança de conseguir engravidar."
     },
     {
       "title": "A Liga",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 704239,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/epzHc7RNjgpj9e2IVH88g7cr7DG.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/4ft6TR9wA6bra0RLL6G7JFDQ5t1.jpg",
+      "overview": "Recrutado para uma missão inesperada, um cara comum que trabalha como empreiteiro vira espião."
     },
     {
       "title": "A Conexão Sueca",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1261188,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/lKBY11mRbPXApcXMY96RjXtT7GU.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/56VfTGANetZ5IIYQsXuciNePM28.jpg",
+      "overview": "Nesta história real pouco conhecida, Gösta Engzell, burocrata subestimado do Ministério das Relações Exteriores sueco, durante o auge da Segunda Guerra Mundial, salvou milhares de "
     },
     {
       "title": "Ataque Brutal",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1290417,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/349RbnEbWd38iLlqzELTUppjSt2.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/hniERZojXCEc7Fp3yljZUigOAhm.jpg",
+      "overview": "Em meio a um furacão devastador, uma comunidade costeira luta pela sobrevivência, assolada não apenas pelas forças destrutivas da natureza, mas também pela ameaça implacável de tub"
     },
     {
       "title": "Disneyland Feita à Mão",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1538718,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/81szv19zvs5fGqXtWau6tXzfC4T.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/lUUzdpdlQiYno9rFrQ4EJOACQy5.jpg",
+      "overview": "Reviva o ano eletrizante que deu origem ao Lugar Mais Feliz da Terra. Com imagens raras de arquivo e áudios originais, este filme revela a arte extraordinária, a garra e a pressão "
     },
     {
       "title": "A Noite que Mudou o Pop",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1226841,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/c5Dz7xZMxPbdaLn5nte4DCa61Gy.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/Amb16QpgV4ZxdU8C80SW6JNySp9.jpg",
+      "overview": "Em uma noite de janeiro de 1985, as maiores estrelas da música se reuniram para gravar \"We Are the World\". Este documentário mostra os bastidores desse evento histórico."
     },
     {
       "title": "A Desconhecida",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1274706,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/4RVwOa0lgMIIJNYccEQVvShHUNZ.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/2fgcRuaseQ9RIiTAUDbLtymnj2z.jpg",
+      "overview": "Uma mulher é encontrada em um contêiner totalmente sem memória. Agora, dois investigadores correm contra o tempo para descobrir a identidade dela e quem quer matá-la."
     },
     {
       "title": "Bola pra Cima",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1084577,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/9uMTLWiDPFWYxEwP11G9Sp9cVAk.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/qE0FswzjACs2kvAycYVS2zcmgec.jpg",
+      "overview": "Nesta comédia, os executivos de marketing Brad e Elijah se arriscam e apresentam uma proposta de patrocínio ousado de uma marca de preservativos para a Copa do Mundo. Quando a come"
     },
     {
       "title": "El Salvador - O dia em que o medo mudou de lado",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1699414,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/bg4KbU1M53QRFKGtoHOJPjFonbu.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/o5WFZISFD8rW2K2WVOSiu73Lgf6.jpg",
+      "overview": "Viajamos a El Salvador para investigar como o país deixou de ser o mais violento do mundo para se tornar um símbolo da linha dura. Através de entrevistas com ministros, opositores "
     },
     {
       "title": "Alerta de Risco",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 704673,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/cQLJT6hTXio0md94oBsSWADOECf.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/cmgjr2saprHvYw6Ee7MUIqGVQHn.jpg",
+      "overview": "Uma militar de elite descobre uma perigosa conspiração ao retornar à cidade natal em busca de respostas para a morte do pai."
     },
     {
       "title": "A Sobriedade Está Me Matando",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1551900,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/sI6l441P1SWdA8X0AH3HZDGzGYf.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/rxFwyLPnOMLrq3uE3D2fTGe4nwV.jpg",
+      "overview": "Após 17 anos entre recaídas e clínicas, um homem vive viciado no caos emocional. Expulso da reabilitação, ele aceita a ajuda de um amigo que o desafia a encarar a sobriedade, o tra"
     },
     {
       "title": "Como Mágica",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1007757,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/2TZiL4ZYOwWeIjGfz3glpMuPqpN.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/zMwhWailP1WY7sb6AoE6b8ugoy.jpg",
+      "overview": "Uma pequena criatura da floresta e um pássaro majestoso trocam de corpo e precisam se unir para sobreviver à aventura mais incrível de suas vidas."
     },
     {
       "title": "Hannah Montana: Especial de 20° Aniversário",
@@ -191,199 +311,331 @@
       "title": "As Três Filhas",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1154762,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/lq3inNouIht3JMxLFcW5gIPcUtu.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/7QZCkr6hvQM0PDqsAOguUqOETNt.jpg",
+      "overview": "Três irmãs distantes se reúnem em um pequeno apartamento em Nova York para cuidar do pai doente, e as emoções tomam conta."
     },
     {
       "title": "A Torradeira",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1416391,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/d02bWfVmn1W9Qn3Vng4Vt0CMXFP.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/3gI8gS7YIpmEzUehg3cZVQ62phl.jpg",
+      "overview": "Assassinatos e caos se instauram quando um avarento fica obcecado por uma torradeira que deu de presente de casamento."
     },
     {
       "title": "Destruição Final 2",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 840464,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/s6nzVekLSd1y0vGjLz8WPfC1Sau.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/cLFbDVfhllIMybpo2fkGNzehiQG.jpg",
+      "overview": "Tendo encontrado a segurança do bunker da Groenlândia depois que o cometa Clarke dizimou a Terra, a família Garrity deve agora arriscar tudo para embarcar em uma jornada angustiant"
     },
     {
       "title": "Investigando Lucy Letby",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1620991,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/wgxGooHYBfsVDwmBCwyQ2WmCCFg.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/qhSfXdkrIzwYsyQ3Z9ehFmO3zjy.jpg",
+      "overview": "Imagens e depoimentos inéditos lançam luz sobre o polêmico caso de Lucy Letby, a enfermeira condenada pelo assassinato de recém-nascidos."
     },
     {
       "title": "Através da Minha Janela 3: Olhos nos Olhos",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1139566,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/73YnjztnaK2T1jsEHfVTRZMrZK8.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/iWzu3dVJGNfQUkLfK9xpTWoi5mh.jpg",
+      "overview": "Raquel e Ares não se esquecem um do outro, mesmo estando com pessoas novas. Será que eles vão superar a pressão familiar e ficar juntos no capítulo final da trilogia?"
     },
     {
       "title": "A Tragédia de Moriah Wilson",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1629369,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/mVwDPMZr6x3u2uEq9pclqbigPh2.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/xQFxoGYtwMBAq89DPa9gUcLlOdA.jpg",
+      "overview": "A ciclista Moriah Wilson parecia ter tudo: uma ética de trabalho inata e um talento explosivo para corridas profissionais de gravel, um esporte pelo qual era profundamente apaixona"
     },
     {
       "title": "Devoradores de Estrelas",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 687163,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/7pIgFNoX07z7alHt73TSsKRtYye.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/8Tfys3mDZVp4tNoH2ktm06a0Tau.jpg",
+      "overview": "O professor de ciências Ryland Grace acorda em uma espaçonave a anos-luz de casa, sem nenhuma lembrança de quem é ou como chegou ali. À medida que sua memória retorna, ele começa a"
     },
     {
       "title": "Louis Theroux: Por Dentro da Machosfera",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1633264,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/4KL3v3bTy8OCsgFgOlbZmeCBsQa.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/cmpiLnDIdxQNFZLZZFRj1rSo7fW.jpg",
+      "overview": "Com acesso raro e sem limites, o aclamado documentarista investiga o crescimento da chamada machosfera e seus controversos influenciadores na internet."
     },
     {
       "title": "Através das Sombras",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1151949,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/784VvfP6MqCK638vvREnb7Xgkre.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/lkzBusEFoXTQnxFMEsYAZ1QwRqu.jpg",
+      "overview": "Uma jovem assassina habilidosa desafia sua mentora para salvar um garoto de um terrível grupo criminoso. E ela vai destruir quem cruzar seu caminho."
     },
     {
       "title": "Addicted to Change",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1703103,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/7Eewbbdv7MRsV87jlRWvwp1EFFE.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/ts3Q7z59RdDZpqsE7dvtgWszKkj.jpg",
+      "overview": "Em um futuro próximo, na Grã-Bretanha, em um laboratório de biotecnologia à beira do colapso, três estagiários inventam uma droga que melhora a cognição. Eles iniciam a fabricação "
     },
     {
       "title": "Dinheiro Suspeito",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1306368,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/bm04TGkE5ySrHbHlO6YloYZvs4P.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/kwNIQW7egAmI66sb0zIugMbpCfU.jpg",
+      "overview": "Quando uma equipe de policiais de Miami encontra milhões de dólares em um muquifo usado como esconderijo, a confiança fica abalada e todos viram suspeitos."
     },
     {
       "title": "Mamonas: Eu Te Ai Lóve Iú",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1644098,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/zOd4ITtAdwe0PkqMOOFiGho1IO2.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/pbX94iWkD3GG4SMewrwbOhiVnfQ.jpg",
+      "overview": "A trajetória de uma das bandas mais animadas e um dos fenômenos mais divertidos da música brasileira ganha um documentário. \"Mamonas: Eu Te Ai Love Iú\" conta a história da formação"
     },
     {
       "title": "Até que as Cores Acabem",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1291559,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/sd6RRPaGkNYpfRlYiWLCjoXahko.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/i0c2rE6x1RCXktYk4Bv4NBWh5gO.jpg",
+      "overview": "Akito só tem mais um ano de vida, mas acaba encontrando um novo propósito ao conhecer uma garota que também enfrenta uma doença terminal."
     },
     {
       "title": "Alarme de Incêndio: Abaixo da Terra",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1608982,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/tURYBXokwJf4ROrNTc8W3YGLait.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/uiSaYXR0jLLWma0EPA1tcBhX6wT.jpg",
+      "overview": "Presas em um poço subterrâneo durante uma tempestade, três alunas de uma escola só para meninas precisam encarar conflitos pessoais enquanto lutam pela sobrevivência."
     },
     {
       "title": "Dupla Perigosa",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1168190,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/jYpk5Zun4VTWrplO3m9BHANi4S5.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/cz4vLJrmaV1zJlRYbxqtvLzeLWB.jpg",
+      "overview": "Dois meios-irmãos que não se falavam há muito, Jonny e James, se reencontram após a morte misteriosa do pai deles. Ao buscarem a verdade, desvendam segredos de uma conspiração que "
     },
     {
       "title": "Martin Short: Uma Vida de Comédia",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1620034,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/udQ4UWZaaN5s46jVHTBmEkWVpst.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/vate7k6MyLQDeFYkHqCrLhRes6m.jpg",
+      "overview": "Martin Short analisa uma vida motivada pela alegria neste documentário repleto de vídeos clássicos, entrevistas e filmes inéditos."
     },
     {
       "title": "Bagagem de Risco",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1005331,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/6cMRujaT02bDOjYGGy5KncAD7U7.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/rhc8Mtuo3Kh8CndnlmTNMF8o9pU.jpg",
+      "overview": "Um agente de segurança é chantageado e acaba deixando um pacote perigoso entrar em um voo na véspera de Natal."
     },
     {
       "title": "Alerta Apocalipse",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 696393,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/3Ap6J9pYqgrxQaYWYdX2fyBYBWF.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/puqQGxK9HYITUKhCdREg3XOLlZd.jpg",
+      "overview": "Quando um fungo altamente perigoso escapa de um laboratório secreto, Robert Quinn, um ex-agente de bioterrorismo que só queria curtir a aposentadoria em paz, é chamado de volta à a"
     },
     {
       "title": "Ensaio Fatal",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1199193,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/nK5oUEfCjAgmZKilyR0ih1Lv8Yt.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/bAFnjhweXxHUWjmFzMTuX12Ud3b.jpg",
+      "overview": "Dois casais chegam a uma mansão rural reservada ao mesmo tempo sem saber. Durante a estadia, acontecimentos estranhos quebram a tranquilidade e transformam o refúgio sob o sol em u"
     },
     {
       "title": "Noah Kahan: Out of Body",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1492341,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/8VtZAonOgK8hae7FwOZCSg7XmCu.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/qgQPajFB3gt58dwJX9A13P3rJIQ.jpg",
+      "overview": "Depois da ascensão meteórica, o músico Noah Kahan volta para Vermont em busca de inspiração neste documentário sincero."
     },
     {
       "title": "Donzela",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 763215,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/2edvwBRhOY34bFDHj0bcokZGdJg.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/deLWkOLZmBNkm8p16igfapQyqeq.jpg",
+      "overview": "O casamento de uma jovem com um príncipe encantado se transforma em uma luta por sobrevivência quando ela é oferecida em sacrifício a um dragão que cospe fogo."
     },
     {
       "title": "Além do Dever",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1628367,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/tVJVueBmMmGwuel02Z8XeudNoq4.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/mHm73HhpvGWfRkXNErcwc15Czrv.jpg",
+      "overview": "Com a segurança da família em risco e diante de ameaças iminentes, um policial precisa decidir o quanto está disposto a sacrificar em nome do dever."
     },
     {
       "title": "Enterrando os Mortos",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1198984,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/x6H4DtBRIfwTcOIK64R8pSXNpvN.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/vbkW4KerpshPZnP84w9qwSfYrhu.jpg",
+      "overview": "Um desastre militar catastrófico não apenas trouxe os mortos de volta à vida, como os transformaram em caçadores. Após a declaração do exército de que as criaturas eram lentas e in"
     },
     {
       "title": "POV: Presença Oculta",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1510745,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/fC4GSEiDu2ONAOjT3VhKdAOR2UI.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/qmWypRw88VYp35oTQn0a1sqdZRs.jpg",
+      "overview": "O que começou como uma chamada de rotina vira um pesadelo quando dois policiais se envolvem em um acidente fatal. Bryce, desesperado para proteger seu emprego e sua família, conven"
     },
     {
       "title": "Em Ruínas",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 933131,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/vT3xahepzP796ei0NiZIZ6t8vsl.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/qLQiQXe8tHk8mokDH0LoKudPDH3.jpg",
+      "overview": "Após um terremoto transformar Seul em uma terra sem lei, um caçador decide resgatar uma adolescente sequestrada por um médico insano."
     },
     {
       "title": "Amor Demais",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1317672,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/obv2Dt7T8p9lxtfl2qguuRL6nF8.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/ohUhHOqW8cM59Ay5UjqplLzJbH3.jpg",
+      "overview": "Após a morte de seu irmão, June recomeça a vida em Milão, namorando Will, um cara perfeito da sua nova escola internacional. Mas quando o melhor amigo do rapaz, o perigoso James qu"
     },
     {
       "title": "Extermínio: O Templo dos Ossos",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1272837,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/tbECC1mMbytgaynCnBhgVPzCZcd.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/hHDNOlATHhre4eZ7aYz5cdyJLik.jpg",
+      "overview": "Dr. Kelson se vê envolvido num novo relacionamento chocante – com consequências que podem mudar o mundo como eles o conhecem – e o encontro de Spike com Jimmy Crystal se torna um p"
     },
     {
       "title": "Raio-X Banco Master",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1641789,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/tUGTuB1vF9PlUGay3ZunZXXTLSh.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/c5O8zxMADVLx5dUpfSNGU1hAFHI.jpg",
+      "overview": "Nesta produção original da Brasil Paralelo, o jornalista Caio Coppolla organiza o complexo quebra-cabeça de um dos maiores escândalos financeiros recentes do Brasil.  O documentári"
     },
     {
       "title": "Entrevista com o Demônio",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 938614,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/blckaGzdEJ4PdG5RxZPcb77VYFV.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/umyOinNa6vqqnqoVc9QqzyaapUz.jpg",
+      "overview": "O apresentador Jack Delroy tenta recuperar a audiência de seu programa, que despencou desde a trágica morte de sua esposa. Desesperado pelo sucesso, Jack planeja um especial para o"
     },
     {
       "title": "Ato Noturno",
       "year": 2026,
       "category": "Lançamentos",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1403903,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/o0uHoWYGsZaGSC6O9iTRy4sAz5J.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/sgWDs8ViH0WPSty46TJfgbKREuD.jpg",
+      "overview": "Um ator e um político vivem um caso em sigilo e, juntos, descobrem ter fetiche por sexo em lugares públicos. À medida que se aproximam do sonho da fama, mais intenso se torna o des"
     },
     {
       "title": "Focinho de Outro",
       "year": 2026,
       "category": "Em alta",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1327819,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/ftPFJBGbldoWiiPrmesW96zBzdH.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/u53UYu5XG2hNgWGvs3xGhAVzypl.jpg",
+      "overview": "Mabel é uma jovem amante da natureza que tenta impedir o prefeito Jerry de construir uma rodovia que destruirá suas florestas locais. Graças a um experimento secreto de troca de cé"
     },
     {
       "title": "Untold Reino Unido: Vinnie Jones",
       "year": 2026,
       "category": "Documentarios",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1684246,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/7IOFqkArtYgpftXnviaLD6awQ1U.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/29NF9iyZw2dztiKgV8r4dvHuTSx.jpg",
+      "overview": "Esta é a história da ascensão de Vinnie Jones, da sua recuperação contra todas as probabilidades na Batalha das Malvinas - e dos cartões vermelhos - de um dos jogadores mais durões"
     },
     {
       "title": "Ferry 2",
       "year": 2024,
       "category": "Netflix",
-      "type": "Filme"
+      "type": "Filme",
+      "tmdbId": 1276945,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/oIeHeuhxUpU7wWDqqo769s8D91s.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/A28EE0vgHrB0OdoxWWMfgfyEoYn.jpg",
+      "overview": "Após perder seu império das drogas, Ferry Bouman encontra um pouco de paz longe do submundo de Brabant. Até que o passado volta para assombrá-lo."
     }
   ]
 }

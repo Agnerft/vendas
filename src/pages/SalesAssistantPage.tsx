@@ -20,6 +20,9 @@ interface CatalogHighlight {
   year?: number | null;
   category: string;
   type: string;
+  posterUrl?: string | null;
+  backdropUrl?: string | null;
+  overview?: string;
 }
 
 interface CatalogHighlightsResponse {
@@ -142,8 +145,15 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
           <div className="catalog-grid">
             {catalogWindow.map((item) => (
               <article key={`${item.category}-${item.title}`}>
-                <span>{item.type} - {item.category}{item.year ? ` - ${item.year}` : ''}</span>
-                <strong>{item.title}</strong>
+                {item.posterUrl ? (
+                  <img src={item.posterUrl} alt="" loading="lazy" />
+                ) : (
+                  <div className="catalog-poster-fallback">{item.type}</div>
+                )}
+                <div>
+                  <span>{item.category}{item.year ? ` - ${item.year}` : ''}</span>
+                  <strong>{item.title}</strong>
+                </div>
               </article>
             ))}
           </div>
