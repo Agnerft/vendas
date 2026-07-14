@@ -213,6 +213,8 @@ async function getServerBestPanelConfig() {
       login: localConfig.login,
       packageId: localConfig.packageId,
       notes: localConfig.notes,
+      supportWhatsapp: localConfig.supportWhatsapp,
+      supportMessage: localConfig.supportMessage,
       hasApiToken: Boolean(localConfig.apiToken),
     };
   }

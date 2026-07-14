@@ -173,6 +173,24 @@ export function AdminPage() {
             placeholder="Vendas pelo APP"
           />
 
+          <label htmlFor="support-whatsapp">WhatsApp do suporte</label>
+          <input
+            id="support-whatsapp"
+            type="tel"
+            value={config.supportWhatsapp}
+            onChange={(event) => updateField('supportWhatsapp', event.target.value)}
+            placeholder="5551999999999"
+          />
+
+          <label htmlFor="support-message">Mensagem inicial do suporte</label>
+          <input
+            id="support-message"
+            type="text"
+            value={config.supportMessage}
+            onChange={(event) => updateField('supportMessage', event.target.value)}
+            placeholder="Ola, preciso de ajuda para configurar meu teste."
+          />
+
           {message ? <p className="admin-success">{message}</p> : null}
           {error ? <p className="form-error">{error}</p> : null}
 

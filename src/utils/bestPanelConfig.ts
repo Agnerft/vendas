@@ -6,6 +6,8 @@ export interface BestPanelConfig {
   apiToken: string;
   packageId: string;
   notes: string;
+  supportWhatsapp: string;
+  supportMessage: string;
 }
 
 export interface PublicBestPanelConfig extends Omit<BestPanelConfig, 'apiToken'> {
@@ -21,6 +23,8 @@ export function getDefaultBestPanelConfig(): BestPanelConfig {
     apiToken: appConfig.bestPanel.apiToken,
     packageId: appConfig.bestPanel.packageId,
     notes: appConfig.bestPanel.notes,
+    supportWhatsapp: appConfig.supportWhatsapp,
+    supportMessage: appConfig.supportMessage,
   };
 }
 

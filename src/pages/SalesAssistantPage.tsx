@@ -10,17 +10,18 @@ import { appConfig } from '../config/appConfig';
 import { appAssets, stepAssetMap, stepPreviewModeMap } from '../config/appAssets';
 import { useSalesFlowContext } from '../hooks/useSalesFlowContext';
 import type { FlowOption, SelectedApp, TrialCreationResult } from '../types/salesFlow';
+import { loadPublicBestPanelConfig } from '../utils/bestPanelConfig';
 import { formatBrazilianPhone } from '../utils/phone';
 
 const TRIAL_WAIT_SECONDS = 240;
 
-function getSupportUrl(phone: string) {
-  if (!appConfig.supportWhatsapp) {
+function getSupportUrl(phone: string, supportWhatsapp: string, supportMessage: string) {
+  if (!supportWhatsapp) {
     return '';
   }
 
-  const message = `${appConfig.supportMessage} Meu telefone: ${formatBrazilianPhone(phone)}.`;
-  return `https://wa.me/${appConfig.supportWhatsapp}?text=${encodeURIComponent(message)}`;
+  const message = `${supportMessage} Meu telefone: ${formatBrazilianPhone(phone)}.`;
+  return `https://wa.me/${supportWhatsapp}?text=${encodeURIComponent(message)}`;
 }
 
 function getResultRows(trial: TrialCreationResult) {
@@ -105,6 +106,8 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
 }
 
 export function SalesAssistantPage() {
+  const [supportWhatsapp, setSupportWhatsapp] = useState(appConfig.supportWhatsapp);
+  const [supportMessage, setSupportMessage] = useState(appConfig.supportMessage);
   const {
     canGoBack,
     chooseOption,
@@ -118,7 +121,7 @@ export function SalesAssistantPage() {
     submitPhone,
   } = useSalesFlowContext();
 
-  const supportUrl = getSupportUrl(data.phone);
+  const supportUrl = getSupportUrl(data.phone, supportWhatsapp, supportMessage);
   const previewApp = stepAssetMap[currentStep.id];
   const previewMode = stepPreviewModeMap[currentStep.id] ?? 'wide';
   const isWaitingForTrial = isBusy && (currentStep.type === 'ready' || currentStep.id === 'trial-placeholder');
@@ -127,6 +130,18 @@ export function SalesAssistantPage() {
   const cardDescription = isWaitingForTrial
     ? 'Estamos preparando o teste no painel. Assim que liberar, os dados aparecem automaticamente.'
     : currentStep.description;
+
+  useEffect(() => {
+    void loadPublicBestPanelConfig()
+      .then((config) => {
+        setSupportWhatsapp(config.supportWhatsapp);
+        setSupportMessage(config.supportMessage || appConfig.supportMessage);
+      })
+      .catch(() => {
+        setSupportWhatsapp(appConfig.supportWhatsapp);
+        setSupportMessage(appConfig.supportMessage);
+      });
+  }, []);
 
   function handleOption(option: FlowOption) {
     if (option.external === 'support') {

@@ -10,6 +10,8 @@ const defaultConfig = {
   apiToken: '',
   packageId: '',
   notes: 'BotConversa CR7',
+  supportWhatsapp: '',
+  supportMessage: 'Ola, preciso de ajuda para configurar meu teste.',
   maxPlayerDomainId: '1779208587735814489',
 };
 
@@ -24,6 +26,12 @@ function normalizeConfig(config = {}) {
     apiToken: typeof config.apiToken === 'string' ? config.apiToken.trim() : defaultConfig.apiToken,
     packageId: typeof config.packageId === 'string' ? config.packageId.trim() : defaultConfig.packageId,
     notes: typeof config.notes === 'string' ? config.notes.trim() : defaultConfig.notes,
+    supportWhatsapp:
+      typeof config.supportWhatsapp === 'string'
+        ? config.supportWhatsapp.replace(/\D/g, '')
+        : defaultConfig.supportWhatsapp,
+    supportMessage:
+      typeof config.supportMessage === 'string' ? config.supportMessage.trim() : defaultConfig.supportMessage,
     maxPlayerDomainId:
       typeof config.maxPlayerDomainId === 'string' ? config.maxPlayerDomainId.trim() : defaultConfig.maxPlayerDomainId,
   };
@@ -59,6 +67,8 @@ export function getPublicBestPanelConfig(config) {
     login: config.login,
     packageId: config.packageId,
     notes: config.notes,
+    supportWhatsapp: config.supportWhatsapp,
+    supportMessage: config.supportMessage,
     hasApiToken: Boolean(config.apiToken),
   };
 }
