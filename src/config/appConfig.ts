@@ -7,7 +7,7 @@ export const appConfig = {
   supportWhatsapp: '',
   supportMessage: 'Ola, preciso de ajuda para configurar meu teste.',
   bestPanel: {
-    endpoint: import.meta.env.VITE_BEST_PANEL_TEST_ENDPOINT || 'https://painel.best/lines/create-trial/',
+    endpoint: import.meta.env.VITE_BEST_PANEL_TEST_ENDPOINT || 'https://api.painel.best/lines/create-trial/',
     apiToken: import.meta.env.VITE_BEST_PANEL_API_TOKEN || '',
     login: import.meta.env.VITE_BEST_PANEL_LOGIN || '',
     packageId: import.meta.env.VITE_BEST_PANEL_PACKAGE_ID || '',

@@ -134,7 +134,7 @@ export function AdminPage() {
             type="url"
             value={config.endpoint}
             onChange={(event) => updateField('endpoint', event.target.value)}
-            placeholder="https://painel.best/lines/create-trial/"
+            placeholder="https://api.painel.best/lines/create-trial/"
           />
 
           <label htmlFor="best-login">Username do header antigo</label>

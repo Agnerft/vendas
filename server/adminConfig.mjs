@@ -5,7 +5,7 @@ const configPath = process.env.BEST_PANEL_CONFIG_PATH ?? join(process.cwd(), 'da
 const adminPassword = process.env.ADMIN_PASSWORD ?? '123';
 
 const defaultConfig = {
-  endpoint: 'https://painel.best/lines/create-trial/',
+  endpoint: 'https://api.painel.best/lines/create-trial/',
   login: '',
   apiToken: '',
   packageId: '',
@@ -16,7 +16,9 @@ function normalizeConfig(config = {}) {
   const endpoint = typeof config.endpoint === 'string' ? config.endpoint.trim() : defaultConfig.endpoint;
 
   return {
-    endpoint: endpoint === 'https://painel.best/api/test/' ? defaultConfig.endpoint : endpoint,
+    endpoint: ['https://painel.best/api/test/', 'https://painel.best/lines/create-trial/'].includes(endpoint)
+      ? defaultConfig.endpoint
+      : endpoint,
     login: typeof config.login === 'string' ? config.login.trim() : defaultConfig.login,
     apiToken: typeof config.apiToken === 'string' ? config.apiToken.trim() : defaultConfig.apiToken,
     packageId: typeof config.packageId === 'string' ? config.packageId.trim() : defaultConfig.packageId,

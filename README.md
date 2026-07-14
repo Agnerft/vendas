@@ -68,7 +68,7 @@ Essa configuracao fica salva no LocalStorage do navegador.
 Como padrao inicial do projeto, tambem e possivel criar um arquivo `.env.local` na raiz, usando `.env.example` como base:
 
 ```bash
-VITE_BEST_PANEL_TEST_ENDPOINT=https://painel.best/lines/create-trial/
+VITE_BEST_PANEL_TEST_ENDPOINT=https://api.painel.best/lines/create-trial/
 VITE_BEST_PANEL_LOGIN=revendaluiz
 VITE_BEST_PANEL_API_TOKEN=sua_api_aqui
 VITE_BEST_PANEL_PACKAGE_ID=id_do_pacote_aqui
