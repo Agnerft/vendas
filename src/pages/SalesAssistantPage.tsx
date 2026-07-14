@@ -172,6 +172,7 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
       </div>
       <div className="waiting-progress" aria-hidden="true">
         <div style={{ width: `${progress}%` }} />
+        <span>{progress}%</span>
       </div>
       <p>Nao feche esta tela. O painel pode levar ate 4 minutos para liberar o teste.</p>
       <div className="catalog-preview">
