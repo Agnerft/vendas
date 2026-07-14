@@ -1,3 +1,4 @@
+import { request as httpsRequest } from 'node:https';
 import { loadStoredBestPanelConfig } from './adminConfig.mjs';
 
 export async function parseJsonBody(request) {
@@ -32,38 +33,61 @@ function normalizePackageId(packageId) {
   return Number.isNaN(numericPackageId) ? packageId : numericPackageId;
 }
 
-async function fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-
-  try {
-    return await fetch(url, {
-      ...options,
-      signal: controller.signal,
+function requestAppsApi(method, url, headers = {}, body = '') {
+  return new Promise((resolve, reject) => {
+    const request = httpsRequest(url, {
+      method,
+      headers: {
+        ...headers,
+        ...(body ? { 'Content-Length': Buffer.byteLength(body) } : {}),
+      },
+      timeout: 15000,
+    }, (response) => {
+      const chunks = [];
+      response.on('data', (chunk) => chunks.push(chunk));
+      response.on('end', () => {
+        const text = Buffer.concat(chunks).toString('utf8');
+        const contentType = response.headers['content-type'] ?? '';
+        const parsedBody = String(contentType).includes('application/json') && text ? JSON.parse(text) : text;
+        resolve({ status: response.statusCode ?? 0, ok: Boolean(response.statusCode && response.statusCode < 400), body: parsedBody });
+      });
     });
-  } finally {
-    clearTimeout(timeout);
-  }
+
+    request.on('timeout', () => request.destroy(new Error('Tempo esgotado ao chamar painel de apps.')));
+    request.on('error', reject);
+
+    if (body) {
+      request.write(body);
+    }
+
+    request.end();
+  });
+}
+
+function buildMultipartBody(fields) {
+  const boundary = `----nixplay-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  const body = Object.entries(fields)
+    .map(([name, value]) => `--${boundary}\r\nContent-Disposition: form-data; name="${name}"\r\n\r\n${value}\r\n`)
+    .join('') + `--${boundary}--\r\n`;
+
+  return {
+    body,
+    contentType: `multipart/form-data; boundary=${boundary}`,
+  };
 }
 
 async function loginAppsPanel(config) {
   const login = config.login || 'revendaluiz';
   const password = config.appsPassword || config.login || 'revendaluiz';
-  const form = new FormData();
-  form.append('username', login);
-  form.append('password', password);
+  const multipart = buildMultipartBody({ username: login, password });
 
-  const response = await fetchWithTimeout('https://apps-api.painel.best/login', {
-    method: 'POST',
-    headers: {
+  const response = await requestAppsApi('POST', 'https://apps-api.painel.best/login', {
       Accept: 'application/json',
       Origin: 'https://apps.painel.best',
       Referer: 'https://apps.painel.best/',
-    },
-    body: form,
-  });
-  const contentType = response.headers.get('content-type') ?? '';
-  const body = contentType.includes('application/json') ? await response.json() : await response.text();
+      'Content-Type': multipart.contentType,
+    }, multipart.body);
+  const body = response.body;
 
   if (!response.ok || !body.access_token) {
     throw new Error(`Falha ao autenticar no painel de apps. Codigo ${response.status}.`);
@@ -81,24 +105,18 @@ async function createMaxPlayerUser(lineId, config) {
     Referer: 'https://apps.painel.best/',
   };
 
-  await fetchWithTimeout(`https://apps-api.painel.best/max-player/users/${lineId}`, {
-    method: 'DELETE',
-    headers,
-  }, 8000).catch(() => undefined);
+  await requestAppsApi('DELETE', `https://apps-api.painel.best/max-player/users/${lineId}`, headers)
+    .catch(() => undefined);
 
-  const response = await fetchWithTimeout('https://apps-api.painel.best/max-player/users', {
-    method: 'POST',
-    headers: {
+  const createBody = JSON.stringify({
+    line_id: lineId,
+    domain_id: config.maxPlayerDomainId || '1779208587735814489',
+  });
+  const response = await requestAppsApi('POST', 'https://apps-api.painel.best/max-player/users', {
       ...headers,
       'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      line_id: lineId,
-      domain_id: config.maxPlayerDomainId || '1779208587735814489',
-    }),
-  });
-  const contentType = response.headers.get('content-type') ?? '';
-  const body = contentType.includes('application/json') ? await response.json() : await response.text();
+    }, createBody);
+  const body = response.body;
 
   if (!response.ok) {
     const detail = typeof body === 'object' && body?.detail ? body.detail : JSON.stringify(body);
