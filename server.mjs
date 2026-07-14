@@ -9,7 +9,7 @@ import {
   loadStoredBestPanelConfig,
   saveAdminBestPanelConfig,
 } from './server/adminConfig.mjs';
-import { createBestPanelTrial, parseJsonBody, sendJson } from './server/bestPanelProxy.mjs';
+import { createBestPanelTrial, getBestPanelBouquets, parseJsonBody, sendJson } from './server/bestPanelProxy.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const distDir = join(root, 'dist');
@@ -57,6 +57,12 @@ createServer(async (request, response) => {
     if (request.url === '/api/best-panel-config' && request.method === 'GET') {
       const config = await loadStoredBestPanelConfig();
       sendJson(response, 200, getPublicBestPanelConfig(config));
+      return;
+    }
+
+    if (request.url === '/api/bouquets' && request.method === 'GET') {
+      const result = await getBestPanelBouquets();
+      sendJson(response, result.status, result.body);
       return;
     }
 

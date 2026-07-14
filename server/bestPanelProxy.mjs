@@ -238,6 +238,40 @@ export async function createBestPanelTrial(request) {
   };
 }
 
+export async function getBestPanelBouquets() {
+  const storedConfig = await loadStoredBestPanelConfig();
+
+  if (!storedConfig.apiToken) {
+    return {
+      status: 400,
+      body: {
+        message: 'Configure API token no admin para buscar bouquets.',
+      },
+    };
+  }
+
+  try {
+    const response = await fetch('https://api.painel.best/bouquets/', {
+      method: 'GET',
+      headers: buildPanelHeaders(storedConfig.apiToken),
+    });
+    const contentType = response.headers.get('content-type') ?? '';
+    const rawBody = contentType.includes('application/json') ? await response.json() : await response.text();
+
+    return {
+      status: response.status,
+      body: rawBody,
+    };
+  } catch (error) {
+    return {
+      status: 502,
+      body: {
+        message: error instanceof Error ? error.message : 'Falha de rede ao buscar bouquets.',
+      },
+    };
+  }
+}
+
 export function sendJson(response, status, body) {
   response.writeHead(status, {
     'Content-Type': 'application/json',

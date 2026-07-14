@@ -15,6 +15,18 @@ import { formatBrazilianPhone } from '../utils/phone';
 
 const TRIAL_WAIT_SECONDS = 240;
 
+interface BouquetSummary {
+  id: number;
+  name: string;
+  channels_count: number;
+  movies_count: number;
+  series_count: number;
+}
+
+interface BouquetsResponse {
+  results?: BouquetSummary[];
+}
+
 function getSupportUrl(phone: string, supportWhatsapp: string, supportMessage: string) {
   if (!supportWhatsapp) {
     return '';
@@ -65,9 +77,27 @@ function getWaitingSteps(selectedApp: SelectedApp | null) {
   ];
 }
 
+function formatCatalogCount(value: number) {
+  return new Intl.NumberFormat('pt-BR').format(value);
+}
+
+function getBouquetHighlights(bouquets: BouquetSummary[]) {
+  return bouquets
+    .filter((bouquet) => bouquet.movies_count > 0 || bouquet.series_count > 0 || bouquet.channels_count > 0)
+    .sort((first, second) => {
+      const firstTotal = first.movies_count + first.series_count + first.channels_count;
+      const secondTotal = second.movies_count + second.series_count + second.channels_count;
+
+      return secondTotal - firstTotal;
+    })
+    .slice(0, 3);
+}
+
 function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }) {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [bouquets, setBouquets] = useState<BouquetSummary[]>([]);
   const steps = useMemo(() => getWaitingSteps(selectedApp), [selectedApp]);
+  const bouquetHighlights = useMemo(() => getBouquetHighlights(bouquets), [bouquets]);
   const remainingSeconds = Math.max(0, TRIAL_WAIT_SECONDS - elapsedSeconds);
   const progress = Math.min(100, Math.round((elapsedSeconds / TRIAL_WAIT_SECONDS) * 100));
   const activeStep = Math.min(steps.length - 1, Math.floor((progress / 100) * steps.length));
@@ -80,16 +110,57 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
     return () => window.clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    let ignoreResponse = false;
+
+    void fetch('/api/bouquets')
+      .then((response) => (response.ok ? response.json() as Promise<BouquetsResponse> : Promise.reject()))
+      .then((body) => {
+        if (!ignoreResponse) {
+          setBouquets(body.results ?? []);
+        }
+      })
+      .catch(() => {
+        if (!ignoreResponse) {
+          setBouquets([]);
+        }
+      });
+
+    return () => {
+      ignoreResponse = true;
+    };
+  }, []);
+
   return (
     <section className="trial-waiting" aria-live="polite">
       <div className="waiting-timer">
-        <span>Tempo estimado</span>
+        <span>{remainingSeconds > 0 ? 'Liberando em' : 'Finalizando'}</span>
         <strong>{formatWaitTime(remainingSeconds)}</strong>
       </div>
       <div className="waiting-progress" aria-hidden="true">
         <div style={{ width: `${progress}%` }} />
       </div>
       <p>Nao feche esta tela. O painel pode levar ate 4 minutos para liberar o teste.</p>
+      <div className="catalog-preview">
+        <div>
+          <span>Enquanto isso</span>
+          <strong>Catalogo que sera liberado</strong>
+        </div>
+        {bouquetHighlights.length > 0 ? (
+          <div className="catalog-grid">
+            {bouquetHighlights.map((bouquet) => (
+              <article key={bouquet.id}>
+                <strong>{bouquet.name}</strong>
+                <span>{formatCatalogCount(bouquet.movies_count)} filmes</span>
+                <span>{formatCatalogCount(bouquet.series_count)} series</span>
+                <span>{formatCatalogCount(bouquet.channels_count)} canais</span>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p>Buscando filmes, series e canais disponiveis...</p>
+        )}
+      </div>
       <div className="waiting-steps">
         {steps.map((step, index) => (
           <div

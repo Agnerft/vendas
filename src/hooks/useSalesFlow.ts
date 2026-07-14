@@ -19,6 +19,22 @@ const initialData: SalesFlowData = {
   trial: { status: 'idle' },
 };
 
+const MINIMUM_TRIAL_WAIT_MS = 240000;
+
+function wait(milliseconds: number) {
+  return new Promise((resolve) => {
+    window.setTimeout(resolve, milliseconds);
+  });
+}
+
+async function waitForMinimumTrialTime(startedAt: number) {
+  const remainingTime = MINIMUM_TRIAL_WAIT_MS - (Date.now() - startedAt);
+
+  if (remainingTime > 0) {
+    await wait(remainingTime);
+  }
+}
+
 function getInitialData(): SalesFlowData {
   const saved = loadSalesFlow();
 
@@ -193,6 +209,7 @@ export function useSalesFlow() {
 
   const prepareTrial = useCallback(async (selectedApp: SelectedApp | undefined) => {
     setIsBusy(true);
+    const startedAt = Date.now();
     const app = selectedApp ?? data.selectedApp;
 
     try {
@@ -200,6 +217,7 @@ export function useSalesFlow() {
         ...data,
         selectedApp: app ?? data.selectedApp,
       });
+      await waitForMinimumTrialTime(startedAt);
 
       const nextData: SalesFlowData = {
         ...data,
