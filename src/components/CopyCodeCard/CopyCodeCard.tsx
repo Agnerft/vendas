@@ -30,7 +30,7 @@ export function CopyCodeCard({
   }
 
   return (
-    <article className="copy-card">
+    <article className={`copy-card ${imageSrc ? 'copy-card-with-image' : ''}`}>
       {imageSrc ? <img className="copy-card-image" src={imageSrc} alt={imageAlt ?? title} /> : null}
       <div>
         <h2>{title}</h2>
