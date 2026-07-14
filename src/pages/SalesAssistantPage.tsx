@@ -589,15 +589,16 @@ export function SalesAssistantPage() {
 
     if (currentStep.type === 'instructions') {
       return (
-        <>
-          <AppInstructions />
-          <p className="follow-up-question">Voce conseguiu instalar o UHD PLAYER PRO?</p>
-          <div className="option-list">
-            {currentStep.options?.map((option) => (
-              <OptionButton key={option.id} option={option} onSelect={handleOption} />
-            ))}
+        <AppInstructions>
+          <div className="install-action-panel">
+            <p className="follow-up-question">Voce conseguiu instalar o UHD PLAYER PRO?</p>
+            <div className="option-list">
+              {currentStep.options?.map((option) => (
+                <OptionButton key={option.id} option={option} onSelect={handleOption} />
+              ))}
+            </div>
           </div>
-        </>
+        </AppInstructions>
       );
     }
 

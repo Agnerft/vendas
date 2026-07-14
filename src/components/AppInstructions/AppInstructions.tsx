@@ -1,8 +1,13 @@
 import { CopyCodeCard } from '../CopyCodeCard/CopyCodeCard';
 import { appConfig } from '../../config/appConfig';
 import { appAssets, installerAssets } from '../../config/appAssets';
+import type { ReactNode } from 'react';
 
-export function AppInstructions() {
+interface AppInstructionsProps {
+  children?: ReactNode;
+}
+
+export function AppInstructions({ children }: AppInstructionsProps) {
   const codes = appConfig.installCodes;
   const uhdAssets = appAssets.UHD_ULTRA_PLAYER;
 
@@ -38,6 +43,7 @@ export function AppInstructions() {
           <p>Depois de instalar, volte aqui e continue para criar o teste.</p>
         </article>
       </div>
+      {children}
       <CopyCodeCard
         title="Codigo do provedor"
         value={codes.providerCode}
