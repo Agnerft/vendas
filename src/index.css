@@ -614,16 +614,21 @@ button:disabled {
 .completion-box {
   padding: 18px;
   display: grid;
-  gap: 10px;
+  gap: 14px;
 }
 
-.completion-box span {
+.completion-heading {
+  display: grid;
+  gap: 4px;
+}
+
+.completion-heading span {
   color: var(--muted);
 }
 
 .completion-success {
-  border-color: rgba(67, 211, 158, 0.34);
-  background: rgba(67, 211, 158, 0.1);
+  border-color: rgba(67, 211, 158, 0.28);
+  background: rgba(14, 18, 28, 0.96);
 }
 
 .completion-error {
@@ -664,23 +669,33 @@ button:disabled {
   overflow-wrap: anywhere;
 }
 
-.credential-grid {
-  padding: 12px;
+.credential-list {
   display: grid;
-  gap: 2px;
+  gap: 8px;
+}
+
+.credential-row {
+  min-height: 48px;
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: minmax(112px, 0.38fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
   border-radius: 8px;
   background: #0c0f17;
   border: 1px solid var(--border);
 }
 
-.credential-grid span {
+.credential-row span {
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 800;
   text-transform: uppercase;
 }
 
-.credential-grid strong {
+.credential-row strong {
+  font-size: 0.96rem;
+  line-height: 1.25;
   overflow-wrap: anywhere;
 }
 

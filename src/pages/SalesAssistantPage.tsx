@@ -120,18 +120,24 @@ export function SalesAssistantPage() {
 
       return (
         <div className={`completion-box completion-${data.trial.status}`}>
-          <strong>{isTrialSuccess ? 'Teste criado com sucesso.' : 'Nao conseguimos criar seu teste agora.'}</strong>
-          <span>
+          <div className="completion-heading">
+            <strong>{isTrialSuccess ? 'Teste criado com sucesso.' : 'Nao conseguimos criar seu teste agora.'}</strong>
+            <span>
             {isTrialSuccess
-              ? data.trial.message ?? 'Seu acesso foi preparado. Guarde os dados abaixo.'
+              ? 'Dados prontos para enviar ao cliente.'
               : 'Voce pode tentar novamente ou chamar nosso suporte para finalizar o atendimento.'}
-          </span>
-          {resultRows.map(([label, value]) => (
-            <div className="credential-grid" key={label}>
-              <span>{label}</span>
-              <strong>{value}</strong>
+            </span>
+          </div>
+          {isTrialSuccess ? (
+            <div className="credential-list">
+              {resultRows.map(([label, value]) => (
+                <div className="credential-row" key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </div>
+              ))}
             </div>
-          ))}
+          ) : null}
           {data.trial.status === 'error' ? (
             <>
               <div className="completion-actions">
