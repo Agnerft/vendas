@@ -884,6 +884,31 @@ button:disabled {
   font-size: 1rem;
 }
 
+.catalog-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.catalog-tabs button {
+  min-height: 42px;
+  color: var(--ink);
+  background: #0c0f17;
+  border: 1px solid rgba(71, 168, 255, 0.34);
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+.catalog-tabs button.active {
+  color: #05060b;
+  background: var(--brand-gradient);
+  border-color: transparent;
+}
+
+.catalog-tabs button:disabled {
+  opacity: 0.42;
+}
+
 .catalog-feature {
   min-height: 238px;
   padding: 12px;
@@ -967,13 +992,44 @@ button:disabled {
 }
 
 .catalog-controls button {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  isolation: isolate;
   min-height: 40px;
-  color: #ffffff;
-  background: #202436;
-  border: 1px solid var(--border);
+  color: var(--ink);
+  background: #0c0f17;
+  border: 1px solid rgba(71, 168, 255, 0.58);
   border-radius: 8px;
   font-size: 1.35rem;
   font-weight: 900;
+  transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.catalog-controls button::before {
+  content: none;
+}
+
+.catalog-controls button::after {
+  content: "";
+  position: absolute;
+  inset: 0 -20%;
+  z-index: -1;
+  background: linear-gradient(135deg, rgba(179, 60, 255, 0.98), rgba(69, 180, 255, 0.98));
+  transform: skewX(-45deg) scale(0, 1);
+  transition: transform 420ms ease;
+}
+
+.catalog-controls button:hover,
+.catalog-controls button:focus-visible {
+  color: #05060b;
+  border-color: transparent;
+  box-shadow: 0 0 22px rgba(71, 168, 255, 0.28);
+}
+
+.catalog-controls button:hover::after,
+.catalog-controls button:focus-visible::after {
+  transform: skewX(-45deg) scale(1, 1);
 }
 
 .catalog-controls span {

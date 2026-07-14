@@ -39,6 +39,8 @@ interface CatalogHighlightsResponse {
   items?: CatalogHighlight[];
 }
 
+type CatalogMode = 'movies' | 'series';
+
 function getSupportUrl(phone: string, supportWhatsapp: string, supportMessage: string) {
   if (!supportWhatsapp) {
     return '';
@@ -157,9 +159,12 @@ function getWaitingSteps(selectedApp: SelectedApp | null) {
 
 function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }) {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
-  const [catalogItems, setCatalogItems] = useState<CatalogHighlight[]>([]);
+  const [movieItems, setMovieItems] = useState<CatalogHighlight[]>([]);
+  const [seriesItems, setSeriesItems] = useState<CatalogHighlight[]>([]);
+  const [catalogMode, setCatalogMode] = useState<CatalogMode>('movies');
   const [catalogIndex, setCatalogIndex] = useState(0);
   const steps = useMemo(() => getWaitingSteps(selectedApp), [selectedApp]);
+  const catalogItems = catalogMode === 'movies' ? movieItems : seriesItems;
   const featuredCatalogItem = catalogItems[catalogIndex % Math.max(catalogItems.length, 1)];
   const remainingSeconds = Math.max(0, TRIAL_WAIT_SECONDS - elapsedSeconds);
   const progress = Math.min(100, Math.round((elapsedSeconds / TRIAL_WAIT_SECONDS) * 100));
@@ -176,35 +181,34 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
   useEffect(() => {
     let ignoreResponse = false;
 
-    void fetch('/data/catalog-highlights.json')
-      .then((response) => (response.ok ? response.json() as Promise<CatalogHighlightsResponse> : Promise.reject()))
-      .then((body) => {
+    async function loadCatalog() {
+      try {
+        const [moviesResponse, seriesResponse] = await Promise.all([
+          fetch('/data/catalog-highlights.json'),
+          fetch('/data/catalog-series-highlights.json'),
+        ]);
+
+        const moviesBody = moviesResponse.ok ? await moviesResponse.json() as CatalogHighlightsResponse : { items: [] };
+        const seriesBody = seriesResponse.ok ? await seriesResponse.json() as CatalogHighlightsResponse : { items: [] };
+
         if (!ignoreResponse) {
-          setCatalogItems(body.items ?? []);
+          setMovieItems(moviesBody.items ?? []);
+          setSeriesItems(seriesBody.items ?? []);
         }
-      })
-      .catch(() => {
+      } catch {
         if (!ignoreResponse) {
-          setCatalogItems([]);
+          setMovieItems([]);
+          setSeriesItems([]);
         }
-      });
+      }
+    }
+
+    void loadCatalog();
 
     return () => {
       ignoreResponse = true;
     };
   }, []);
-
-  useEffect(() => {
-    if (catalogItems.length <= 1) {
-      return undefined;
-    }
-
-    const interval = window.setInterval(() => {
-      setCatalogIndex((current) => (current + 1) % catalogItems.length);
-    }, 14000);
-
-    return () => window.clearInterval(interval);
-  }, [catalogItems.length]);
 
   function goToPreviousCatalogItem() {
     setCatalogIndex((current) => (current === 0 ? catalogItems.length - 1 : current - 1));
@@ -212,6 +216,11 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
 
   function goToNextCatalogItem() {
     setCatalogIndex((current) => (current + 1) % catalogItems.length);
+  }
+
+  function changeCatalogMode(nextMode: CatalogMode) {
+    setCatalogMode(nextMode);
+    setCatalogIndex(0);
   }
 
   return (
@@ -230,6 +239,23 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
           <span>Enquanto isso</span>
           <strong>Destaque do catalogo</strong>
         </div>
+        <div className="catalog-tabs" aria-label="Tipo de destaque">
+          <button
+            className={catalogMode === 'movies' ? 'active' : ''}
+            type="button"
+            onClick={() => changeCatalogMode('movies')}
+          >
+            Filmes
+          </button>
+          <button
+            className={catalogMode === 'series' ? 'active' : ''}
+            type="button"
+            onClick={() => changeCatalogMode('series')}
+            disabled={seriesItems.length === 0}
+          >
+            Series
+          </button>
+        </div>
         {featuredCatalogItem ? (
           <article className="catalog-feature">
             {featuredCatalogItem.posterUrl ? (
@@ -244,9 +270,9 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
               <small>Genero: {featuredCatalogItem.category}</small>
             </div>
             <div className="catalog-controls">
-              <button type="button" onClick={goToPreviousCatalogItem} aria-label="Filme anterior">&lt;</button>
+              <button type="button" onClick={goToPreviousCatalogItem} aria-label="Anterior">&lt;</button>
               <span>{catalogIndex + 1}/{catalogItems.length}</span>
-              <button type="button" onClick={goToNextCatalogItem} aria-label="Proximo filme">&gt;</button>
+              <button type="button" onClick={goToNextCatalogItem} aria-label="Proximo">&gt;</button>
             </div>
           </article>
         ) : (

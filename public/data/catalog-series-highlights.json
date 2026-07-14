@@ -1,0 +1,725 @@
+{
+  "updatedFrom": "lista_series_v2.xlsx",
+  "items": [
+    {
+      "title": "A Casa dos Espíritos",
+      "year": 2026,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 259702,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/lzy5lANYtUp24VTnX0NnnwAnvJa.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/aX2MN3TweeODXA8xrciMWogL9A2.jpg",
+      "overview": "A Casa dos Espíritos é uma saga familiar de 8 episódios que mostra as vidas de mulheres revolucionárias e resilientes - Clara, a avó; Blanca, a filha; e Alba, a neta - ao longo de "
+    },
+    {
+      "title": "1670",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 236450,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/sMPLjSZYJEeeXfxeKQ7Ct7SEYuV.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/AfhDPw3x2WfMTfszcAVhngRWlA2.jpg",
+      "overview": "Uma comédia satírica. Um nobre excêntrico, com a missão de se tornar a figura mais famosa da Polónia, enfrenta disputas familiares e entra em conflito com camponeses na sua missão "
+    },
+    {
+      "title": "Formula Dreams",
+      "year": 2024,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 243741,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/cAn6UerbPG7PTbn8a3KlfoDnQJa.jpg",
+      "backdropUrl": null,
+      "overview": "Série documental, que estreia dia 5 de janeiro na HBO Max e tem produção independente da Story Productions, acompanhou a trajetória inicial de cinco jovens pilotos de kart"
+    },
+    {
+      "title": "Eco",
+      "year": 2024,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 122226,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/6Khp1QR8IsRBCfMxeMoDNAxPEL4.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/u3ySnWqSjM3jedYgJZTR7RWRDDm.jpg",
+      "overview": "Perseguida pelo criminoso Fisk, Maya volta para casa, onde confrontará sua família e seu legado."
+    },
+    {
+      "title": "Forca Policial Indiana",
+      "year": 2024,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 201009,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/7OaWh6EPtl2Z2qpxLKDhkM63Zj2.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/KapWiv2ecDdp4nAP0AfWr321T9.jpg",
+      "overview": "Uma série cheia de ação que acompanha a jornada angustiante do policial de Delhi, Kabir Malik, enquanto ele luta contra um adversário insidioso, Zarar, que escolheu o caminho do te"
+    },
+    {
+      "title": "Gotas Divinas",
+      "year": 2023,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 218961,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/pfI9oTrM7qKB3LwyxhrLBhzwsKN.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/n1S7wjXldg351ajDMWSgMpfmfyW.jpg",
+      "overview": "Enquanto o mundo do vinho lamenta a morte de Alexandre Léger, sua filha, afastada há anos, descobre que sua coleção extraordinária de vinhos agora é dela. Mas antes de poder recebe"
+    },
+    {
+      "title": "A Juíza do Inferno",
+      "year": 2024,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 235577,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/iRbJ9bPnoLDgvmsVJcp4cpPzWIJ.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/dNwVnRWE4LRLJ9f3WIWOnIURPwn.jpg",
+      "overview": "A série segue Kang Bit Na, uma juíza fria que na verdade é uma demônia disfarçada. Seu verdadeiro trabalho é enviar culpados que não se arrependem para o inferno. Durante a trama, "
+    },
+    {
+      "title": "A Bilionaria o Mordomo e o Namorado",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 238091,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/6259lqrFdxTYtzdqQI9C7QkazY8.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/qqKhe0QFEDjG9COTyRbME9gkr8N.jpg",
+      "overview": "Como um conflito entre uma das mulheres mais ricas do mundo e sua filha virou um escândalo nacional na França? Esta série documental explica tudo."
+    },
+    {
+      "title": "Além do Guarda-Roupa",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 228277,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/la05C5Aoot5xB31hEaxwacPGald.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/6nHJaxNYBImSP57bgbH3rYutA0z.jpg",
+      "overview": "Na trama, seguimos Carol, uma adolescente coreana-brasileira que, após ser abandonada pelo pai coreano, quer distância de tudo que vem do país. O problema é quando a garota encontr"
+    },
+    {
+      "title": "A Atriz",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 224773,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/tdl6MgyyDZRVChnTyixSr48o4mb.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/vxwluiLo7MlARgI8NIon1kDt8Z7.jpg",
+      "overview": "Yasemin Derin, uma famosa atriz na Turquia, vive uma vida dupla há muitos anos. Oculta pela fama, Yasemin leve uma segunda vida que a arrasta pra uma aventura cheia de segredos."
+    },
+    {
+      "title": "A Cabeça de Joaquín Murrieta",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 135502,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/b4cRVn14ISRIxczusriGZKq2tbT.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/Ap1qqXyZmAEaTA8gCMi0qb7xBHd.jpg",
+      "overview": "A ganância tomou conta da Califórnia por causa da corrida do ouro, tornando as pessoas sedentas por riqueza e terras. Na recém-traçada fronteira entre o México e os EUA, uma guerra"
+    },
+    {
+      "title": "Uma Questao de Quimica",
+      "year": 2023,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 117303,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/9lN9uhgH2YTIubfQTd2f0rtqnmp.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/sPE6RlcIdK7i5Z991cQQkoO2R6t.jpg",
+      "overview": "Na década de 1950, o sonho de Elizabeth Zott de ser uma cientista é desafiado por uma sociedade que diz que as mulheres pertencem apenas à esfera doméstica. Ela aceita um emprego e"
+    },
+    {
+      "title": "Algo Horrível Vai Acontecer",
+      "year": 2026,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 259265,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/lygFcZpcU5txuvRw1rkhkE1F7Ab.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/1bdq9FKVyBUpOM9qE09WgG9o8Ek.jpg",
+      "overview": "Uma noiva tem a sensação de que algo horrível vai acontecer no dia do seu casamento. E quanto mais a hora do “sim” se aproxima, pior fica."
+    },
+    {
+      "title": "A Criatura",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 135238,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/tbHf9E7VkI0uFOfwEtcPWNoMjN8.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/peVe0NQNdZMXwtTohnv8iwJQb2d.jpg",
+      "overview": "Na sombria primavera de 1945, um homem e uma mulher lutam para sobreviver em meio a uma batalha contra monstros criados para satisfazer a ganância humana."
+    },
+    {
+      "title": "Amor e Morte",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 124800,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/bn4s6mCHtfQNxRapZ0C0wEi36SQ.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/A1kULtnwc9v4gaYqIGyMu4YDOFu.jpg",
+      "overview": "A história real de Candy e Pat Montgomery e Betty e Allan Gore, dois casais que frequentam a igreja e vivem uma vida simples no Texas… até que uma traição faz alguém pegar um macha"
+    },
+    {
+      "title": "A Magia de Aruna",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 196308,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/siDRdCHRnGPQR8OvgVAcbW5FRIo.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/osgj05fXUMJPbbZN94PsfuNSWVm.jpg",
+      "overview": "Em busca do seu lugar, Mima, uma adolescente com medo de assumir seu poder, desperta três bruxas do passado que a lançam em uma jornada para recuperar a Aruna, uma partícula capaz "
+    },
+    {
+      "title": "A Gangue de Bogota",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 237554,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/a6qep5xwzSsMYrXNvEvhhMZk0ro.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/x4wo96cQz2kok2tHukF1viO67Vr.jpg",
+      "overview": "Inspirado em eventos reais, A Gangue de Bogotá expõe a ascensão de um grupo de amigos de Bogotá nos anos 80. A série segue uma geração em busca de sua identidade através da amizade"
+    },
+    {
+      "title": "A Vida Segundo Ella",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 207639,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/swNt7H2NvU41e9KF3xYRuNHoWnD.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/l8fYIyzr6bS4SXvAFydHOzrvt16.jpg",
+      "overview": "Depois de uma experiência que mudou sua vida, Ella está ansiosa para aproveitar seus dias. Enquanto ela aprende a apreciar cada momento, ela encara o medo que antes a acompanhava e"
+    },
+    {
+      "title": "Amor Entre Linhas",
+      "year": 2026,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 279136,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/vivsGkz3Zxk4MXk10mYboP1rE8s.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/rqbOJAS7agIfwNBHoORt2mdU7hR.jpg",
+      "overview": "Abalada pelo desaparecimento súbito do noivo, Hu Xiu (Lu Yu Xiao) é levada por uma amiga a um clube de jogos de investigação de assassinato, na esperança de se animar. Ambientado n"
+    },
+    {
+      "title": "A Garota do Cigarro",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 228957,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/2h3Fkouz0jE60iUWumjZD5TOBcZ.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/WwgQEDNpMCMAvYepZIS1PGz4LA.jpg",
+      "overview": "Ao desafiar a tradicional indústria dos cigarros de cravo na Indonésia dos anos 1960, uma talentosa artesã vive uma jornada de amor e autodescoberta."
+    },
+    {
+      "title": "B.A. O Futuro Esta Morto",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 157319,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/gEmz8c9iDH261jiiCKVcVXT06D6.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/xufzdEwxqrOYXPr2UioOHvU3iwI.jpg",
+      "overview": "Num Brasil distópico onde a floresta amazônica virou um parque industrial, uma sociedade secreta de estudantes com poderes especiais busca proteger-se dos adultos e curtir a adoles"
+    },
+    {
+      "title": "A Menina Invisível",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 205179,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/pvuBvkW4aGv22aUmIleKW6BRBH7.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/8RQJLi2zjQFRfZhpTBKPnmBZnKu.jpg",
+      "overview": "Aurora Ríos, 17 anos, é encontrada morta no portão da escola na cidade de Cárdena. Duas linhas de investigação são abertas: a oficial liderada por Miguel Ángel, e a não oficial por"
+    },
+    {
+      "title": "A Infância de Romeu e Julieta",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 212350,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/kW7gbPpzJnhxKJWeYAENnwTdOaU.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/9zQR28Zz5kjP28d91GEysUKVWeh.jpg",
+      "overview": "Romeu e Julieta são crianças de mundos diferentes, grupos rivais e famílias inimigas, mas se gostam e não podem evitar. Para conseguir ficar juntos, precisam desvendar mistérios do"
+    },
+    {
+      "title": "Amber Brown",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 135198,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/mD17KMP7egrkpxnBPsqeLRnOC2B.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/e6Tpko2TEmIuoOka0NxPyqDyLbY.jpg",
+      "overview": "Entre o divórcio de seus pais e seu melhor amigo se mudando, Amber Brown está passando por momentos difíceis. Mas a sua arte, vídeo diário, e sua nova amiga Brandi dão a Amber a ch"
+    },
+    {
+      "title": "Até o Último Samurai",
+      "year": 2025,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 252193,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/wP8wvUQ1HRVzaAja2HH5r62WhUa.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/vcU8hIHXuADItJSzEmt2F8IMq5l.jpg",
+      "overview": "Conhecido um dia como o samurai invicto, Shujiro decide participar de um jogo mortal de sobrevivência para salvar sua família e seu povo no início da era Meiji."
+    },
+    {
+      "title": "A Ilha da Caveira",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 117678,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/tPBIO31w2P7KlLofrcykomT5QOR.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/tGum8pp4gImTfFbWjnk1efTZirR.jpg",
+      "overview": "Após naufragar em uma ilha, um grupo de exploradores encontra inúmeras criaturas aterrorizantes, incluindo o gorila gigante Kong."
+    },
+    {
+      "title": "Bring Back Alice",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 222892,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/nu6IXJDBhsLnatm5gRRdJXr85LR.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/sqnGbOY5zzvQl75bK80yWmAsOaQ.jpg",
+      "overview": "Há um ano, duas meninas desapareceram. Quando uma delas retorna sem lembranças do ano que passou, o irmão da outra garota tenta provar que os casos estão conectados e descobrir a v"
+    },
+    {
+      "title": "A Small Light",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 157160,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/oux78ehKNO4Fa72K3aANJzU2N6d.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/rjsOYAPkz0SL6sjiASlaYkBdGiO.jpg",
+      "overview": "A história de Miep Gies, a secretária de Otto Frank. Com a ajuda da resistência holandesa, Miep e seu marido protegeram a família Frank e diversas outras pessoas dos nazistas duran"
+    },
+    {
+      "title": "A Química da Morte",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 217180,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/2g19fjcnnAJyBl0VmcfKCGS8rbr.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/ndq6lOTc5OnItaRQDzsm61apYKZ.jpg",
+      "overview": "Quando corpos começam a aparecer no tranquilo campo inglês que ele recentemente transformou em lar, um antropólogo forense ajuda a polícia local em uma corrida contra o tempo."
+    },
+    {
+      "title": "As Meninas de Surfside",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 153307,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/fq9N06LlnShJvCf7G4EZxAb8qZf.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/7g6Q9TsIZknGFiTq2FXpmT2tzBn.jpg",
+      "overview": "O raciocínio leva a grandes descobertas das amigas praianas Sam e Jade durante a investigação dos mistérios sobrenaturais em sua cidadezinha natal, Surfside."
+    },
+    {
+      "title": "Casadas e Caçadoras",
+      "year": 2025,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 244447,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/knR0tDKgFwsUMxe0MqZSWQYhwpL.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/6PerjrTmwTNiRcfn0SpjU8N9Nio.jpg",
+      "overview": "Sophie troca a Nova Inglaterra pelo leste do Texas e cai na órbita magnética de uma socialite rica — onde um grupo de donas de casa esconde segredos mortais."
+    },
+    {
+      "title": "A Queda da Casa de Usher",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 157065,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/b5MzNAgs1baKi32ln3yQoaKIsgZ.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/4qDlkEAKFb4pgIUbeJMLyHX2Xym.jpg",
+      "overview": "Para proteger a fortuna e o futuro, um casal de irmãos constrói uma dinastia familiar que começa a ruir quando cada um dos herdeiros morre misteriosamente."
+    },
+    {
+      "title": "Candy Cruz",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 236537,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/bSk3Rxx2kgYRF5albYAYyRlL8d0.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/RMBeelXAoqWt9htdvVvHzfevFi.jpg",
+      "overview": "Candy adora cozinhar para quem ama, mas quando entra na maior competição culinária da TV, ela descobre que suas receitas podem transformar vidas."
+    },
+    {
+      "title": "A Verdade da Mentira: Uma Nova Missão",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 202099,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/fRLR6E0ImIH12exLfbAcjrdiDpF.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/izANb0XYjvuAgRAcIxZ1iBJwN2T.jpg",
+      "overview": "Inspirado no filme de sucesso de James Cameron \"True Lies\", a série acompanha Harry Tasker, um espião internacional de primeira classe da agência de inteligência americana Omega Se"
+    },
+    {
+      "title": "A Terapia por Sebastian Fitzek",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 207713,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/A20s4cd2JzYorqQphtDK1rhrtPg.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/zpsbPb1F4JxkYOCjq1Yi5vujHWn.jpg",
+      "overview": "Sem testemunhas, sem cadáver e sem deixar vestígio algum, Josy, uma menina de 13 anos, filha do reconhecido psiquiatra Viktor Larenz, desapareceu em circunstâncias inexplicáveis. D"
+    },
+    {
+      "title": "Contos Futurísticos",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 213359,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/zGiG9lpGU92Gab5pMCTJYqbr1oK.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/cvGVLYFLBI58zQJ4KPs5bKbEIa8.jpg",
+      "overview": "Nesta antológica série sci-fi, a curiosidade leva ao caos quando os alunos em um futuro próximo vivenciam eventos misteriosos."
+    },
+    {
+      "title": "Cidade de Sombras",
+      "year": 2025,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 277752,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/662flFfrMwW41D8vKLvcTlAoH06.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/jKyYbESbbsDuEF0G2a9Kg5zuttG.jpg",
+      "overview": "Quando Barcelona desperta com um corpo em chamas pendurado em um dos edifícios mais famosos de Gaudí, um detetive desacreditado volta à ativa para pegar o assassino."
+    },
+    {
+      "title": "A Selecao dos EUA na Copa do Mundo Feminina",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 239243,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/8epO5YHQxU7cbTF3gyCYulTWxyn.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/fQtt87hIJKdoqArVPGVdRzQuM5w.jpg",
+      "overview": "Nesta série documental, a seleção feminina de futebol dos EUA busca seu terceiro título consecutivo em meio a desafios e vitórias na Copa do Mundo FIFA de 2023."
+    },
+    {
+      "title": "Coisa de Menino",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 225482,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/cz7VKYi4R5RXWQBqfUQ1aLXB1nj.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/vvF9CzeZV0eDYA2HjhLhCC7LZpI.jpg",
+      "overview": "Um olhar sobre questões ligadas à criação e à educação de meninos por meio de contrastes, matizes e contradições, além de colocar em xeque velhos e novos conceitos sobre o comporta"
+    },
+    {
+      "title": "Ahsoka",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 114461,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/eiJeWeCAEZAmRppnXHiTWDcCd3Q.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/loDy1LWCkPjECjVTRmyKtOoUpNN.jpg",
+      "overview": "Situada após a queda do Império, a série segue a ex-cavaleira Jedi Ahsoka Tano enquanto ela investiga uma ameaça emergente a uma galáxia vulnerável."
+    },
+    {
+      "title": "Acusado",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 202097,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/hRDb93pcHwOnEjINUROtI8IToms.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/daVf1WxVes9ZaC6jToZgq9ulqEz.jpg",
+      "overview": "Crônicas de pessoas comuns que se veem envolvidas em situações extraordinárias, onde um caminho errado leva a outro, até que seja tarde demais para voltar atrás."
+    },
+    {
+      "title": "Echo 3",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 106116,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/qaNu2gdgmeXcVfHFib4y2SlrgiH.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/hTGqvVsvvCQGMOKUfNZ6n371QHG.jpg",
+      "overview": "Quando a brilhante cientista Amber Chesborough desaparece perto da fronteira da Colômbia com a Venezuela, seu irmão e seu marido - ambos soldados americanos de elite - tem dificuld"
+    },
+    {
+      "title": "De Férias com o Ex Diretoria",
+      "year": 2024,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 238597,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/p7heZ4EBKqcXHjkPbeiv9uDlunC.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/yBkhVXPxoQvjjeajiy9vpI7Oo9U.jpg",
+      "overview": "O plano das férias perfeitas de 12 solteiros se transforma num verdadeiro caos quando o tablet do terror revela que seus ex-parceiros ganharam um passaporte para assombrar suas vid"
+    },
+    {
+      "title": "A Vida Mentirosa dos Adultos",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 103416,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/w9XPnBDa3PZVsrCtrX1dqyWYOpY.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/sZCX8QN3Mhu5KjD2MO6vYMzj77Z.jpg",
+      "overview": "A jovem Giovanna vive a passagem da infância para a adolescência e sente na pele as diversas facetas da Nápoles dos anos 1990."
+    },
+    {
+      "title": "Como Criar um Escandalo Sexual",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 226403,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/mN1VpSxee3QQivoosYuzXS7s9Oy.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/8ZRvaWlP1fk3YwfUVuD3qz5MHp.jpg",
+      "overview": "Com mais reviravoltas do que um thriller de Hollywood, este documentário alucinante expõe uma história de crime real devastadora e quase inacreditável que começa em um clube de swi"
+    },
+    {
+      "title": "Amor nas Alturas",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 218268,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/7mVBpwx814kro1lIEMFExvFKgeP.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/6VO8JN3IuIPuqGXsrFj6GYmiFpy.jpg",
+      "overview": "Uma comédia romântica musical ambientada na cidade de Nova York em 1999, seguindo a história extraordinária de um casal comum, quando eles se apaixonam e encontram um mundo de memó"
+    },
+    {
+      "title": "Alphonse",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 197436,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/kd4xpSQZmrrnSlK0SLdF6iqDkEk.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/x6XKuqxeCe2f3tVgw975tVB9iZx.jpg",
+      "overview": "Alphonse, um homem na casa dos 40 anos enfrentando uma crise profissional e no casamento, reconecta-se com um pai que mal conhecia e descobre uma vocação surpreendente. Ao longo do"
+    },
+    {
+      "title": "Fortuna",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 197449,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/zEsQXcECUWfPsAXF6ImQGRbDWMB.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/wk1ylquzPsZFRSuGXyAfZ0gyHmV.jpg",
+      "overview": "Depois de se divorciar de seu marido, com quem esteve por vinte anos, Molly Novak precisa descobrir o que fazer com seus 87 bilhões de dólares estabelecidos no divórcio. Ela decide"
+    },
+    {
+      "title": "Deixando Neverland",
+      "year": 2019,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 86951,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/y2CXPUrNFY9m35HoXd5SA0LcJNL.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/x5cDiHmjltsk0dE7KlnmVNZe5ED.jpg",
+      "overview": "O documentário traz a história de dois garotos, de 7 e 10 anos, hoje homens, que na época em que eram crianças, alegaram que foram abusados sexualmente por Michael Jackson."
+    },
+    {
+      "title": "A Vida no Nosso Planeta",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 213609,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/ugPZPSChjaLDq4WhzMf0IpOwGRg.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/o5NFe8iAeYxpwNuN0zuUwp8NIpy.jpg",
+      "overview": "Esta série documental inovadora mostra a extraordinária jornada para vencer, se adaptar e sobreviver na Terra ao longo de bilhões de anos."
+    },
+    {
+      "title": "Fired on Mars",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 126726,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/7x4EO1UOvat2V78WuC2CpAqxjH8.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/4iZNIlx7ek4fwQN3mYIecIIAKOS.jpg",
+      "overview": "Depois de fazer uma viagem só de ida ao Planeta Vermelho, o designer gráfico Jeff Cooper se vê à deriva quando seus chefes eliminam sem cerimônia seu papel."
+    },
+    {
+      "title": "Art Attack: Modo Desafio",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 136396,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/7OaHw5y9Zmr1GR38DuXDHJFMP5j.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/blZq3UtV3JaRcWkWO9boy94lQC2.jpg",
+      "overview": "Cinco criadores de conteúdo são convocados para fazer parte de uma incrível aventura. E tudo começa quando as portas da nova oficina do \"Art Attack\" se abrem! Lá, eles terão que en"
+    },
+    {
+      "title": "Amar e Para os Fortes",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 194615,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/zh4dJ8ZBrcmtDT2p45SR1AWkl9x.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/hkyVXFwnkj891t5g0JS9CbzwDWj.jpg",
+      "overview": "Conta a saga de duas mulheres negras cariocas que veem seus destinos entrelaçados para sempre durante uma operação policial, no Dia das Mães. Rita perde seu filho de 11 anos, Sushi"
+    },
+    {
+      "title": "I Love That for You",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 195815,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/AhNp9oNhHcRJRwwYN6ZOVZu9Y5A.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/mnahqfJAkgMWlmg8A1bKNBa9z2i.jpg",
+      "overview": "A sobrevivente de câncer Joanna Gold sonha em se tornar a apresentadora de um canal de compras local. Mas quando uma pequena mentira vira uma bola de neve, Joanna descobre que vive"
+    },
+    {
+      "title": "Demolidor: Renascido",
+      "year": 2025,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 202555,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/r5hNFtkNAauxc2G4VUlnJOaVIb0.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/qrTAc0ZtQ859Qu5O8cixJzNJpQs.jpg",
+      "overview": "Matt Murdock, um advogado cego com habilidades fantásticas, luta por justiça através de seu agitado escritório de advocacia, enquanto o ex-chefe do crime Wilson Fisk busca seus pró"
+    },
+    {
+      "title": "Academia Unicornio",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 221504,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/l8VmqILTBuDPtoijOxb2RwlR8rY.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/w1OI696IzYW37hZwdLfiGUYzAvX.jpg",
+      "overview": "Quando uma força sombria ameaça destruir a Ilha Unicórnio, uma adolescente corajosa e cinco colegas precisam se unir para proteger a academia mágica que tanto amam."
+    },
+    {
+      "title": "Gêmeas Trans: Uma Nova Vida",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 227239,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/e7fy8dtswdVCXeWY1LiU58LEBcc.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/pc9MdrkFP2FkqwLz4e4gR8cm6iJ.jpg",
+      "overview": "A série acompanha a vida das gêmeas Sofia e Mayla, no período das férias da faculdade, ao voltarem para o interior de Minas Gerais para rever os familiares e amigos e lidar com os "
+    },
+    {
+      "title": "As Mais Incriveis Viagens de Animais",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 157195,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/oeMkyHSrQFO2f3L5SzFms97ufj5.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/6JN7NJHgQpPLfawWPJ0oODevbqD.jpg",
+      "overview": "Vivemos em um planeta em movimento. Em todas as paisagens, animais fazem migrações épicas em busca de alimento, abrigo e amor."
+    },
+    {
+      "title": "Anderson Spider Silva",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 236400,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/aBwB6n8hQ5lLcc3WpCSvXqz9Pv8.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/xH5I170yhOWXvIQz8euf4ZrqW72.jpg",
+      "overview": "Quantas barreiras um campeão precisa superar para se tornar o ícone negro de sua geração? A trajetória de Anderson SPIDER Silva através das vitórias e derrotas, dentro e fora do ri"
+    },
+    {
+      "title": "Lincoln's Dilemma",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 155714,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/aoYswHnRSDodkLvDz0CTDZkMgLM.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/18ak0ZqtirJJKXOaIs0raZqwxiA.jpg",
+      "overview": "Conheça um lado de Abraham Lincoln que você nunca viu antes. Nesta série documental de quatro partes, um painel diversificado de historiadores e materiais raros oferecem um olhar d"
+    },
+    {
+      "title": "Direto pro Inferno",
+      "year": 2026,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 300529,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/iBdXm7XHXKlBD5NYWaxzGtb3yFd.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/38LmBc9U8VhbOXgS14p8B01xrEJ.jpg",
+      "overview": "Kazuko Hosoki era a vidente mais famosa do Japão. Mas quem foi a mulher por trás de alegações de golpes e vínculos com o mundo do crime?"
+    },
+    {
+      "title": "Agency",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 203698,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/y7wyXLQpA0HYshDH5cDceHW8Red.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/pkoYXabVyrOI5zEm1LnrtLx2mAh.jpg",
+      "overview": "Um drama de escritório que retrata uma mulher que se tornou a primeira executiva feminina em sua empresa para fazer sua carreira além do primeiro cargo até a posição mais alta. No "
+    },
+    {
+      "title": "Jared Fogle O Monstro do Subway",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 221181,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/vCMmTSfkOG95b9pxdtiNSHfCOiB.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/sL7aVecs6Lwf5gAgKCN40SrpS6D.jpg",
+      "overview": "Acompanhe os detalhes da investigação que derrubou Jared Fogle."
+    },
+    {
+      "title": "As Pequenas Coisas da Vida",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 203554,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/AwkQq6ej7No7ooBzjz9kQMXR9Q7.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/eMck5oCFXSZ8OS3TrhONCAXez1k.jpg",
+      "overview": "A história de Clare, uma mulher cujo casamento está em crise, cuja filha mal fala com ela e cuja carreira de escritora nunca decolou. Quando um amigo sugere que ela assuma uma colu"
+    },
+    {
+      "title": "As Bruxas Mayfair de Anne Rice",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 207863,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/hcGhWkbY2885PFAGSiWgsnEFBTY.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/9DHo5qXkG0titQmr2PF92N3aYYk.jpg",
+      "overview": "Rowan Fielding, uma jovem neurocirurgiã intuitiva, descobre que ela é a improvável herdeira de uma família de bruxas. Enquanto ela lida com seus novos poderes, ela deve lidar com u"
+    },
+    {
+      "title": "Lovely Little Farm",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 201710,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/ft4FCipTavS6cWAuTvHskf2Uwit.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/yYoRGfBZCSBeN8FO2Dj7fSoy2pA.jpg",
+      "overview": "Aninhada em campos de lavanda, existe uma adorável fazendinha onde as irmãs Jill e Jacky cuidam e amam todos os seus animais, inclusive os falantes. Ser uma jovem fazendeira não é "
+    },
+    {
+      "title": "Emergência Radioativa",
+      "year": 2026,
+      "category": "Em alta",
+      "type": "Série",
+      "tmdbId": 292474,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/h9xizalvWg38e7LVcREMu0X180N.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/3v2JfPAr1dP23hGTkG44dRYGri6.jpg",
+      "overview": "Físicos e médicos entram em uma corrida contra o tempo para salvar a cidade e milhares de vidas após um grave acidente radiológico."
+    },
+    {
+      "title": "Agente Elvis",
+      "year": 2023,
+      "category": "Netflix",
+      "type": "Série",
+      "tmdbId": 110126,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/9iFMG4zyAkLnvfEwNqIiiEEQ342.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/khrlmwalDuftxzywQOAyotJfPs5.jpg",
+      "overview": "Elvis entra para um programa secreto do governo americano e troca o rock pela espionagem para combater forças sombrias que ameaçam os EUA."
+    },
+    {
+      "title": "Mariachis",
+      "year": 2023,
+      "category": "HBO Max",
+      "type": "Série",
+      "tmdbId": 220009,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/nmWNGnb2GFbQyW0KcBBGKfT7xMh.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/mcssBp6XdeZJty0fV6FYeAS1Cv1.jpg",
+      "overview": "O patriarca Rosendo Cuevas sofre com o início repentino e agressivo do mal de Alzheimer, sua esposa, Lucía, e seus dois filhos, Jorge e Pedro, formam uma banda mariachi para ajudá-"
+    },
+    {
+      "title": "Bem Vindos a Australia",
+      "year": 2023,
+      "category": "Disney+",
+      "type": "Série",
+      "tmdbId": 204999,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/aUGfSkKDmldCnmOjlesgkqP2uGO.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/it34RMnArwzl38hoAtgXfCkkqpX.jpg",
+      "overview": "Lady Sarah Ashley cruza o mundo para confrontar o marido e vender um bem incomum."
+    },
+    {
+      "title": "As Flores Perdidas de Alice Hart",
+      "year": 2023,
+      "category": "Prime Video",
+      "type": "Série",
+      "tmdbId": 125816,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/55ooggJofDND0TSrV4tBddvXIQX.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/koU92vPMZFoWn2SD1w0IoOzAxFm.jpg",
+      "overview": "Depois de perder os pais aos nove anos de idade em um incêndio misterioso, Alice Hart é criada pela avó June em uma fazenda de flores onde se depara com uma série de segredos. Anos"
+    },
+    {
+      "title": "Now and Then: O Segredo que Nos Une",
+      "year": 2022,
+      "category": "Apple TV+",
+      "type": "Série",
+      "tmdbId": 123854,
+      "posterUrl": "https://image.tmdb.org/t/p/w342/7V3fdWHUy7rYFPp1DbgxNkQfpSI.jpg",
+      "backdropUrl": "https://image.tmdb.org/t/p/w780/amdcpzNaOfa2TaehImbQlrMlfpW.jpg",
+      "overview": "Na véspera da formatura da faculdade, seis melhores amigos embarcam em um fim de semana épico para comemorar – mas que tem uma reviravolta fatal. Quase 20 anos depois, os sobrevive"
+    }
+  ]
+}
