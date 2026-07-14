@@ -86,28 +86,12 @@ function assertBestPanelConfig(config: PublicBestPanelConfig) {
   }
 }
 
-function onlyDigits(value: string) {
-  return value.replace(/\D/g, '');
-}
-
-function buildPhoneCredentials(phone: string) {
-  const username = onlyDigits(phone);
-  return {
-    username,
-    password: username.split('').reverse().join(''),
-  };
-}
-
 function buildBestPanelPayload(data: SalesFlowData, config: PublicBestPanelConfig): BestPanelTrialRequest {
-  const credentials = buildPhoneCredentials(data.phone);
-
   return {
     type: null,
     email: null,
     notes: config.notes || null,
     phone: data.phone,
-    password: credentials.password,
-    username: credentials.username,
     plan_value: null,
     package_id: config.packageId,
   };
@@ -202,8 +186,8 @@ export async function createTrial(data: SalesFlowData): Promise<BestPanelTrialRe
   return {
     ok: true,
     message: getStringFromResponse(raw, ['message', 'detail', 'status']) ?? 'Teste criado com sucesso.',
-    username: getStringFromResponse(raw, ['username', 'user', 'login']) ?? payload.username,
-    password: getStringFromResponse(raw, ['password', 'pass', 'senha']) ?? payload.password,
+    username: getStringFromResponse(raw, ['username', 'user', 'login']),
+    password: getStringFromResponse(raw, ['password', 'pass', 'senha']),
     raw,
   };
 }

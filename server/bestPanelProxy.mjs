@@ -32,28 +32,13 @@ function normalizePackageId(packageId) {
   return Number.isNaN(numericPackageId) ? packageId : numericPackageId;
 }
 
-function onlyDigits(value) {
-  return String(value ?? '').replace(/\D/g, '');
-}
-
-function buildPhoneCredentials(phone) {
-  const username = onlyDigits(phone);
-  return {
-    username,
-    password: username.split('').reverse().join(''),
-  };
-}
-
 export async function createBestPanelTrial(request) {
   const body = await parseJsonBody(request);
   const storedConfig = await loadStoredBestPanelConfig();
   const endpoint = sanitizeEndpoint(body.endpoint || storedConfig.endpoint);
   const apiToken = request.headers['x-best-api-token'] || storedConfig.apiToken;
-  const credentials = buildPhoneCredentials(body.payload?.phone);
   const payload = {
     ...body.payload,
-    username: body.payload?.username || credentials.username,
-    password: body.payload?.password || credentials.password,
     notes: body.payload?.notes || storedConfig.notes || null,
     email: body.payload?.email ?? null,
     phone: body.payload?.phone || '',

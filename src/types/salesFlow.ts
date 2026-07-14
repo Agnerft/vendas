@@ -98,8 +98,8 @@ export interface BestPanelTrialRequest {
   email: string | null;
   notes: string | null;
   phone: string;
-  password: string;
-  username: string;
+  password?: string;
+  username?: string;
   plan_value: number | null;
   package_id: string | number;
 }
