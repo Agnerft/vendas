@@ -1,5 +1,8 @@
-import { request as httpsRequest } from 'node:https';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { loadStoredBestPanelConfig } from './adminConfig.mjs';
+
+const execFileAsync = promisify(execFile);
 
 export async function parseJsonBody(request) {
   const chunks = [];
@@ -34,33 +37,43 @@ function normalizePackageId(packageId) {
 }
 
 function requestAppsApi(method, url, headers = {}, body = '') {
-  return new Promise((resolve, reject) => {
-    const request = httpsRequest(url, {
-      method,
-      headers: {
-        ...headers,
-        ...(body ? { 'Content-Length': Buffer.byteLength(body) } : {}),
-      },
-      timeout: 15000,
-    }, (response) => {
-      const chunks = [];
-      response.on('data', (chunk) => chunks.push(chunk));
-      response.on('end', () => {
-        const text = Buffer.concat(chunks).toString('utf8');
-        const contentType = response.headers['content-type'] ?? '';
-        const parsedBody = String(contentType).includes('application/json') && text ? JSON.parse(text) : text;
-        resolve({ status: response.statusCode ?? 0, ok: Boolean(response.statusCode && response.statusCode < 400), body: parsedBody });
-      });
-    });
+  const args = [
+    '-sS',
+    '--max-time',
+    '30',
+    '-X',
+    method,
+    url,
+    '-w',
+    '\n__HTTP_STATUS__%{http_code}',
+  ];
 
-    request.on('timeout', () => request.destroy(new Error('Tempo esgotado ao chamar painel de apps.')));
-    request.on('error', reject);
+  for (const [name, value] of Object.entries(headers)) {
+    args.push('-H', `${name}: ${value}`);
+  }
 
-    if (body) {
-      request.write(body);
+  if (body) {
+    args.push('--data-binary', body);
+  }
+
+  return execFileAsync('curl', args, { timeout: 35000, maxBuffer: 1024 * 1024 }).then(({ stdout }) => {
+    const marker = '\n__HTTP_STATUS__';
+    const markerIndex = stdout.lastIndexOf(marker);
+    const text = markerIndex >= 0 ? stdout.slice(0, markerIndex) : stdout;
+    const status = markerIndex >= 0 ? Number(stdout.slice(markerIndex + marker.length).trim()) : 0;
+    const parsedBody = text ? JSON.parse(text) : {};
+
+    return {
+      status,
+      ok: status >= 200 && status < 400,
+      body: parsedBody,
+    };
+  }).catch((error) => {
+    if (error.killed || error.signal === 'SIGTERM') {
+      throw new Error('Tempo esgotado ao chamar painel de apps.');
     }
 
-    request.end();
+    throw error;
   });
 }
 
