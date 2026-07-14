@@ -176,8 +176,8 @@ export function SalesAssistantPage() {
   return (
     <main className="assistant-shell">
       <header className="app-header">
-        <div className="logo-mark" aria-hidden="true">
-          <img src={appConfig.logoIcon} alt="" />
+        <div className="logo-mark" aria-label={appConfig.companyName}>
+          <img src={appConfig.logoIcon} alt={appConfig.companyName} />
         </div>
         <div>
           <strong>{appConfig.companyName}</strong>

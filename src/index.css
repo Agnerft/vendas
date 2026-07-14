@@ -66,7 +66,7 @@ button:disabled {
 .app-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   color: var(--ink);
 }
 
@@ -81,24 +81,30 @@ button:disabled {
 }
 
 .logo-mark {
-  width: 52px;
-  height: 52px;
-  border-radius: 8px;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
   color: #ffffff;
-  background: #05060b;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 12px 28px rgba(71, 168, 255, 0.16);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+    #05060b;
+  border: 1px solid rgba(120, 143, 255, 0.32);
+  box-shadow:
+    0 14px 32px rgba(71, 168, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
   font-weight: 800;
   letter-spacing: 0;
   overflow: hidden;
 }
 
 .logo-mark img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.38));
 }
 
 .progress-shell {
@@ -834,6 +840,10 @@ button:disabled {
 }
 
 @media (max-width: 430px) {
+  .app-header {
+    gap: 10px;
+  }
+
   .flow-card {
     padding: 20px 16px;
     animation: none;
