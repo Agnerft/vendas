@@ -43,11 +43,12 @@ function getRandomString(length: number) {
 }
 
 function generateTrialCredentials() {
-  const suffix = getRandomString(8);
+  const usernameSuffix = getRandomString(8);
+  const passwordSuffix = getRandomString(10);
 
   return {
-    username: `nix${suffix}`,
-    password: `Nx!${suffix}9pL`,
+    username: `nix${usernameSuffix}`,
+    password: `Tv!${passwordSuffix}9Q`,
   };
 }
 
