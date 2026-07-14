@@ -164,6 +164,7 @@ export async function createTrial(data: SalesFlowData): Promise<BestPanelTrialRe
       headers: buildBestPanelHeaders(),
       body: JSON.stringify({
         endpoint: config.endpoint,
+        selectedApp: data.selectedApp,
         payload,
       }),
     });

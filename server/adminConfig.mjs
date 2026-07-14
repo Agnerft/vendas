@@ -10,6 +10,7 @@ const defaultConfig = {
   apiToken: '',
   packageId: '',
   notes: 'BotConversa CR7',
+  maxPlayerDomainId: '1779208587735814489',
 };
 
 function normalizeConfig(config = {}) {
@@ -23,6 +24,8 @@ function normalizeConfig(config = {}) {
     apiToken: typeof config.apiToken === 'string' ? config.apiToken.trim() : defaultConfig.apiToken,
     packageId: typeof config.packageId === 'string' ? config.packageId.trim() : defaultConfig.packageId,
     notes: typeof config.notes === 'string' ? config.notes.trim() : defaultConfig.notes,
+    maxPlayerDomainId:
+      typeof config.maxPlayerDomainId === 'string' ? config.maxPlayerDomainId.trim() : defaultConfig.maxPlayerDomainId,
   };
 }
 

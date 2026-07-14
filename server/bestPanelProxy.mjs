@@ -32,6 +32,68 @@ function normalizePackageId(packageId) {
   return Number.isNaN(numericPackageId) ? packageId : numericPackageId;
 }
 
+async function loginAppsPanel(config) {
+  const login = config.login || 'revendaluiz';
+  const password = config.appsPassword || config.login || 'revendaluiz';
+  const form = new FormData();
+  form.append('username', login);
+  form.append('password', password);
+
+  const response = await fetch('https://apps-api.painel.best/login', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      Origin: 'https://apps.painel.best',
+      Referer: 'https://apps.painel.best/',
+    },
+    body: form,
+  });
+  const contentType = response.headers.get('content-type') ?? '';
+  const body = contentType.includes('application/json') ? await response.json() : await response.text();
+
+  if (!response.ok || !body.access_token) {
+    throw new Error(`Falha ao autenticar no painel de apps. Codigo ${response.status}.`);
+  }
+
+  return body.access_token;
+}
+
+async function createMaxPlayerUser(lineId, config) {
+  const accessToken = await loginAppsPanel(config);
+  const headers = {
+    Accept: 'application/json, text/plain, */*',
+    Authorization: `Bearer ${accessToken}`,
+    Origin: 'https://apps.painel.best',
+    Referer: 'https://apps.painel.best/',
+  };
+
+  await fetch(`https://apps-api.painel.best/max-player/users/${lineId}`, {
+    method: 'DELETE',
+    headers,
+  }).catch(() => undefined);
+
+  const response = await fetch('https://apps-api.painel.best/max-player/users', {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      line_id: lineId,
+      domain_id: config.maxPlayerDomainId || '1779208587735814489',
+    }),
+  });
+  const contentType = response.headers.get('content-type') ?? '';
+  const body = contentType.includes('application/json') ? await response.json() : await response.text();
+
+  if (!response.ok) {
+    const detail = typeof body === 'object' && body?.detail ? body.detail : JSON.stringify(body);
+    throw new Error(`Teste criado, mas falhou ao criar Max Player: ${detail}`);
+  }
+
+  return body;
+}
+
 export async function createBestPanelTrial(request) {
   const body = await parseJsonBody(request);
   const storedConfig = await loadStoredBestPanelConfig();
@@ -75,6 +137,20 @@ export async function createBestPanelTrial(request) {
 
   const contentType = response.headers.get('content-type') ?? '';
   const rawBody = contentType.includes('application/json') ? await response.json() : await response.text();
+
+  if (response.ok && body.selectedApp === 'MAXPLAYER' && rawBody?.id) {
+    try {
+      rawBody.max_player = await createMaxPlayerUser(rawBody.id, storedConfig);
+    } catch (error) {
+      return {
+        status: 502,
+        body: {
+          message: error instanceof Error ? error.message : 'Teste criado, mas falhou ao criar Max Player.',
+          trial: rawBody,
+        },
+      };
+    }
+  }
 
   return {
     status: response.status,
