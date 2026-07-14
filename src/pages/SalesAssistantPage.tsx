@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from 'react';
 import { AppInstructions } from '../components/AppInstructions/AppInstructions';
 import { AppPreview } from '../components/AppPreview/AppPreview';
 import { FlowCard } from '../components/FlowCard/FlowCard';
@@ -6,10 +7,12 @@ import { OptionButton } from '../components/OptionButton/OptionButton';
 import { PhoneInput } from '../components/PhoneInput/PhoneInput';
 import { ProgressBar } from '../components/ProgressBar/ProgressBar';
 import { appConfig } from '../config/appConfig';
-import { stepAssetMap, stepPreviewModeMap } from '../config/appAssets';
+import { appAssets, stepAssetMap, stepPreviewModeMap } from '../config/appAssets';
 import { useSalesFlowContext } from '../hooks/useSalesFlowContext';
-import type { FlowOption, TrialCreationResult } from '../types/salesFlow';
+import type { FlowOption, SelectedApp, TrialCreationResult } from '../types/salesFlow';
 import { formatBrazilianPhone } from '../utils/phone';
+
+const TRIAL_WAIT_SECONDS = 240;
 
 function getSupportUrl(phone: string) {
   if (!appConfig.supportWhatsapp) {
@@ -32,6 +35,75 @@ function getResultRows(trial: TrialCreationResult) {
   ].filter((row): row is [string, string] => Boolean(row[0] && row[1]));
 }
 
+function formatWaitTime(seconds: number) {
+  const minutes = Math.floor(seconds / 60)
+    .toString()
+    .padStart(2, '0');
+  const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
+
+  return `${minutes}:${remainingSeconds}`;
+}
+
+function getWaitingSteps(selectedApp: SelectedApp | null) {
+  const appName = selectedApp ? appAssets[selectedApp].name : 'aplicativo';
+
+  if (selectedApp === 'MAXPLAYER') {
+    return [
+      'Criando teste no painel',
+      'Aguardando liberacao do acesso',
+      'Vinculando usuario no MAX PLAYER',
+      'Organizando os dados para envio',
+    ];
+  }
+
+  return [
+    'Criando teste no painel',
+    'Aguardando liberacao do acesso',
+    `Preparando dados do ${appName}`,
+    'Organizando os dados para envio',
+  ];
+}
+
+function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }) {
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const steps = useMemo(() => getWaitingSteps(selectedApp), [selectedApp]);
+  const remainingSeconds = Math.max(0, TRIAL_WAIT_SECONDS - elapsedSeconds);
+  const progress = Math.min(100, Math.round((elapsedSeconds / TRIAL_WAIT_SECONDS) * 100));
+  const activeStep = Math.min(steps.length - 1, Math.floor((progress / 100) * steps.length));
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setElapsedSeconds((current) => current + 1);
+    }, 1000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="trial-waiting" aria-live="polite">
+      <div className="waiting-timer">
+        <span>Tempo estimado</span>
+        <strong>{formatWaitTime(remainingSeconds)}</strong>
+      </div>
+      <div className="waiting-progress" aria-hidden="true">
+        <div style={{ width: `${progress}%` }} />
+      </div>
+      <p>Nao feche esta tela. O painel pode levar ate 4 minutos para liberar o teste.</p>
+      <div className="waiting-steps">
+        {steps.map((step, index) => (
+          <div
+            className={`waiting-step ${index < activeStep ? 'done' : ''} ${index === activeStep ? 'active' : ''}`}
+            key={step}
+          >
+            <span>{index < activeStep ? 'OK' : index + 1}</span>
+            <strong>{step}</strong>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function SalesAssistantPage() {
   const {
     canGoBack,
@@ -49,6 +121,12 @@ export function SalesAssistantPage() {
   const supportUrl = getSupportUrl(data.phone);
   const previewApp = stepAssetMap[currentStep.id];
   const previewMode = stepPreviewModeMap[currentStep.id] ?? 'wide';
+  const isWaitingForTrial = isBusy && (currentStep.type === 'ready' || currentStep.id === 'trial-placeholder');
+  const cardEyebrow = isWaitingForTrial ? 'Criando teste' : currentStep.eyebrow;
+  const cardTitle = isWaitingForTrial ? 'Aguardando liberacao do acesso' : currentStep.title;
+  const cardDescription = isWaitingForTrial
+    ? 'Estamos preparando o teste no painel. Assim que liberar, os dados aparecem automaticamente.'
+    : currentStep.description;
 
   function handleOption(option: FlowOption) {
     if (option.external === 'support') {
@@ -65,6 +143,10 @@ export function SalesAssistantPage() {
   }
 
   function renderContent() {
+    if (isWaitingForTrial) {
+      return <TrialWaitingScreen selectedApp={data.selectedApp} />;
+    }
+
     if (currentStep.type === 'phone') {
       return <PhoneInput initialValue={data.phone} onSubmit={(phone) => submitPhone(phone, 'manual')} />;
     }
@@ -123,9 +205,9 @@ export function SalesAssistantPage() {
           <div className="completion-heading">
             <strong>{isTrialSuccess ? 'Teste criado com sucesso.' : 'Nao conseguimos criar seu teste agora.'}</strong>
             <span>
-            {isTrialSuccess
-              ? 'Dados prontos para enviar ao cliente.'
-              : 'Voce pode tentar novamente ou chamar nosso suporte para finalizar o atendimento.'}
+              {isTrialSuccess
+                ? 'Dados prontos para enviar ao cliente.'
+                : 'Voce pode tentar novamente ou chamar nosso suporte para finalizar o atendimento.'}
             </span>
           </div>
           {isTrialSuccess ? (
@@ -202,17 +284,17 @@ export function SalesAssistantPage() {
 
       <FlowCard
         key={currentStep.id}
-        eyebrow={currentStep.eyebrow}
-        title={currentStep.title}
-        description={currentStep.description}
+        eyebrow={cardEyebrow}
+        title={cardTitle}
+        description={cardDescription}
       >
-        {previewApp && currentStep.type !== 'instructions' && currentStep.type !== 'ready' ? (
+        {previewApp && currentStep.type !== 'instructions' && currentStep.type !== 'ready' && !isWaitingForTrial ? (
           <AppPreview app={previewApp} compact={currentStep.type === 'options'} mode={previewMode} />
         ) : null}
         {renderContent()}
       </FlowCard>
 
-      <NavigationButtons canGoBack={canGoBack} onBack={goBack} onRestart={restart} />
+      {!isWaitingForTrial ? <NavigationButtons canGoBack={canGoBack} onBack={goBack} onRestart={restart} /> : null}
     </main>
   );
 }
