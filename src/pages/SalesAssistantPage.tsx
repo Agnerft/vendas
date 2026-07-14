@@ -14,6 +14,16 @@ import { loadPublicBestPanelConfig } from '../utils/bestPanelConfig';
 import { formatBrazilianPhone } from '../utils/phone';
 
 const TRIAL_WAIT_SECONDS = 240;
+const FIRST_ACCESS_CHECK_SECONDS = 180;
+const RETRY_NOTICE_SECONDS = 60;
+const SECOND_ACCESS_CHECK_SECONDS = 120;
+const PIX_RELEASE_SECONDS = 20;
+const PIX_KEY = 'xyz';
+const PIX_RECEIVER = 'Minha revenda';
+const PIX_PLANS = [
+  { id: 'monthly', label: 'MENSAL', price: '29,90' },
+  { id: 'bimonthly', label: 'BIMESTRAL', price: '49,90' },
+];
 
 interface CatalogHighlight {
   title: string;
@@ -57,6 +67,34 @@ function formatWaitTime(seconds: number) {
   const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
 
   return `${minutes}:${remainingSeconds}`;
+}
+
+function buildActivationMessage(
+  trial: TrialCreationResult,
+  phone: string,
+  selectedPlan: string,
+  receiptName: string,
+) {
+  return [
+    'Cliente enviou comprovante para ativacao.',
+    `Telefone: ${formatBrazilianPhone(phone)}`,
+    `Plano: ${selectedPlan}`,
+    `Aplicativo: ${trial.appName ?? '-'}`,
+    `Usuario: ${trial.username ?? '-'}`,
+    `Senha: ${trial.password ?? '-'}`,
+    `Validade do teste: ${trial.expiresAt ?? '-'}`,
+    `Horario de criacao: ${trial.createdAt ? new Date(trial.createdAt).toLocaleString('pt-BR') : '-'}`,
+    `Comprovante selecionado: ${receiptName}`,
+    'Confira o comprovante anexado pelo cliente e faca a ativacao.',
+  ].join('\n');
+}
+
+function getWhatsAppTextUrl(phone: string, message: string) {
+  if (!phone) {
+    return '';
+  }
+
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
 function getWaitingSteps(selectedApp: SelectedApp | null) {
@@ -172,6 +210,168 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
           </div>
         ))}
       </div>
+    </section>
+  );
+}
+
+function PostTrialActivation({
+  phone,
+  supportWhatsapp,
+  trial,
+}: {
+  phone: string;
+  supportWhatsapp: string;
+  trial: TrialCreationResult;
+}) {
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [accessStatus, setAccessStatus] = useState<'waiting-first' | 'first-question' | 'retry-wait' | 'second-question' | 'payment-wait' | 'payment'>('waiting-first');
+  const [statusStartedAt, setStatusStartedAt] = useState(Date.now());
+  const [selectedPlan, setSelectedPlan] = useState(PIX_PLANS[0].label);
+  const [receiptName, setReceiptName] = useState('');
+  const [copyStatus, setCopyStatus] = useState('');
+  const waitingFirstRemaining = Math.max(0, FIRST_ACCESS_CHECK_SECONDS - elapsedSeconds);
+  const statusElapsedSeconds = Math.floor((Date.now() - statusStartedAt) / 1000);
+  const retryRemaining = Math.max(0, RETRY_NOTICE_SECONDS + SECOND_ACCESS_CHECK_SECONDS - statusElapsedSeconds);
+  const paymentRemaining = Math.max(0, PIX_RELEASE_SECONDS - statusElapsedSeconds);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setElapsedSeconds((current) => current + 1);
+    }, 1000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (accessStatus === 'waiting-first' && elapsedSeconds >= FIRST_ACCESS_CHECK_SECONDS) {
+      setAccessStatus('first-question');
+    }
+  }, [accessStatus, elapsedSeconds]);
+
+  function startRetryWait() {
+    setAccessStatus('retry-wait');
+    setStatusStartedAt(Date.now());
+
+    window.setTimeout(() => {
+      setAccessStatus('second-question');
+      setStatusStartedAt(Date.now());
+    }, (RETRY_NOTICE_SECONDS + SECOND_ACCESS_CHECK_SECONDS) * 1000);
+  }
+
+  function startPaymentWait() {
+    setAccessStatus('payment-wait');
+    setStatusStartedAt(Date.now());
+
+    window.setTimeout(() => {
+      setAccessStatus('payment');
+      setStatusStartedAt(Date.now());
+    }, PIX_RELEASE_SECONDS * 1000);
+  }
+
+  async function copyPixKey() {
+    try {
+      await navigator.clipboard.writeText(PIX_KEY);
+      setCopyStatus('Chave copiada.');
+    } catch {
+      setCopyStatus('Nao foi possivel copiar. Toque e segure na chave.');
+    }
+  }
+
+  function openActivationWhatsApp() {
+    const url = getWhatsAppTextUrl(
+      supportWhatsapp,
+      buildActivationMessage(trial, phone, selectedPlan, receiptName || 'nao informado'),
+    );
+
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  }
+
+  if (accessStatus === 'payment') {
+    return (
+      <section className="activation-panel">
+        <div className="activation-heading">
+          <span>Pagamento</span>
+          <strong>Escolha seu plano no PIX</strong>
+        </div>
+        <div className="pix-plan-grid">
+          {PIX_PLANS.map((plan) => (
+            <button
+              className={selectedPlan === plan.label ? 'selected' : ''}
+              key={plan.id}
+              type="button"
+              onClick={() => setSelectedPlan(plan.label)}
+            >
+              <span>{plan.label}</span>
+              <strong>R$ {plan.price}</strong>
+            </button>
+          ))}
+        </div>
+        <div className="pix-key-box">
+          <span>Recebedor</span>
+          <strong>{PIX_RECEIVER}</strong>
+          <span>Chave PIX</span>
+          <button type="button" onClick={() => void copyPixKey()}>{PIX_KEY}</button>
+          {copyStatus ? <p>{copyStatus}</p> : null}
+        </div>
+        <label className="receipt-upload">
+          <span>Anexar comprovante</span>
+          <input
+            accept="image/*,.pdf"
+            type="file"
+            onChange={(event) => setReceiptName(event.target.files?.[0]?.name ?? '')}
+          />
+          <strong>{receiptName || 'Selecionar arquivo'}</strong>
+        </label>
+        <button
+          className="primary-action"
+          type="button"
+          disabled={!receiptName || !supportWhatsapp}
+          onClick={openActivationWhatsApp}
+        >
+          Enviar comprovante para ativacao
+        </button>
+        <p className="form-note">
+          O WhatsApp abrira com os dados do teste. Anexe o comprovante selecionado antes de enviar.
+        </p>
+      </section>
+    );
+  }
+
+  return (
+    <section className="activation-panel">
+      <div className="activation-heading">
+        <span>Validacao do acesso</span>
+        <strong>Vamos confirmar se o teste abriu corretamente</strong>
+      </div>
+      {accessStatus === 'waiting-first' ? (
+        <div className="access-countdown">
+          <span>Primeira pergunta em</span>
+          <strong>{formatWaitTime(waitingFirstRemaining)}</strong>
+        </div>
+      ) : null}
+      {accessStatus === 'first-question' || accessStatus === 'second-question' ? (
+        <div className="access-question">
+          <strong>{accessStatus === 'first-question' ? 'Conseguiu acessar o teste?' : 'Conseguiu logar agora?'}</strong>
+          <div>
+            <button type="button" className="primary-action" onClick={startPaymentWait}>Sim</button>
+            <button type="button" onClick={startRetryWait}>Nao</button>
+          </div>
+        </div>
+      ) : null}
+      {accessStatus === 'retry-wait' ? (
+        <div className="access-countdown">
+          <span>Espere 1 minuto e tente novamente. Vamos perguntar de novo em instantes.</span>
+          <strong>{formatWaitTime(retryRemaining)}</strong>
+        </div>
+      ) : null}
+      {accessStatus === 'payment-wait' ? (
+        <div className="access-countdown">
+          <span>Perfeito. Liberando opcoes de pagamento em</span>
+          <strong>{formatWaitTime(paymentRemaining)}</strong>
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -297,14 +497,21 @@ export function SalesAssistantPage() {
             </span>
           </div>
           {isTrialSuccess ? (
-            <div className="credential-list">
-              {resultRows.map(([label, value]) => (
-                <div className="credential-row" key={label}>
-                  <span>{label}</span>
-                  <strong>{value}</strong>
-                </div>
-              ))}
-            </div>
+            <>
+              <div className="credential-list">
+                {resultRows.map(([label, value]) => (
+                  <div className="credential-row" key={label}>
+                    <span>{label}</span>
+                    <strong>{value}</strong>
+                  </div>
+                ))}
+              </div>
+              <PostTrialActivation
+                phone={data.phone}
+                supportWhatsapp={supportWhatsapp}
+                trial={data.trial}
+              />
+            </>
           ) : null}
           {data.trial.status === 'error' ? (
             <>
@@ -380,7 +587,9 @@ export function SalesAssistantPage() {
         {renderContent()}
       </FlowCard>
 
-      {!isWaitingForTrial ? <NavigationButtons canGoBack={canGoBack} onBack={goBack} onRestart={restart} /> : null}
+      {!isWaitingForTrial && currentStep.id !== 'trial-placeholder' ? (
+        <NavigationButtons canGoBack={canGoBack} onBack={goBack} onRestart={restart} />
+      ) : null}
     </main>
   );
 }

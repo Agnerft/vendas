@@ -891,6 +891,136 @@ button:disabled {
   overflow-wrap: anywhere;
 }
 
+.activation-panel {
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  border-radius: 8px;
+  background: rgba(12, 15, 23, 0.74);
+  border: 1px solid rgba(71, 168, 255, 0.24);
+}
+
+.activation-heading {
+  display: grid;
+  gap: 2px;
+}
+
+.activation-heading span,
+.access-countdown span,
+.pix-key-box span,
+.receipt-upload span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.activation-heading strong {
+  font-size: 1rem;
+}
+
+.access-countdown {
+  min-height: 92px;
+  padding: 14px;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  text-align: center;
+  border-radius: 8px;
+  background: #090c13;
+  border: 1px solid var(--border);
+}
+
+.access-countdown strong {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.access-question {
+  display: grid;
+  gap: 12px;
+}
+
+.access-question > strong {
+  font-size: 1.05rem;
+}
+
+.access-question div,
+.pix-plan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.access-question button,
+.pix-plan-grid button {
+  min-height: 52px;
+  color: #ffffff;
+  background: #202436;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+.pix-plan-grid button {
+  display: grid;
+  gap: 2px;
+  place-items: center;
+}
+
+.pix-plan-grid button.selected {
+  border-color: rgba(71, 168, 255, 0.62);
+  background: rgba(71, 168, 255, 0.12);
+}
+
+.pix-plan-grid button span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.pix-key-box {
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+  border-radius: 8px;
+  background: #090c13;
+  border: 1px solid var(--border);
+}
+
+.pix-key-box button {
+  padding: 12px;
+  color: var(--ink);
+  background: #151a27;
+  border: 1px dashed rgba(71, 168, 255, 0.42);
+  border-radius: 8px;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.pix-key-box p {
+  margin: 0;
+  color: var(--success);
+  font-weight: 800;
+}
+
+.receipt-upload {
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+  border-radius: 8px;
+  background: #090c13;
+  border: 1px solid var(--border);
+}
+
+.receipt-upload input {
+  width: 100%;
+  color: var(--muted);
+}
+
+.receipt-upload strong {
+  overflow-wrap: anywhere;
+}
+
 .navigation-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
