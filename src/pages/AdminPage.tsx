@@ -16,6 +16,10 @@ function isAdminUnlocked() {
   return window.sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true';
 }
 
+function hasPanelCredentials(config: BestPanelConfig) {
+  return Boolean(config.login && config.apiToken && config.packageId);
+}
+
 export function AdminPage() {
   const defaultConfig = useMemo(() => loadBestPanelConfig(), []);
   const [isUnlocked, setIsUnlocked] = useState(isAdminUnlocked);
@@ -29,7 +33,14 @@ export function AdminPage() {
     event.preventDefault();
 
     try {
-      const serverConfig = await loadAdminBestPanelConfig(password);
+      let serverConfig = await loadAdminBestPanelConfig(password);
+      const localConfig = loadBestPanelConfig();
+
+      if (!hasPanelCredentials(serverConfig) && hasPanelCredentials(localConfig)) {
+        serverConfig = await saveAdminBestPanelConfig(password, localConfig);
+        setMessage('Configuracao que estava neste navegador foi salva no servidor.');
+      }
+
       saveBestPanelConfig(serverConfig);
       setConfig(serverConfig);
       setAdminPassword(password);
