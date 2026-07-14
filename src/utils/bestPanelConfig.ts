@@ -8,6 +8,7 @@ export interface BestPanelConfig {
   notes: string;
   supportWhatsapp: string;
   supportMessage: string;
+  voiceReaderEnabled: boolean;
 }
 
 export interface PublicBestPanelConfig extends Omit<BestPanelConfig, 'apiToken'> {
@@ -25,6 +26,7 @@ export function getDefaultBestPanelConfig(): BestPanelConfig {
     notes: appConfig.bestPanel.notes,
     supportWhatsapp: appConfig.supportWhatsapp,
     supportMessage: appConfig.supportMessage,
+    voiceReaderEnabled: false,
   };
 }
 

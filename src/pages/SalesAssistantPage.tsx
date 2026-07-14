@@ -60,6 +60,42 @@ function getResultRows(trial: TrialCreationResult) {
   ].filter((row): row is [string, string] => Boolean(row[0] && row[1]));
 }
 
+function spellValue(value: string) {
+  return value
+    .replace(/@/g, ' arroba ')
+    .replace(/\./g, ' ponto ')
+    .replace(/-/g, ' traço ')
+    .split('')
+    .map((character) => (/\d/.test(character) ? character : character))
+    .join(', ')
+    .replace(/,\s\s+/g, ', ');
+}
+
+function buildSpeechText(trial: TrialCreationResult) {
+  return [
+    `Seu teste foi criado no ${trial.appName ?? 'aplicativo'}.`,
+    trial.accessCode ? `${trial.accessLabel ?? 'Codigo'}: ${spellValue(trial.accessCode)}.` : '',
+    trial.username ? `Usuario: ${spellValue(trial.username)}.` : '',
+    trial.password ? `Senha: ${spellValue(trial.password)}.` : '',
+    trial.adultPassword ? `Senha do conteudo adulto: ${spellValue(trial.adultPassword)}.` : '',
+    trial.expiresAt ? `Valido ate ${trial.expiresAt}.` : '',
+  ].filter(Boolean).join(' ');
+}
+
+function speakTrial(trial: TrialCreationResult) {
+  if (!('speechSynthesis' in window)) {
+    return false;
+  }
+
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(buildSpeechText(trial));
+  utterance.lang = 'pt-BR';
+  utterance.rate = 0.78;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+  return true;
+}
+
 function formatWaitTime(seconds: number) {
   const minutes = Math.floor(seconds / 60)
     .toString()
@@ -86,6 +122,19 @@ function buildActivationMessage(
     `Horario de criacao: ${trial.createdAt ? new Date(trial.createdAt).toLocaleString('pt-BR') : '-'}`,
     `Comprovante selecionado: ${receiptName}`,
     'Confira o comprovante anexado pelo cliente e faca a ativacao.',
+  ].join('\n');
+}
+
+function buildThinkingMessage(trial: TrialCreationResult, phone: string) {
+  return [
+    'Cliente vai pensar antes de assinar.',
+    `Telefone: ${formatBrazilianPhone(phone)}`,
+    `Aplicativo: ${trial.appName ?? '-'}`,
+    `Usuario: ${trial.username ?? '-'}`,
+    `Senha: ${trial.password ?? '-'}`,
+    `Tempo de teste: ${trial.testDuration ?? '-'}`,
+    `Validade do teste: ${trial.expiresAt ?? '-'}`,
+    'Mensagem para o cliente: Certo, tenha um otimo teste. Fique com Deus.',
   ].join('\n');
 }
 
@@ -206,9 +255,9 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
               <small>Genero: {featuredCatalogItem.category}</small>
             </div>
             <div className="catalog-controls">
-              <button type="button" onClick={goToPreviousCatalogItem} aria-label="Filme anterior">‹</button>
+              <button type="button" onClick={goToPreviousCatalogItem} aria-label="Filme anterior">&lt;</button>
               <span>{catalogIndex + 1}/{catalogItems.length}</span>
-              <button type="button" onClick={goToNextCatalogItem} aria-label="Proximo filme">›</button>
+              <button type="button" onClick={goToNextCatalogItem} aria-label="Proximo filme">&gt;</button>
             </div>
           </article>
         ) : (
@@ -230,6 +279,34 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
   );
 }
 
+function TrialVoiceReader({ trial }: { trial: TrialCreationResult }) {
+  const [message, setMessage] = useState('');
+
+  function handleSpeak() {
+    const didSpeak = speakTrial(trial);
+    setMessage(didSpeak ? 'Lendo login e senha em voz alta.' : 'Este navegador nao suporta leitura por voz.');
+  }
+
+  function handleStop() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      setMessage('Leitura pausada.');
+    }
+  }
+
+  return (
+    <div className="voice-reader">
+      <button type="button" className="primary-action" onClick={handleSpeak}>
+        Ouvir login e senha
+      </button>
+      <button type="button" onClick={handleStop}>
+        Parar leitura
+      </button>
+      {message ? <p>{message}</p> : null}
+    </div>
+  );
+}
+
 function PostTrialActivation({
   phone,
   supportWhatsapp,
@@ -244,6 +321,8 @@ function PostTrialActivation({
   const [statusStartedAt, setStatusStartedAt] = useState(Date.now());
   const [selectedPlan, setSelectedPlan] = useState(PIX_PLANS[0].label);
   const [receiptName, setReceiptName] = useState('');
+  const [receiptSent, setReceiptSent] = useState(false);
+  const [isThinking, setIsThinking] = useState(false);
   const [copyStatus, setCopyStatus] = useState('');
   const waitingFirstRemaining = Math.max(0, FIRST_ACCESS_CHECK_SECONDS - elapsedSeconds);
   const statusElapsedSeconds = Math.floor((Date.now() - statusStartedAt) / 1000);
@@ -301,10 +380,56 @@ function PostTrialActivation({
 
     if (url) {
       window.open(url, '_blank', 'noopener,noreferrer');
+      setReceiptSent(true);
+    }
+  }
+
+  function openThinkingWhatsApp() {
+    const url = getWhatsAppTextUrl(supportWhatsapp, buildThinkingMessage(trial, phone));
+
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
   }
 
   if (accessStatus === 'payment') {
+    if (receiptSent) {
+      return (
+        <section className="activation-panel thank-you-panel">
+          <img src={appConfig.logoWide} alt={appConfig.companyName} />
+          <div className="activation-heading">
+            <span>Comprovante encaminhado</span>
+            <strong>Obrigado por ser nosso cliente.</strong>
+          </div>
+          <p>
+            Recebemos sua solicitacao de ativacao. Nossa equipe vai conferir o comprovante e finalizar seu acesso.
+          </p>
+        </section>
+      );
+    }
+
+    if (isThinking) {
+      return (
+        <section className="activation-panel think-panel">
+          <div className="activation-heading">
+            <span>Tudo certo</span>
+            <strong>Certo, tenha um otimo teste. Fique com Deus.</strong>
+          </div>
+          <p>
+            Voce pode chamar nosso atendimento com os dados do teste quando quiser continuar.
+          </p>
+          <button
+            className="primary-action"
+            disabled={!supportWhatsapp}
+            type="button"
+            onClick={openThinkingWhatsApp}
+          >
+            Ir para o WhatsApp
+          </button>
+        </section>
+      );
+    }
+
     return (
       <section className="activation-panel">
         <div className="activation-heading">
@@ -347,6 +472,9 @@ function PostTrialActivation({
           onClick={openActivationWhatsApp}
         >
           Enviar comprovante para ativacao
+        </button>
+        <button type="button" className="secondary-action" onClick={() => setIsThinking(true)}>
+          Vou pensar um pouco
         </button>
         <p className="form-note">
           O WhatsApp abrira com os dados do teste. Anexe o comprovante selecionado antes de enviar.
@@ -395,6 +523,7 @@ function PostTrialActivation({
 export function SalesAssistantPage() {
   const [supportWhatsapp, setSupportWhatsapp] = useState(appConfig.supportWhatsapp);
   const [supportMessage, setSupportMessage] = useState(appConfig.supportMessage);
+  const [voiceReaderEnabled, setVoiceReaderEnabled] = useState(false);
   const {
     canGoBack,
     chooseOption,
@@ -423,10 +552,12 @@ export function SalesAssistantPage() {
       .then((config) => {
         setSupportWhatsapp(config.supportWhatsapp);
         setSupportMessage(config.supportMessage || appConfig.supportMessage);
+        setVoiceReaderEnabled(config.voiceReaderEnabled);
       })
       .catch(() => {
         setSupportWhatsapp(appConfig.supportWhatsapp);
         setSupportMessage(appConfig.supportMessage);
+        setVoiceReaderEnabled(false);
       });
   }, []);
 
@@ -522,6 +653,7 @@ export function SalesAssistantPage() {
                   </div>
                 ))}
               </div>
+              {voiceReaderEnabled ? <TrialVoiceReader trial={data.trial} /> : null}
               <PostTrialActivation
                 phone={data.phone}
                 supportWhatsapp={supportWhatsapp}

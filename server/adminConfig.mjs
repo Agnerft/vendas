@@ -12,6 +12,7 @@ const defaultConfig = {
   notes: 'BotConversa CR7',
   supportWhatsapp: '',
   supportMessage: 'Ola, preciso de ajuda para configurar meu teste.',
+  voiceReaderEnabled: false,
   maxPlayerDomainId: '1779208587735814489',
 };
 
@@ -32,6 +33,8 @@ function normalizeConfig(config = {}) {
         : defaultConfig.supportWhatsapp,
     supportMessage:
       typeof config.supportMessage === 'string' ? config.supportMessage.trim() : defaultConfig.supportMessage,
+    voiceReaderEnabled:
+      typeof config.voiceReaderEnabled === 'boolean' ? config.voiceReaderEnabled : defaultConfig.voiceReaderEnabled,
     maxPlayerDomainId:
       typeof config.maxPlayerDomainId === 'string' ? config.maxPlayerDomainId.trim() : defaultConfig.maxPlayerDomainId,
   };
@@ -69,6 +72,7 @@ export function getPublicBestPanelConfig(config) {
     notes: config.notes,
     supportWhatsapp: config.supportWhatsapp,
     supportMessage: config.supportMessage,
+    voiceReaderEnabled: config.voiceReaderEnabled,
     hasApiToken: Boolean(config.apiToken),
   };
 }

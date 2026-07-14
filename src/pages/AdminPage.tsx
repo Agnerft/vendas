@@ -60,6 +60,14 @@ export function AdminPage() {
     setMessage('');
   }
 
+  function updateBooleanField(field: keyof BestPanelConfig, value: boolean) {
+    setConfig((current) => ({
+      ...current,
+      [field]: value,
+    }));
+    setMessage('');
+  }
+
   async function handleSave(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -190,6 +198,16 @@ export function AdminPage() {
             onChange={(event) => updateField('supportMessage', event.target.value)}
             placeholder="Ola, preciso de ajuda para configurar meu teste."
           />
+
+          <label className="admin-toggle" htmlFor="voice-reader-enabled">
+            <input
+              checked={config.voiceReaderEnabled}
+              id="voice-reader-enabled"
+              type="checkbox"
+              onChange={(event) => updateBooleanField('voiceReaderEnabled', event.target.checked)}
+            />
+            <span>Ativar leitor de voz para login e senha</span>
+          </label>
 
           {message ? <p className="admin-success">{message}</p> : null}
           {error ? <p className="form-error">{error}</p> : null}
