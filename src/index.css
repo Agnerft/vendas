@@ -695,20 +695,29 @@ button:disabled {
   padding: 12px;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4px;
+  gap: 6px;
   border-radius: 8px;
-  background: #090c13;
+  background:
+    linear-gradient(135deg, rgba(155, 77, 255, 0.1), rgba(71, 168, 255, 0.06)),
+    #090c13;
   border: 1px solid var(--border);
 }
 
 .catalog-grid article strong {
-  margin-bottom: 2px;
-  font-size: 0.94rem;
+  font-size: 0.98rem;
+  line-height: 1.24;
 }
 
 .catalog-grid article span {
-  color: var(--muted);
-  font-size: 0.88rem;
+  width: fit-content;
+  padding: 2px 7px;
+  color: #dbe8ff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background: rgba(71, 168, 255, 0.12);
+  border: 1px solid rgba(71, 168, 255, 0.22);
 }
 
 .waiting-steps {

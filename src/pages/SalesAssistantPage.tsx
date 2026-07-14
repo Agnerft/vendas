@@ -15,16 +15,15 @@ import { formatBrazilianPhone } from '../utils/phone';
 
 const TRIAL_WAIT_SECONDS = 240;
 
-interface BouquetSummary {
-  id: number;
-  name: string;
-  channels_count: number;
-  movies_count: number;
-  series_count: number;
+interface CatalogHighlight {
+  title: string;
+  year?: number | null;
+  category: string;
+  type: string;
 }
 
-interface BouquetsResponse {
-  results?: BouquetSummary[];
+interface CatalogHighlightsResponse {
+  items?: CatalogHighlight[];
 }
 
 function getSupportUrl(phone: string, supportWhatsapp: string, supportMessage: string) {
@@ -77,27 +76,20 @@ function getWaitingSteps(selectedApp: SelectedApp | null) {
   ];
 }
 
-function formatCatalogCount(value: number) {
-  return new Intl.NumberFormat('pt-BR').format(value);
-}
+function getCatalogWindow(items: CatalogHighlight[], elapsedSeconds: number) {
+  if (items.length <= 6) {
+    return items;
+  }
 
-function getBouquetHighlights(bouquets: BouquetSummary[]) {
-  return bouquets
-    .filter((bouquet) => bouquet.movies_count > 0 || bouquet.series_count > 0 || bouquet.channels_count > 0)
-    .sort((first, second) => {
-      const firstTotal = first.movies_count + first.series_count + first.channels_count;
-      const secondTotal = second.movies_count + second.series_count + second.channels_count;
-
-      return secondTotal - firstTotal;
-    })
-    .slice(0, 3);
+  const startIndex = Math.floor(elapsedSeconds / 14) % items.length;
+  return Array.from({ length: 6 }, (_, index) => items[(startIndex + index) % items.length]);
 }
 
 function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }) {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
-  const [bouquets, setBouquets] = useState<BouquetSummary[]>([]);
+  const [catalogItems, setCatalogItems] = useState<CatalogHighlight[]>([]);
   const steps = useMemo(() => getWaitingSteps(selectedApp), [selectedApp]);
-  const bouquetHighlights = useMemo(() => getBouquetHighlights(bouquets), [bouquets]);
+  const catalogWindow = useMemo(() => getCatalogWindow(catalogItems, elapsedSeconds), [catalogItems, elapsedSeconds]);
   const remainingSeconds = Math.max(0, TRIAL_WAIT_SECONDS - elapsedSeconds);
   const progress = Math.min(100, Math.round((elapsedSeconds / TRIAL_WAIT_SECONDS) * 100));
   const activeStep = Math.min(steps.length - 1, Math.floor((progress / 100) * steps.length));
@@ -113,16 +105,16 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
   useEffect(() => {
     let ignoreResponse = false;
 
-    void fetch('/api/bouquets')
-      .then((response) => (response.ok ? response.json() as Promise<BouquetsResponse> : Promise.reject()))
+    void fetch('/data/catalog-highlights.json')
+      .then((response) => (response.ok ? response.json() as Promise<CatalogHighlightsResponse> : Promise.reject()))
       .then((body) => {
         if (!ignoreResponse) {
-          setBouquets(body.results ?? []);
+          setCatalogItems(body.items ?? []);
         }
       })
       .catch(() => {
         if (!ignoreResponse) {
-          setBouquets([]);
+          setCatalogItems([]);
         }
       });
 
@@ -144,21 +136,19 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
       <div className="catalog-preview">
         <div>
           <span>Enquanto isso</span>
-          <strong>Catalogo que sera liberado</strong>
+          <strong>Alguns lancamentos do catalogo</strong>
         </div>
-        {bouquetHighlights.length > 0 ? (
+        {catalogWindow.length > 0 ? (
           <div className="catalog-grid">
-            {bouquetHighlights.map((bouquet) => (
-              <article key={bouquet.id}>
-                <strong>{bouquet.name}</strong>
-                <span>{formatCatalogCount(bouquet.movies_count)} filmes</span>
-                <span>{formatCatalogCount(bouquet.series_count)} series</span>
-                <span>{formatCatalogCount(bouquet.channels_count)} canais</span>
+            {catalogWindow.map((item) => (
+              <article key={`${item.category}-${item.title}`}>
+                <span>{item.type} - {item.category}{item.year ? ` - ${item.year}` : ''}</span>
+                <strong>{item.title}</strong>
               </article>
             ))}
           </div>
         ) : (
-          <p>Buscando filmes, series e canais disponiveis...</p>
+          <p>Buscando filmes e series em destaque...</p>
         )}
       </div>
       <div className="waiting-steps">
