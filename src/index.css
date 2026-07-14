@@ -701,18 +701,13 @@ button:disabled {
   font-size: 1rem;
 }
 
-.catalog-grid {
+.catalog-feature {
+  min-height: 238px;
+  padding: 12px;
   display: grid;
-  gap: 8px;
-}
-
-.catalog-grid article {
-  min-height: 92px;
-  padding: 8px;
-  display: grid;
-  grid-template-columns: 54px 1fr;
-  gap: 10px;
-  align-items: center;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
   border-radius: 8px;
   background:
     linear-gradient(135deg, rgba(155, 77, 255, 0.1), rgba(71, 168, 255, 0.06)),
@@ -720,10 +715,10 @@ button:disabled {
   border: 1px solid var(--border);
 }
 
-.catalog-grid article img,
+.catalog-feature > img,
 .catalog-poster-fallback {
-  width: 54px;
-  height: 76px;
+  width: 112px;
+  height: 168px;
   border-radius: 6px;
   object-fit: cover;
   background: #111827;
@@ -739,19 +734,19 @@ button:disabled {
   text-transform: uppercase;
 }
 
-.catalog-grid article div {
+.catalog-feature-copy {
   min-width: 0;
   display: grid;
-  gap: 6px;
+  gap: 8px;
 }
 
-.catalog-grid article strong {
-  font-size: 0.98rem;
+.catalog-feature-copy strong {
+  font-size: 1.22rem;
   line-height: 1.24;
   overflow-wrap: anywhere;
 }
 
-.catalog-grid article span {
+.catalog-feature-copy span {
   width: fit-content;
   padding: 2px 7px;
   color: #dbe8ff;
@@ -761,6 +756,48 @@ button:disabled {
   border-radius: 999px;
   background: rgba(71, 168, 255, 0.12);
   border: 1px solid rgba(71, 168, 255, 0.22);
+}
+
+.catalog-feature-copy p {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.42;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.catalog-feature-copy small {
+  color: #dbe8ff;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.catalog-controls {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  gap: 8px;
+  align-items: center;
+}
+
+.catalog-controls button {
+  min-height: 40px;
+  color: #ffffff;
+  background: #202436;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.catalog-controls span {
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 900;
 }
 
 .waiting-steps {

@@ -117,20 +117,12 @@ function getWaitingSteps(selectedApp: SelectedApp | null) {
   ];
 }
 
-function getCatalogWindow(items: CatalogHighlight[], elapsedSeconds: number) {
-  if (items.length <= 6) {
-    return items;
-  }
-
-  const startIndex = Math.floor(elapsedSeconds / 14) % items.length;
-  return Array.from({ length: 6 }, (_, index) => items[(startIndex + index) % items.length]);
-}
-
 function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }) {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [catalogItems, setCatalogItems] = useState<CatalogHighlight[]>([]);
+  const [catalogIndex, setCatalogIndex] = useState(0);
   const steps = useMemo(() => getWaitingSteps(selectedApp), [selectedApp]);
-  const catalogWindow = useMemo(() => getCatalogWindow(catalogItems, elapsedSeconds), [catalogItems, elapsedSeconds]);
+  const featuredCatalogItem = catalogItems[catalogIndex % Math.max(catalogItems.length, 1)];
   const remainingSeconds = Math.max(0, TRIAL_WAIT_SECONDS - elapsedSeconds);
   const progress = Math.min(100, Math.round((elapsedSeconds / TRIAL_WAIT_SECONDS) * 100));
   const activeStep = Math.min(steps.length - 1, Math.floor((progress / 100) * steps.length));
@@ -164,6 +156,26 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
     };
   }, []);
 
+  useEffect(() => {
+    if (catalogItems.length <= 1) {
+      return undefined;
+    }
+
+    const interval = window.setInterval(() => {
+      setCatalogIndex((current) => (current + 1) % catalogItems.length);
+    }, 14000);
+
+    return () => window.clearInterval(interval);
+  }, [catalogItems.length]);
+
+  function goToPreviousCatalogItem() {
+    setCatalogIndex((current) => (current === 0 ? catalogItems.length - 1 : current - 1));
+  }
+
+  function goToNextCatalogItem() {
+    setCatalogIndex((current) => (current + 1) % catalogItems.length);
+  }
+
   return (
     <section className="trial-waiting" aria-live="polite">
       <div className="waiting-timer">
@@ -178,24 +190,27 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
       <div className="catalog-preview">
         <div>
           <span>Enquanto isso</span>
-          <strong>Alguns lancamentos do catalogo</strong>
+          <strong>Destaque do catalogo</strong>
         </div>
-        {catalogWindow.length > 0 ? (
-          <div className="catalog-grid">
-            {catalogWindow.map((item) => (
-              <article key={`${item.category}-${item.title}`}>
-                {item.posterUrl ? (
-                  <img src={item.posterUrl} alt="" loading="lazy" />
-                ) : (
-                  <div className="catalog-poster-fallback">{item.type}</div>
-                )}
-                <div>
-                  <span>{item.category}{item.year ? ` - ${item.year}` : ''}</span>
-                  <strong>{item.title}</strong>
-                </div>
-              </article>
-            ))}
-          </div>
+        {featuredCatalogItem ? (
+          <article className="catalog-feature">
+            {featuredCatalogItem.posterUrl ? (
+              <img src={featuredCatalogItem.posterUrl} alt="" loading="lazy" />
+            ) : (
+              <div className="catalog-poster-fallback">{featuredCatalogItem.type}</div>
+            )}
+            <div className="catalog-feature-copy">
+              <span>{featuredCatalogItem.category}{featuredCatalogItem.year ? ` - ${featuredCatalogItem.year}` : ''}</span>
+              <strong>{featuredCatalogItem.title}</strong>
+              <p>{featuredCatalogItem.overview || 'Sinopse em atualizacao no catalogo.'}</p>
+              <small>Genero: {featuredCatalogItem.category}</small>
+            </div>
+            <div className="catalog-controls">
+              <button type="button" onClick={goToPreviousCatalogItem} aria-label="Filme anterior">‹</button>
+              <span>{catalogIndex + 1}/{catalogItems.length}</span>
+              <button type="button" onClick={goToNextCatalogItem} aria-label="Proximo filme">›</button>
+            </div>
+          </article>
         ) : (
           <p>Buscando filmes e series em destaque...</p>
         )}
