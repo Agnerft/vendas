@@ -130,8 +130,7 @@ async function loginAppsPanel(config) {
   return body.access_token;
 }
 
-async function createMaxPlayerUser(lineId, config) {
-  const accessToken = await loginAppsPanel(config);
+async function createMaxPlayerUser(lineId, config, accessToken) {
   const headers = {
     Accept: 'application/json, text/plain, */*',
     Authorization: `Bearer ${accessToken}`,
@@ -165,6 +164,8 @@ export async function createBestPanelTrial(request) {
   const storedConfig = await loadStoredBestPanelConfig();
   const endpoint = sanitizeEndpoint(body.endpoint || storedConfig.endpoint);
   const apiToken = request.headers['x-best-api-token'] || storedConfig.apiToken;
+  const shouldCreateMaxPlayer = body.selectedApp === 'MAXPLAYER';
+  let maxPlayerAccessToken = null;
   const payload = {
     ...body.payload,
     notes: body.payload?.notes || storedConfig.notes || null,
@@ -182,6 +183,19 @@ export async function createBestPanelTrial(request) {
         message: 'Configure API token e package no admin.',
       },
     };
+  }
+
+  if (shouldCreateMaxPlayer) {
+    try {
+      maxPlayerAccessToken = await loginAppsPanel(storedConfig);
+    } catch (error) {
+      return {
+        status: 502,
+        body: {
+          message: error instanceof Error ? error.message : 'Falha ao autenticar no painel de apps.',
+        },
+      };
+    }
   }
 
   let response;
@@ -204,9 +218,9 @@ export async function createBestPanelTrial(request) {
   const contentType = response.headers.get('content-type') ?? '';
   const rawBody = contentType.includes('application/json') ? await response.json() : await response.text();
 
-  if (response.ok && body.selectedApp === 'MAXPLAYER' && rawBody?.id) {
+  if (response.ok && shouldCreateMaxPlayer && rawBody?.id) {
     try {
-      rawBody.max_player = await createMaxPlayerUser(rawBody.id, storedConfig);
+      rawBody.max_player = await createMaxPlayerUser(rawBody.id, storedConfig, maxPlayerAccessToken);
     } catch (error) {
       return {
         status: 502,
