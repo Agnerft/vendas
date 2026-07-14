@@ -3,6 +3,9 @@ import { promisify } from 'node:util';
 import { loadStoredBestPanelConfig } from './adminConfig.mjs';
 
 const execFileAsync = promisify(execFile);
+const APPS_API_TIMEOUT_SECONDS = 60;
+const APPS_API_RETRIES = 3;
+const APPS_API_PROCESS_TIMEOUT = (APPS_API_TIMEOUT_SECONDS + 5) * 1000;
 
 export async function parseJsonBody(request) {
   const chunks = [];
@@ -36,11 +39,36 @@ function normalizePackageId(packageId) {
   return Number.isNaN(numericPackageId) ? packageId : numericPackageId;
 }
 
+function wait(milliseconds) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, milliseconds);
+  });
+}
+
+async function withRetry(action, label, retries = APPS_API_RETRIES) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= retries; attempt += 1) {
+    try {
+      return await action();
+    } catch (error) {
+      lastError = error;
+
+      if (attempt < retries) {
+        await wait(1000 * attempt);
+      }
+    }
+  }
+
+  const message = lastError instanceof Error ? lastError.message : `Falha ao executar ${label}.`;
+  throw new Error(`${label} falhou apos ${retries} tentativas: ${message}`);
+}
+
 function requestAppsApi(method, url, headers = {}, body = '') {
   const args = [
     '-sS',
     '--max-time',
-    '30',
+    String(APPS_API_TIMEOUT_SECONDS),
     '-X',
     method,
     url,
@@ -56,7 +84,7 @@ function requestAppsApi(method, url, headers = {}, body = '') {
     args.push('--data-binary', body);
   }
 
-  return execFileAsync('curl', args, { timeout: 35000, maxBuffer: 1024 * 1024 }).then(({ stdout }) => {
+  return execFileAsync('curl', args, { timeout: APPS_API_PROCESS_TIMEOUT, maxBuffer: 1024 * 1024 }).then(({ stdout }) => {
     const marker = '\n__HTTP_STATUS__';
     const markerIndex = stdout.lastIndexOf(marker);
     const text = markerIndex >= 0 ? stdout.slice(0, markerIndex) : stdout;
@@ -70,7 +98,7 @@ function requestAppsApi(method, url, headers = {}, body = '') {
     };
   }).catch((error) => {
     if (error.killed || error.signal === 'SIGTERM') {
-      throw new Error('Tempo esgotado ao chamar painel de apps.');
+      throw new Error(`Tempo esgotado ao chamar painel de apps (${APPS_API_TIMEOUT_SECONDS}s).`);
     }
 
     throw error;
@@ -96,7 +124,7 @@ async function loginAppsPanel(config) {
   const response = await execFileAsync('curl', [
     '-sS',
     '--max-time',
-    '30',
+    String(APPS_API_TIMEOUT_SECONDS),
     '-X',
     'POST',
     'https://apps-api.painel.best/login',
@@ -112,11 +140,11 @@ async function loginAppsPanel(config) {
     `password=${password}`,
     '-w',
     '\n__HTTP_STATUS__%{http_code}',
-  ], { timeout: 35000, maxBuffer: 1024 * 1024 })
+  ], { timeout: APPS_API_PROCESS_TIMEOUT, maxBuffer: 1024 * 1024 })
     .then(({ stdout }) => parseCurlJson(stdout))
     .catch((error) => {
       if (error.killed || error.signal === 'SIGTERM') {
-        throw new Error('Tempo esgotado ao autenticar no painel de apps.');
+        throw new Error(`Tempo esgotado ao autenticar no painel de apps (${APPS_API_TIMEOUT_SECONDS}s).`);
       }
 
       throw error;
@@ -138,17 +166,24 @@ async function createMaxPlayerUser(lineId, config, accessToken) {
     Referer: 'https://apps.painel.best/',
   };
 
-  await requestAppsApi('DELETE', `https://apps-api.painel.best/max-player/users/${lineId}`, headers)
+  await withRetry(
+    () => requestAppsApi('DELETE', `https://apps-api.painel.best/max-player/users/${lineId}`, headers),
+    'Remocao de usuario antigo no Max Player',
+    2,
+  )
     .catch(() => undefined);
 
   const createBody = JSON.stringify({
     line_id: lineId,
     domain_id: config.maxPlayerDomainId || '1779208587735814489',
   });
-  const response = await requestAppsApi('POST', 'https://apps-api.painel.best/max-player/users', {
-      ...headers,
-      'Content-Type': 'application/json',
-    }, createBody);
+  const response = await withRetry(
+    () => requestAppsApi('POST', 'https://apps-api.painel.best/max-player/users', {
+        ...headers,
+        'Content-Type': 'application/json',
+      }, createBody),
+    'Criacao de usuario no Max Player',
+  );
   const body = response.body;
 
   if (!response.ok) {
@@ -165,7 +200,6 @@ export async function createBestPanelTrial(request) {
   const endpoint = sanitizeEndpoint(body.endpoint || storedConfig.endpoint);
   const apiToken = request.headers['x-best-api-token'] || storedConfig.apiToken;
   const shouldCreateMaxPlayer = body.selectedApp === 'MAXPLAYER';
-  let maxPlayerAccessToken = null;
   const payload = {
     ...body.payload,
     notes: body.payload?.notes || storedConfig.notes || null,
@@ -183,19 +217,6 @@ export async function createBestPanelTrial(request) {
         message: 'Configure API token e package no admin.',
       },
     };
-  }
-
-  if (shouldCreateMaxPlayer) {
-    try {
-      maxPlayerAccessToken = await loginAppsPanel(storedConfig);
-    } catch (error) {
-      return {
-        status: 502,
-        body: {
-          message: error instanceof Error ? error.message : 'Falha ao autenticar no painel de apps.',
-        },
-      };
-    }
   }
 
   let response;
@@ -220,12 +241,18 @@ export async function createBestPanelTrial(request) {
 
   if (response.ok && shouldCreateMaxPlayer && rawBody?.id) {
     try {
+      const maxPlayerAccessToken = await withRetry(
+        () => loginAppsPanel(storedConfig),
+        'Login no painel de apps',
+      );
       rawBody.max_player = await createMaxPlayerUser(rawBody.id, storedConfig, maxPlayerAccessToken);
     } catch (error) {
       return {
         status: 502,
         body: {
-          message: error instanceof Error ? error.message : 'Teste criado, mas falhou ao criar Max Player.',
+          message: error instanceof Error
+            ? `Teste criado, mas o Max Player nao respondeu corretamente. ${error.message}`
+            : 'Teste criado, mas falhou ao criar Max Player.',
           trial: rawBody,
         },
       };
