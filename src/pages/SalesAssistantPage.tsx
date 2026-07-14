@@ -64,33 +64,22 @@ function spellValue(value: string) {
   return value
     .replace(/@/g, ' arroba ')
     .replace(/\./g, ' ponto ')
-    .replace(/-/g, ' traço ')
+    .replace(/-/g, ' traco ')
     .split('')
-    .map((character) => (/\d/.test(character) ? character : character))
+    .filter((character) => character.trim())
     .join(', ')
     .replace(/,\s\s+/g, ', ');
 }
 
-function buildSpeechText(trial: TrialCreationResult) {
-  return [
-    `Seu teste foi criado no ${trial.appName ?? 'aplicativo'}.`,
-    trial.accessCode ? `${trial.accessLabel ?? 'Codigo'}: ${spellValue(trial.accessCode)}.` : '',
-    trial.username ? `Usuario: ${spellValue(trial.username)}.` : '',
-    trial.password ? `Senha: ${spellValue(trial.password)}.` : '',
-    trial.adultPassword ? `Senha do conteudo adulto: ${spellValue(trial.adultPassword)}.` : '',
-    trial.expiresAt ? `Valido ate ${trial.expiresAt}.` : '',
-  ].filter(Boolean).join(' ');
-}
-
-function speakTrial(trial: TrialCreationResult) {
+function speakCredential(label: string, value: string) {
   if (!('speechSynthesis' in window)) {
     return false;
   }
 
   window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(buildSpeechText(trial));
+  const utterance = new SpeechSynthesisUtterance(`${label}: ${spellValue(value)}.`);
   utterance.lang = 'pt-BR';
-  utterance.rate = 0.78;
+  utterance.rate = 0.68;
   utterance.pitch = 1;
   window.speechSynthesis.speak(utterance);
   return true;
@@ -276,34 +265,6 @@ function TrialWaitingScreen({ selectedApp }: { selectedApp: SelectedApp | null }
         ))}
       </div>
     </section>
-  );
-}
-
-function TrialVoiceReader({ trial }: { trial: TrialCreationResult }) {
-  const [message, setMessage] = useState('');
-
-  function handleSpeak() {
-    const didSpeak = speakTrial(trial);
-    setMessage(didSpeak ? 'Lendo login e senha em voz alta.' : 'Este navegador nao suporta leitura por voz.');
-  }
-
-  function handleStop() {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      setMessage('Leitura pausada.');
-    }
-  }
-
-  return (
-    <div className="voice-reader">
-      <button type="button" className="primary-action" onClick={handleSpeak}>
-        Ouvir login e senha
-      </button>
-      <button type="button" onClick={handleStop}>
-        Parar leitura
-      </button>
-      {message ? <p>{message}</p> : null}
-    </div>
   );
 }
 
@@ -650,10 +611,18 @@ export function SalesAssistantPage() {
                   <div className="credential-row" key={label}>
                     <span>{label}</span>
                     <strong>{value}</strong>
+                    {voiceReaderEnabled && ['Usuario', 'Senha'].includes(label) ? (
+                      <button
+                        type="button"
+                        onClick={() => speakCredential(label, value)}
+                        aria-label={`Ouvir ${label.toLowerCase()}`}
+                      >
+                        Ouvir
+                      </button>
+                    ) : null}
                   </div>
                 ))}
               </div>
-              {voiceReaderEnabled ? <TrialVoiceReader trial={data.trial} /> : null}
               <PostTrialActivation
                 phone={data.phone}
                 supportWhatsapp={supportWhatsapp}
