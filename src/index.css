@@ -385,18 +385,169 @@ button:disabled {
 .primary-action,
 .option-button,
 .copy-card button,
-.navigation-buttons button {
+.navigation-buttons button,
+.support-action,
+.admin-actions button[type="button"],
+.catalog-controls button,
+.access-question button,
+.pix-plan-grid button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   min-height: 52px;
-  border: 0;
+  border: 2px ridge var(--accent);
   border-radius: 8px;
+  outline: none;
+  color: #ffffff;
+  background: transparent;
   font-weight: 800;
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 160ms ease;
+}
+
+.primary-action::before,
+.primary-action::after,
+.option-button::before,
+.option-button::after,
+.copy-card button::before,
+.copy-card button::after,
+.navigation-buttons button::before,
+.navigation-buttons button::after,
+.support-action::before,
+.support-action::after,
+.admin-actions button[type="button"]::before,
+.admin-actions button[type="button"]::after,
+.catalog-controls button::before,
+.catalog-controls button::after,
+.access-question button::before,
+.access-question button::after,
+.pix-plan-grid button::before,
+.pix-plan-grid button::after {
+  content: "";
+  position: absolute;
+  left: 3%;
+  z-index: 0;
+  width: 94%;
+  height: 40%;
+  background: var(--surface);
+  transition: transform 220ms ease;
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.admin-panel .primary-action::before,
+.admin-panel .primary-action::after,
+.admin-panel .admin-actions button[type="button"]::before,
+.admin-panel .admin-actions button[type="button"]::after {
+  background: var(--surface);
+}
+
+.primary-action::after,
+.option-button::after,
+.copy-card button::after,
+.navigation-buttons button::after,
+.support-action::after,
+.admin-actions button[type="button"]::after,
+.catalog-controls button::after,
+.access-question button::after,
+.pix-plan-grid button::after {
+  top: -10px;
+}
+
+.primary-action::before,
+.option-button::before,
+.copy-card button::before,
+.navigation-buttons button::before,
+.support-action::before,
+.admin-actions button[type="button"]::before,
+.catalog-controls button::before,
+.access-question button::before,
+.pix-plan-grid button::before {
+  top: 80%;
+}
+
+.primary-action:hover::before,
+.primary-action:hover::after,
+.primary-action:focus-visible::before,
+.primary-action:focus-visible::after,
+.option-button:hover::before,
+.option-button:hover::after,
+.option-button:focus-visible::before,
+.option-button:focus-visible::after,
+.copy-card button:hover::before,
+.copy-card button:hover::after,
+.copy-card button:focus-visible::before,
+.copy-card button:focus-visible::after,
+.navigation-buttons button:hover::before,
+.navigation-buttons button:hover::after,
+.navigation-buttons button:focus-visible::before,
+.navigation-buttons button:focus-visible::after,
+.support-action:hover::before,
+.support-action:hover::after,
+.support-action:focus-visible::before,
+.support-action:focus-visible::after,
+.admin-actions button[type="button"]:hover::before,
+.admin-actions button[type="button"]:hover::after,
+.admin-actions button[type="button"]:focus-visible::before,
+.admin-actions button[type="button"]:focus-visible::after,
+.catalog-controls button:hover::before,
+.catalog-controls button:hover::after,
+.catalog-controls button:focus-visible::before,
+.catalog-controls button:focus-visible::after,
+.access-question button:hover::before,
+.access-question button:hover::after,
+.access-question button:focus-visible::before,
+.access-question button:focus-visible::after,
+.pix-plan-grid button:hover::before,
+.pix-plan-grid button:hover::after,
+.pix-plan-grid button:focus-visible::before,
+.pix-plan-grid button:focus-visible::after {
+  transform: scale(0);
+}
+
+.primary-action:hover,
+.primary-action:focus-visible,
+.option-button:hover,
+.option-button:focus-visible,
+.copy-card button:hover,
+.copy-card button:focus-visible,
+.navigation-buttons button:hover,
+.navigation-buttons button:focus-visible,
+.support-action:hover,
+.support-action:focus-visible,
+.admin-actions button[type="button"]:hover,
+.admin-actions button[type="button"]:focus-visible,
+.catalog-controls button:hover,
+.catalog-controls button:focus-visible,
+.access-question button:hover,
+.access-question button:focus-visible,
+.pix-plan-grid button:hover,
+.pix-plan-grid button:focus-visible {
+  border-color: var(--accent);
+  box-shadow:
+    inset 0 0 22px rgba(71, 168, 255, 0.42),
+    0 0 18px rgba(109, 101, 255, 0.18);
+}
+
+.primary-action > *,
+.option-button > *,
+.copy-card button > *,
+.navigation-buttons button > *,
+.support-action > *,
+.admin-actions button[type="button"] > *,
+.catalog-controls button > *,
+.access-question button > *,
+.pix-plan-grid button > * {
+  position: relative;
+  z-index: 1;
 }
 
 .primary-action {
   width: 100%;
-  color: #ffffff;
-  background: var(--brand-gradient);
-  box-shadow: 0 16px 30px rgba(109, 101, 255, 0.26);
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    var(--brand-gradient) border-box;
+  border-color: transparent;
+  box-shadow: 0 16px 30px rgba(109, 101, 255, 0.18);
 }
 
 .option-list,
@@ -417,14 +568,6 @@ button:disabled {
   gap: 14px;
   text-align: left;
   color: var(--ink);
-  background: var(--surface-soft);
-  border: 1px solid var(--border);
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-}
-
-.option-button:hover,
-.option-button:focus-visible {
-  border-color: var(--accent);
   background: #202436;
 }
 
