@@ -109,22 +109,7 @@ export const flowSteps: FlowStep[] = [
         nextStep: 'prepare-maxplayer',
         mutation: { selectedApp: 'MAXPLAYER' },
       },
-      { id: 'max-tv-no', label: 'NAO', value: 'NO_MAXPLAYER', nextStep: 'smart-tv-clouddy' },
-    ],
-  },
-  {
-    id: 'smart-tv-clouddy',
-    type: 'options',
-    title: 'Voce encontrou o aplicativo CLOUDDY?',
-    options: [
-      {
-        id: 'clouddy-yes',
-        label: 'SIM',
-        value: 'YES_CLOUDDY',
-        nextStep: 'prepare-clouddy',
-        mutation: { selectedApp: 'CLOUDDY' },
-      },
-      { id: 'clouddy-no', label: 'NAO', value: 'NO_CLOUDDY', nextStep: 'smart-tv-no-app' },
+      { id: 'max-tv-no', label: 'NAO', value: 'NO_MAXPLAYER', nextStep: 'smart-tv-no-app' },
     ],
   },
   {
@@ -227,7 +212,7 @@ export const flowSteps: FlowStep[] = [
   {
     id: 'uhd-install',
     type: 'instructions',
-    title: 'Instale o UHD ULTRA PLAYER',
+    title: 'Instale o UHD PLAYER PRO',
     description: 'Utilize uma das opcoes abaixo para instalar o aplicativo.',
     options: [
       {
@@ -350,12 +335,6 @@ export const flowSteps: FlowStep[] = [
     appToPrepare: 'MAXPLAYER',
   },
   {
-    id: 'prepare-clouddy',
-    type: 'ready',
-    title: 'Otimo! Vamos preparar o seu teste no CLOUDDY.',
-    appToPrepare: 'CLOUDDY',
-  },
-  {
     id: 'prepare-blessed',
     type: 'ready',
     title: 'Otimo! Vamos preparar o seu teste no BLESSED PLAYER.',
@@ -364,7 +343,7 @@ export const flowSteps: FlowStep[] = [
   {
     id: 'prepare-uhd',
     type: 'ready',
-    title: 'Otimo! Vamos preparar o seu teste no UHD ULTRA PLAYER.',
+    title: 'Otimo! Vamos preparar o seu teste no UHD PLAYER PRO.',
     appToPrepare: 'UHD_ULTRA_PLAYER',
   },
   {

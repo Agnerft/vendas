@@ -49,7 +49,7 @@ export const appAssets: Record<SelectedApp, AppAssetSet> = {
     video: `${assetBase}/blessed-install.mov`,
   },
   UHD_ULTRA_PLAYER: {
-    name: 'UHD ULTRA PLAYER',
+    name: 'UHD PLAYER PRO',
     logo: `${assetBase}/uhdplayer-logo.png`,
     screenshots: {},
     video: `${assetBase}/uhd-player-pro.mov`,
@@ -64,7 +64,6 @@ export const installerAssets = {
 export const stepAssetMap: Record<string, SelectedApp> = {
   'smart-tv-hd-player': 'HDPLAYER',
   'smart-tv-max-player': 'MAXPLAYER',
-  'smart-tv-clouddy': 'CLOUDDY',
   'box-blessed-player': 'BLESSED_PLAYER',
   'box-max-player': 'MAXPLAYER',
   'mobile-max-player': 'MAXPLAYER',
@@ -74,7 +73,6 @@ export const stepAssetMap: Record<string, SelectedApp> = {
   'uhd-install': 'UHD_ULTRA_PLAYER',
   'prepare-hdplayer': 'HDPLAYER',
   'prepare-maxplayer': 'MAXPLAYER',
-  'prepare-clouddy': 'CLOUDDY',
   'prepare-blessed': 'BLESSED_PLAYER',
   'prepare-uhd': 'UHD_ULTRA_PLAYER',
 };
@@ -84,7 +82,6 @@ export type AppPreviewMode = 'mobile' | 'wide' | 'store' | 'logo';
 export const stepPreviewModeMap: Record<string, AppPreviewMode> = {
   'smart-tv-hd-player': 'wide',
   'smart-tv-max-player': 'wide',
-  'smart-tv-clouddy': 'wide',
   'box-blessed-player': 'store',
   'box-max-player': 'wide',
   'mobile-max-player': 'mobile',
@@ -94,7 +91,6 @@ export const stepPreviewModeMap: Record<string, AppPreviewMode> = {
   'uhd-install': 'logo',
   'prepare-hdplayer': 'wide',
   'prepare-maxplayer': 'wide',
-  'prepare-clouddy': 'wide',
   'prepare-blessed': 'wide',
   'prepare-uhd': 'logo',
 };

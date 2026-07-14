@@ -3,7 +3,10 @@ import type {
   BestPanelTrialResponse,
   FlowPayload,
   SalesFlowData,
+  SelectedApp,
 } from '../types/salesFlow';
+import { appConfig } from '../config/appConfig';
+import { appAssets } from '../config/appAssets';
 import { loadBestPanelConfig, loadPublicBestPanelConfig } from '../utils/bestPanelConfig';
 import type { PublicBestPanelConfig } from '../utils/bestPanelConfig';
 
@@ -51,6 +54,98 @@ function getStringFromResponse(raw: unknown, keys: string[]): string | undefined
     if (nested) {
       return nested;
     }
+  }
+
+  return undefined;
+}
+
+function getNumberFromResponse(raw: unknown, keys: string[]): number | undefined {
+  if (!raw || typeof raw !== 'object') {
+    return undefined;
+  }
+
+  for (const key of keys) {
+    const value = (raw as Record<string, unknown>)[key];
+
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      return value;
+    }
+
+    if (typeof value === 'string' && value.trim() && Number.isFinite(Number(value))) {
+      return Number(value);
+    }
+  }
+
+  for (const value of Object.values(raw as Record<string, unknown>)) {
+    const nested = getNumberFromResponse(value, keys);
+
+    if (nested) {
+      return nested;
+    }
+  }
+
+  return undefined;
+}
+
+function formatTimestamp(timestamp?: number) {
+  if (!timestamp) {
+    return undefined;
+  }
+
+  return new Intl.DateTimeFormat('pt-BR', {
+    dateStyle: 'short',
+    timeStyle: 'short',
+  }).format(new Date(timestamp * 1000));
+}
+
+function getObjectValue(raw: unknown, key: string): Record<string, unknown> | undefined {
+  if (!raw || typeof raw !== 'object') {
+    return undefined;
+  }
+
+  const value = (raw as Record<string, unknown>)[key];
+
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    return value as Record<string, unknown>;
+  }
+
+  return undefined;
+}
+
+function getAccessInfo(selectedApp: SelectedApp | null) {
+  if (selectedApp === 'HDPLAYER') {
+    return { accessLabel: 'CODE' as const, accessCode: appConfig.installCodes.providerCode };
+  }
+
+  if (selectedApp === 'BLESSED_PLAYER' || selectedApp === 'UHD_ULTRA_PLAYER') {
+    return { accessLabel: 'Provedor' as const, accessCode: appConfig.installCodes.providerCode };
+  }
+
+  return {};
+}
+
+function getTrialCredentials(raw: unknown, selectedApp: SelectedApp | null) {
+  const maxPlayer = getObjectValue(raw, 'max_player');
+  const source = selectedApp === 'MAXPLAYER' && maxPlayer ? maxPlayer : raw;
+
+  return {
+    username: getStringFromResponse(source, ['username', 'user', 'login']),
+    password: getStringFromResponse(source, ['password', 'pass', 'senha']),
+  };
+}
+
+function getTestDuration(raw: unknown) {
+  const packageName = getStringFromResponse(raw, ['package_name', 'packageName']);
+  const durationFromName = packageName?.match(/\[([^\]]+)\]/)?.[1];
+
+  if (durationFromName) {
+    return durationFromName;
+  }
+
+  const days = getNumberFromResponse(raw, ['countdown_exp_days']);
+
+  if (days) {
+    return `${days} dia${days === 1 ? '' : 's'}`;
   }
 
   return undefined;
@@ -184,11 +279,19 @@ export async function createTrial(data: SalesFlowData): Promise<BestPanelTrialRe
     throw new Error(message);
   }
 
+  const credentials = getTrialCredentials(raw, data.selectedApp);
+  const appName = data.selectedApp ? appAssets[data.selectedApp].name : undefined;
+
   return {
     ok: true,
     message: getStringFromResponse(raw, ['message', 'detail', 'status']) ?? 'Teste criado com sucesso.',
-    username: getStringFromResponse(raw, ['username', 'user', 'login']),
-    password: getStringFromResponse(raw, ['password', 'pass', 'senha']),
+    appName,
+    username: credentials.username,
+    password: credentials.password,
+    ...getAccessInfo(data.selectedApp),
+    adultPassword: data.selectedApp === 'MAXPLAYER' ? undefined : appConfig.installCodes.adultPassword,
+    expiresAt: formatTimestamp(getNumberFromResponse(raw, ['exp_date', 'expires_at', 'expire_at'])),
+    testDuration: getTestDuration(raw),
     raw,
   };
 }

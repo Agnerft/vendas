@@ -32,8 +32,14 @@ export interface SalesFlowAnswer {
 export interface TrialCreationResult {
   status: 'idle' | 'success' | 'error';
   message?: string;
+  appName?: string;
   username?: string;
   password?: string;
+  accessLabel?: 'CODE' | 'Provedor';
+  accessCode?: string;
+  adultPassword?: string;
+  expiresAt?: string;
+  testDuration?: string;
   createdAt?: string;
 }
 
@@ -107,7 +113,13 @@ export interface BestPanelTrialRequest {
 export interface BestPanelTrialResponse {
   ok: boolean;
   message: string;
+  appName?: string;
   username?: string;
   password?: string;
+  accessLabel?: 'CODE' | 'Provedor';
+  accessCode?: string;
+  adultPassword?: string;
+  expiresAt?: string;
+  testDuration?: string;
   raw?: unknown;
 }

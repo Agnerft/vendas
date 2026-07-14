@@ -209,8 +209,14 @@ export function useSalesFlow() {
         trial: {
           status: 'success',
           message: result.message,
+          appName: result.appName,
           username: result.username,
           password: result.password,
+          accessLabel: result.accessLabel,
+          accessCode: result.accessCode,
+          adultPassword: result.adultPassword,
+          expiresAt: result.expiresAt,
+          testDuration: result.testDuration,
           createdAt: new Date().toISOString(),
         },
         answers: [

@@ -18,8 +18,9 @@ export const appConfig = {
     accent: '#45a6ff',
   },
   installCodes: {
-    appName: 'UHD ULTRA PLAYER',
+    appName: 'UHD PLAYER PRO',
     providerCode: '789',
+    adultPassword: '0000',
     directLink: 'dl.ntdev.in/81567',
     downloaderCode: '2659615',
     ntDownCode: '81567',

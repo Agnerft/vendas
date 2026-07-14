@@ -8,7 +8,7 @@ import { ProgressBar } from '../components/ProgressBar/ProgressBar';
 import { appConfig } from '../config/appConfig';
 import { stepAssetMap, stepPreviewModeMap } from '../config/appAssets';
 import { useSalesFlowContext } from '../hooks/useSalesFlowContext';
-import type { FlowOption } from '../types/salesFlow';
+import type { FlowOption, TrialCreationResult } from '../types/salesFlow';
 import { formatBrazilianPhone } from '../utils/phone';
 
 function getSupportUrl(phone: string) {
@@ -18,6 +18,18 @@ function getSupportUrl(phone: string) {
 
   const message = `${appConfig.supportMessage} Meu telefone: ${formatBrazilianPhone(phone)}.`;
   return `https://wa.me/${appConfig.supportWhatsapp}?text=${encodeURIComponent(message)}`;
+}
+
+function getResultRows(trial: TrialCreationResult) {
+  return [
+    ['Aplicativo', trial.appName],
+    [trial.accessLabel, trial.accessCode],
+    ['Usuario', trial.username],
+    ['Senha', trial.password],
+    ['Tempo de teste', trial.testDuration],
+    ['Valido ate', trial.expiresAt],
+    ['Senha conteudo adulto', trial.adultPassword],
+  ].filter((row): row is [string, string] => Boolean(row[0] && row[1]));
 }
 
 export function SalesAssistantPage() {
@@ -74,7 +86,7 @@ export function SalesAssistantPage() {
       return (
         <>
           <AppInstructions />
-          <p className="follow-up-question">Voce conseguiu instalar o UHD ULTRA PLAYER?</p>
+          <p className="follow-up-question">Voce conseguiu instalar o UHD PLAYER PRO?</p>
           <div className="option-list">
             {currentStep.options?.map((option) => (
               <OptionButton key={option.id} option={option} onSelect={handleOption} />
@@ -104,6 +116,7 @@ export function SalesAssistantPage() {
 
     if (currentStep.id === 'trial-placeholder') {
       const isTrialSuccess = data.trial.status === 'success';
+      const resultRows = getResultRows(data.trial);
 
       return (
         <div className={`completion-box completion-${data.trial.status}`}>
@@ -113,18 +126,12 @@ export function SalesAssistantPage() {
               ? data.trial.message ?? 'Seu acesso foi preparado. Guarde os dados abaixo.'
               : 'Voce pode tentar novamente ou chamar nosso suporte para finalizar o atendimento.'}
           </span>
-          {data.trial.username ? (
-            <div className="credential-grid">
-              <span>Usuario</span>
-              <strong>{data.trial.username}</strong>
+          {resultRows.map(([label, value]) => (
+            <div className="credential-grid" key={label}>
+              <span>{label}</span>
+              <strong>{value}</strong>
             </div>
-          ) : null}
-          {data.trial.password ? (
-            <div className="credential-grid">
-              <span>Senha</span>
-              <strong>{data.trial.password}</strong>
-            </div>
-          ) : null}
+          ))}
           {data.trial.status === 'error' ? (
             <>
               <div className="completion-actions">
