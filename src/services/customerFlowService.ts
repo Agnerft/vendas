@@ -216,6 +216,7 @@ async function getServerBestPanelConfig() {
       supportWhatsapp: localConfig.supportWhatsapp,
       supportMessage: localConfig.supportMessage,
       voiceReaderEnabled: localConfig.voiceReaderEnabled,
+      adminTestModeEnabled: localConfig.adminTestModeEnabled,
       hasApiToken: Boolean(localConfig.apiToken),
     };
   }

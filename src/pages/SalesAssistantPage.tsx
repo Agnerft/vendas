@@ -485,6 +485,7 @@ export function SalesAssistantPage() {
   const [supportWhatsapp, setSupportWhatsapp] = useState(appConfig.supportWhatsapp);
   const [supportMessage, setSupportMessage] = useState(appConfig.supportMessage);
   const [voiceReaderEnabled, setVoiceReaderEnabled] = useState(false);
+  const [adminTestModeEnabled, setAdminTestModeEnabled] = useState(false);
   const {
     canGoBack,
     chooseOption,
@@ -514,11 +515,13 @@ export function SalesAssistantPage() {
         setSupportWhatsapp(config.supportWhatsapp);
         setSupportMessage(config.supportMessage || appConfig.supportMessage);
         setVoiceReaderEnabled(config.voiceReaderEnabled);
+        setAdminTestModeEnabled(config.adminTestModeEnabled);
       })
       .catch(() => {
         setSupportWhatsapp(appConfig.supportWhatsapp);
         setSupportMessage(appConfig.supportMessage);
         setVoiceReaderEnabled(false);
+        setAdminTestModeEnabled(false);
       });
   }, []);
 
@@ -628,6 +631,11 @@ export function SalesAssistantPage() {
                 supportWhatsapp={supportWhatsapp}
                 trial={data.trial}
               />
+              {adminTestModeEnabled ? (
+                <button type="button" className="secondary-action" onClick={restart}>
+                  Reiniciar atendimento
+                </button>
+              ) : null}
             </>
           ) : null}
           {data.trial.status === 'error' ? (

@@ -209,6 +209,16 @@ export function AdminPage() {
             <span>Ativar leitor de voz para login e senha</span>
           </label>
 
+          <label className="admin-toggle" htmlFor="admin-test-mode-enabled">
+            <input
+              checked={config.adminTestModeEnabled}
+              id="admin-test-mode-enabled"
+              type="checkbox"
+              onChange={(event) => updateBooleanField('adminTestModeEnabled', event.target.checked)}
+            />
+            <span>Modo teste: mostrar botao reiniciar atendimento</span>
+          </label>
+
           {message ? <p className="admin-success">{message}</p> : null}
           {error ? <p className="form-error">{error}</p> : null}
 

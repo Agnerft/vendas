@@ -9,6 +9,7 @@ export interface BestPanelConfig {
   supportWhatsapp: string;
   supportMessage: string;
   voiceReaderEnabled: boolean;
+  adminTestModeEnabled: boolean;
 }
 
 export interface PublicBestPanelConfig extends Omit<BestPanelConfig, 'apiToken'> {
@@ -27,6 +28,7 @@ export function getDefaultBestPanelConfig(): BestPanelConfig {
     supportWhatsapp: appConfig.supportWhatsapp,
     supportMessage: appConfig.supportMessage,
     voiceReaderEnabled: false,
+    adminTestModeEnabled: false,
   };
 }
 

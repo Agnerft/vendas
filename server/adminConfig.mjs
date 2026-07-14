@@ -13,6 +13,7 @@ const defaultConfig = {
   supportWhatsapp: '',
   supportMessage: 'Ola, preciso de ajuda para configurar meu teste.',
   voiceReaderEnabled: false,
+  adminTestModeEnabled: false,
   maxPlayerDomainId: '1779208587735814489',
 };
 
@@ -35,6 +36,10 @@ function normalizeConfig(config = {}) {
       typeof config.supportMessage === 'string' ? config.supportMessage.trim() : defaultConfig.supportMessage,
     voiceReaderEnabled:
       typeof config.voiceReaderEnabled === 'boolean' ? config.voiceReaderEnabled : defaultConfig.voiceReaderEnabled,
+    adminTestModeEnabled:
+      typeof config.adminTestModeEnabled === 'boolean'
+        ? config.adminTestModeEnabled
+        : defaultConfig.adminTestModeEnabled,
     maxPlayerDomainId:
       typeof config.maxPlayerDomainId === 'string' ? config.maxPlayerDomainId.trim() : defaultConfig.maxPlayerDomainId,
   };
@@ -73,6 +78,7 @@ export function getPublicBestPanelConfig(config) {
     supportWhatsapp: config.supportWhatsapp,
     supportMessage: config.supportMessage,
     voiceReaderEnabled: config.voiceReaderEnabled,
+    adminTestModeEnabled: config.adminTestModeEnabled,
     hasApiToken: Boolean(config.apiToken),
   };
 }
