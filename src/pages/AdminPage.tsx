@@ -17,7 +17,7 @@ function isAdminUnlocked() {
 }
 
 function hasPanelCredentials(config: BestPanelConfig) {
-  return Boolean(config.login && config.apiToken && config.packageId);
+  return Boolean(config.apiToken && config.packageId);
 }
 
 export function AdminPage() {
@@ -134,25 +134,25 @@ export function AdminPage() {
             type="url"
             value={config.endpoint}
             onChange={(event) => updateField('endpoint', event.target.value)}
-            placeholder="https://painel.best/api/test/"
+            placeholder="https://painel.best/lines/create-trial/"
           />
 
-          <label htmlFor="best-login">Username do header</label>
+          <label htmlFor="best-login">Username do header antigo</label>
           <input
             id="best-login"
             type="text"
             value={config.login}
             onChange={(event) => updateField('login', event.target.value)}
-            placeholder="revendaluiz"
+            placeholder="Opcional nesta API"
           />
 
-          <label htmlFor="best-token">API key do header</label>
+          <label htmlFor="best-token">Bearer token</label>
           <input
             id="best-token"
             type="password"
             value={config.apiToken}
             onChange={(event) => updateField('apiToken', event.target.value)}
-            placeholder="Cole a api_key aqui"
+            placeholder="Cole o token da API aqui"
           />
 
           <label htmlFor="best-package">Package</label>

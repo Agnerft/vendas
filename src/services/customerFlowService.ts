@@ -57,33 +57,33 @@ function getStringFromResponse(raw: unknown, keys: string[]): string | undefined
 }
 
 function assertBestPanelConfig(config: PublicBestPanelConfig) {
-  const { endpoint, hasApiToken, login, packageId } = config;
+  const { endpoint, hasApiToken, packageId } = config;
 
-  if (!endpoint || !hasApiToken || !login || !packageId) {
-    throw new Error('Configure endpoint, login, API e package do painel antes de criar o teste.');
+  if (!endpoint || !hasApiToken || !packageId) {
+    throw new Error('Configure endpoint, API token e package do painel antes de criar o teste.');
   }
 }
 
 function buildBestPanelPayload(data: SalesFlowData, config: PublicBestPanelConfig): BestPanelTrialRequest {
   return {
-    type: 'iptv',
+    type: null,
     email: null,
-    notes: config.notes,
+    notes: config.notes || null,
     phone: data.phone,
-    password: null,
+    password: '',
     username: data.phone,
+    plan_value: null,
     package_id: config.packageId,
   };
 }
 
 function buildBestPanelHeaders(): HeadersInit {
-  const { apiToken, login } = loadBestPanelConfig();
+  const { apiToken } = loadBestPanelConfig();
 
   return {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     'X-Best-Api-Token': apiToken,
-    'X-Best-Login': login,
   };
 }
 

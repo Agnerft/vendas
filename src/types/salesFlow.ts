@@ -94,13 +94,14 @@ export interface FlowPayload {
 }
 
 export interface BestPanelTrialRequest {
-  type: 'iptv';
+  type: string | null;
   email: string | null;
-  notes: string;
+  notes: string | null;
   phone: string;
-  password: string | null;
+  password: string;
   username: string;
-  package_id: string;
+  plan_value: number | null;
+  package_id: string | number;
 }
 
 export interface BestPanelTrialResponse {

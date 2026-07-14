@@ -2,9 +2,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 
 interface ProxyRequestBody {
   endpoint?: unknown;
-  payload?: {
-    package_id?: unknown;
-  };
+  payload?: Record<string, unknown>;
 }
 
 export async function parseJsonBody(request: IncomingMessage): Promise<ProxyRequestBody> {
@@ -26,26 +24,40 @@ function sanitizeEndpoint(endpoint: unknown) {
   return endpoint;
 }
 
-function buildPanelHeaders(apiToken: string, login: string) {
+function buildPanelHeaders(apiToken: string) {
   return {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    username: login,
-    api_key: apiToken,
+    Authorization: `Bearer ${apiToken}`,
   };
+}
+
+function normalizePackageId(packageId: unknown) {
+  const numericPackageId = Number(packageId);
+  return Number.isNaN(numericPackageId) ? packageId : numericPackageId;
 }
 
 export async function createBestPanelTrial(request: IncomingMessage) {
   const body = await parseJsonBody(request);
   const endpoint = sanitizeEndpoint(body.endpoint);
   const apiToken = request.headers['x-best-api-token'];
-  const login = request.headers['x-best-login'];
+  const payload = {
+    ...body.payload,
+    username: body.payload?.username || body.payload?.phone || '',
+    password: body.payload?.password ?? '',
+    notes: body.payload?.notes ?? null,
+    email: body.payload?.email ?? null,
+    phone: body.payload?.phone || '',
+    type: body.payload?.type ?? null,
+    plan_value: body.payload?.plan_value ?? null,
+    package_id: normalizePackageId(body.payload?.package_id),
+  };
 
-  if (typeof apiToken !== 'string' || typeof login !== 'string' || !body.payload?.package_id) {
+  if (typeof apiToken !== 'string' || !payload.package_id) {
     return {
       status: 400,
       body: {
-        message: 'Configure API, login e package no admin.',
+        message: 'Configure API token e package no admin.',
       },
     };
   }
@@ -55,8 +67,8 @@ export async function createBestPanelTrial(request: IncomingMessage) {
   try {
     response = await fetch(endpoint, {
       method: 'POST',
-      headers: buildPanelHeaders(apiToken, login),
-      body: JSON.stringify(body.payload),
+      headers: buildPanelHeaders(apiToken),
+      body: JSON.stringify(payload),
     });
   } catch (error) {
     return {
@@ -80,7 +92,7 @@ export function sendJson(response: ServerResponse, status: number, body: unknown
   response.writeHead(status, {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type, X-Best-Api-Token, X-Best-Login',
+    'Access-Control-Allow-Headers': 'Content-Type, X-Best-Api-Token',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
   });
   response.end(JSON.stringify(body));

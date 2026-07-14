@@ -60,7 +60,7 @@ Opcao recomendada para operar pelo navegador:
 
 1. Acesse `/admin`
 2. Digite a senha `123`
-3. Configure endpoint, login, API, package e observacao
+3. Configure endpoint, token Bearer, package e observacao
 4. Clique em `Salvar configuracao`
 
 Essa configuracao fica salva no LocalStorage do navegador.
@@ -68,7 +68,7 @@ Essa configuracao fica salva no LocalStorage do navegador.
 Como padrao inicial do projeto, tambem e possivel criar um arquivo `.env.local` na raiz, usando `.env.example` como base:
 
 ```bash
-VITE_BEST_PANEL_TEST_ENDPOINT=https://painel.best/api/test/
+VITE_BEST_PANEL_TEST_ENDPOINT=https://painel.best/lines/create-trial/
 VITE_BEST_PANEL_LOGIN=revendaluiz
 VITE_BEST_PANEL_API_TOKEN=sua_api_aqui
 VITE_BEST_PANEL_PACKAGE_ID=id_do_pacote_aqui
@@ -84,12 +84,13 @@ O payload enviado para o painel fica em `src/services/customerFlowService.ts`:
 
 ```json
 {
-  "type": "iptv",
+  "type": null,
   "email": null,
   "notes": "Vendas pelo APP",
   "phone": "{telefone}",
-  "password": null,
+  "password": "",
   "username": "{telefone}",
+  "plan_value": null,
   "package_id": "{package}"
 }
 ```
