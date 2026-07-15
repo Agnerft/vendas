@@ -200,22 +200,46 @@ export function AdminPage() {
           />
 
           <label className="admin-toggle" htmlFor="voice-reader-enabled">
-            <input
-              checked={config.voiceReaderEnabled}
-              id="voice-reader-enabled"
-              type="checkbox"
-              onChange={(event) => updateBooleanField('voiceReaderEnabled', event.target.checked)}
-            />
+            <span className="toggle-wrapper">
+              <input
+                checked={config.voiceReaderEnabled}
+                className="toggle-checkbox"
+                id="voice-reader-enabled"
+                type="checkbox"
+                onChange={(event) => updateBooleanField('voiceReaderEnabled', event.target.checked)}
+              />
+              <span className="toggle-container">
+                <span className="toggle-button">
+                  <span className="toggle-button-circles-container">
+                    {Array.from({ length: 12 }, (_, index) => (
+                      <span className="toggle-button-circle" key={index} />
+                    ))}
+                  </span>
+                </span>
+              </span>
+            </span>
             <span>Ativar leitor de voz para login e senha</span>
           </label>
 
           <label className="admin-toggle" htmlFor="admin-test-mode-enabled">
-            <input
-              checked={config.adminTestModeEnabled}
-              id="admin-test-mode-enabled"
-              type="checkbox"
-              onChange={(event) => updateBooleanField('adminTestModeEnabled', event.target.checked)}
-            />
+            <span className="toggle-wrapper">
+              <input
+                checked={config.adminTestModeEnabled}
+                className="toggle-checkbox"
+                id="admin-test-mode-enabled"
+                type="checkbox"
+                onChange={(event) => updateBooleanField('adminTestModeEnabled', event.target.checked)}
+              />
+              <span className="toggle-container">
+                <span className="toggle-button">
+                  <span className="toggle-button-circles-container">
+                    {Array.from({ length: 12 }, (_, index) => (
+                      <span className="toggle-button-circle" key={index} />
+                    ))}
+                  </span>
+                </span>
+              </span>
+            </span>
             <span>Modo teste: mostrar botao reiniciar atendimento</span>
           </label>
 
