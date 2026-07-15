@@ -20,9 +20,28 @@ function hasPanelCredentials(config: BestPanelConfig) {
   return Boolean(config.apiToken && config.packageId);
 }
 
+function LoginSpinner() {
+  return (
+    <span className="spinner-container spinner-container-button" aria-hidden="true">
+      <span className="spinner">
+        <span className="spinner">
+          <span className="spinner">
+            <span className="spinner">
+              <span className="spinner">
+                <span className="spinner" />
+              </span>
+            </span>
+          </span>
+        </span>
+      </span>
+    </span>
+  );
+}
+
 export function AdminPage() {
   const defaultConfig = useMemo(() => loadBestPanelConfig(), []);
   const [isUnlocked, setIsUnlocked] = useState(isAdminUnlocked);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [password, setPassword] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
   const [config, setConfig] = useState<BestPanelConfig>(defaultConfig);
@@ -33,6 +52,7 @@ export function AdminPage() {
     event.preventDefault();
 
     try {
+      setIsLoggingIn(true);
       let serverConfig = await loadAdminBestPanelConfig(password);
       const localConfig = loadBestPanelConfig();
 
@@ -49,6 +69,8 @@ export function AdminPage() {
       setError('');
     } catch (loginError) {
       setError(loginError instanceof Error ? loginError.message : 'Senha incorreta.');
+    } finally {
+      setIsLoggingIn(false);
     }
   }
 
@@ -110,6 +132,7 @@ export function AdminPage() {
               id="admin-password"
               type="password"
               value={password}
+              disabled={isLoggingIn}
               onChange={(event) => {
                 setPassword(event.target.value);
                 setError('');
@@ -117,7 +140,12 @@ export function AdminPage() {
               autoFocus
             />
             {error ? <p className="form-error">{error}</p> : null}
-            <button type="submit" className="primary-action">Entrar</button>
+            <button type="submit" className="primary-action admin-login-action" disabled={isLoggingIn}>
+              <span className="button-content">
+                {isLoggingIn ? <LoginSpinner /> : null}
+                {isLoggingIn ? 'Entrando...' : 'Entrar'}
+              </span>
+            </button>
           </form>
           <a className="admin-back-link" href="/">Voltar para o atendimento</a>
         </section>
