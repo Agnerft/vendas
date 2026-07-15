@@ -739,7 +739,7 @@ export function SalesAssistantPage() {
         {renderContent()}
       </FlowCard>
 
-      {!isWaitingForTrial && currentStep.id !== 'trial-placeholder' ? (
+      {!isWaitingForTrial && currentStep.id !== 'trial-placeholder' && canGoBack ? (
         <NavigationButtons canGoBack={canGoBack} onBack={goBack} onRestart={restart} />
       ) : null}
     </main>
