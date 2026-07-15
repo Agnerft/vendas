@@ -486,8 +486,8 @@ function PostTrialActivation({
         <div className="access-question">
           <strong>{accessStatus === 'first-question' ? 'Conseguiu acessar o teste?' : 'Conseguiu logar agora?'}</strong>
           <div>
-            <button type="button" className="primary-action" onClick={startPaymentWait}>Sim</button>
-            <button type="button" onClick={startRetryWait}>Nao</button>
+            <button type="button" className="access-button access-button-positive" onClick={startPaymentWait}>Sim</button>
+            <button type="button" className="access-button access-button-neutral" onClick={startRetryWait}>Nao</button>
           </div>
         </div>
       ) : null}
@@ -659,7 +659,7 @@ export function SalesAssistantPage() {
                 trial={data.trial}
               />
               {adminTestModeEnabled ? (
-                <button type="button" className="secondary-action" onClick={restart}>
+                <button type="button" className="admin-reset-action" onClick={restart}>
                   Reiniciar atendimento
                 </button>
               ) : null}
